@@ -148,7 +148,7 @@ export default function AdminRoute() {
 								<div className="group/rooms relative w-full">
 									<SidebarMainNavLink routeName="rooms" icon="home" />
 
-									<div className="group-hover/rooms:pointer-events-auto pointer-events-none absolute z-3001 right-0 max-lg:bottom-16 lg:left-full lg:top-[-2rem]">
+									<div className="group-hover/rooms:pointer-events-auto pointer-events-none absolute z-3001 max-lg:right-0 max-lg:bottom-16 lg:left-full lg:top-[-2rem]">
 										<div className="ml-4 opacity-0 rounded-2xl bg-foreground px-4 py-2 transition group-hover/rooms:opacity-100">
 											<SidebarNavLink
 												routeName="rooms/pricing"
