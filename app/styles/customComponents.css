@@ -107,8 +107,26 @@
 @media (max-height: 700px) {
 	.reservationModalCustomMaxHeight {
 		height: 100%;
-	}	
+	}
 }
+
+
+@media (max-height: 649px) {
+	.custom-admin-sidebar-height {
+		@apply lg:my-4;
+	}
+}
+@media (min-height: 650px) and (max-height: 749px) {
+	.custom-admin-sidebar-height {
+		@apply lg:my-10;
+	}
+}
+@media (min-height: 750px) {
+	.custom-admin-sidebar-height {
+		@apply lg:my-16;
+	}
+}
+
 
 
 /* page detail's "dangerouslySetInnerHTML Styles */
