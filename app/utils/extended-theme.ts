@@ -160,4 +160,5 @@ export const extendedTheme = {
 	backdropBlur: {
 		xs: '2px',
 	},
+	pointerEvents: ['group-hover'],
 } satisfies Config['theme']

@@ -36,25 +36,27 @@ function SidebarMainNavLink({
 				{({ isActive }) => (
 					<div
 						className={cn(
-							'group p-2 text-center capitalize',
+							'group/item p-2 text-center capitalize',
 							isActive ? 'rounded-xl bg-background text-foreground' : '',
 						)}
 					>
 						<Icon
 							size="xl"
-							name={icon ?? 'caret-right'} 
-							className='max-lg:w-5 max-lg:h-5' 
+							name={icon ?? 'caret-right'}
+							className="max-lg:h-5 max-lg:w-5"
 						/>
-						<div
-							className={cn(
-								'no-scrollbar overflow-x-scroll text-sm max-lg:text-xs',
-								!isActive
-									? 'group-hover/rooms:opacity-100 lg:opacity-0 lg:transition-opacity lg:duration-300 lg:group-hover:opacity-100'
-									: '',
-							)}
-						>
-							{title ?? routeName !== 'more' ? routeName : ''}
-						</div>
+						{routeName !== 'more' && (
+							<div
+								className={cn(
+									'no-scrollbar overflow-x-scroll text-sm max-lg:text-xs',
+									!isActive
+										? 'group-hover/rooms:opacity-100 lg:opacity-0 lg:transition-opacity lg:duration-300 lg:group-hover/item:opacity-100 group-hover/item:pointer-events-auto'
+										: '',
+								)}
+							>
+								{title ?? routeName}
+							</div>
+						)}
 					</div>
 				)}
 			</NavLink>
@@ -121,24 +123,15 @@ export default function AdminRoute() {
 	const sidebarBoxBaseClasslist =
 		'lg:flex lg:flex-col lg:justify-between lg:items-center rounded-3xl bg-foreground text-background'
 
-
-	// TODO: implement fixed position for "max-lg:" mob view of these hover boxes
-	function menuItemChildrenInnerBoxClassList(groupName: string) {
-		return `lg:left-full lg:ml-4 opacity-0 rounded-2xl bg-foreground px-4 py-2 transition group-hover/${groupName}:opacity-100`
-	}
-	function menuItemChildrenBoxClassList(groupName: string) {
-		return `pointer-events-none absolute lg:top-[-2rem] z-3001 group-hover/${groupName}:pointer-events-auto`
-	}
-
 	return (
 		<div className="flex items-start justify-center">
 			<div className="max-lg:contents">
 				<div className="fixed z-3001 w-full max-lg:bottom-0 lg:h-full lg:overflow-y-scroll">
 					<div className="pb-2 max-lg:px-2 lg:w-[152px] lg:pb-20 lg:pr-9 xl:py-6 2xl:py-10">
-						<div className={cn(sidebarBoxBaseClasslist, 'py-2 lg:py-10 ')}>
+						<div className={cn(sidebarBoxBaseClasslist, 'py-2 lg:py-10')}>
 							<div className="text-center max-lg:hidden">logo</div>
 
-							<div className="custom-admin-sidebar-height flex w-full items-center justify-between lg:gap-5 lg:flex-col">
+							<div className="custom-admin-sidebar-height flex w-full items-center justify-between lg:flex-col lg:gap-2 2xl:gap-5">
 								<SidebarMainNavLink
 									first={true}
 									routeName="dashboard"
@@ -152,11 +145,11 @@ export default function AdminRoute() {
 									icon="calendar"
 								/>
 
-								<div className="group/rooms relative w-full h-full">
+								<div className="group/rooms relative w-full">
 									<SidebarMainNavLink routeName="rooms" icon="home" />
 
-									<div className={menuItemChildrenBoxClassList('rooms')}>
-										<div className={menuItemChildrenInnerBoxClassList('rooms')}>
+									<div className="group-hover/rooms:pointer-events-auto pointer-events-none absolute z-3001 right-0 max-lg:bottom-16 lg:left-full lg:top-[-2rem]">
+										<div className="ml-4 opacity-0 rounded-2xl bg-foreground px-4 py-2 transition group-hover/rooms:opacity-100">
 											<SidebarNavLink
 												routeName="rooms/pricing"
 												title="pricings"
@@ -192,18 +185,16 @@ export default function AdminRoute() {
 									classList="max-lg:hidden"
 								/>
 
-								<div className="group/others relative w-full h-full">
+								<div className="group/additional relative w-full">
 									<Icon
 										name="dots-horizontal"
 										size="xl"
 										className="w-full cursor-pointer"
 									/>
 
-									<div className={menuItemChildrenBoxClassList('others')}>
-										<div
-											className={menuItemChildrenInnerBoxClassList('others')}
-										>
-								<SidebarNavLink
+									<div className="group-hover/additional:pointer-events-auto pointer-events-none absolute z-3001 max-lg:right-0 max-lg:bottom-16 lg:left-full lg:bottom-[-5rem]">
+										<div className="ml-4 opacity-0 rounded-2xl bg-foreground px-4 py-2 transition group-hover/additional:opacity-100">
+											<SidebarNavLink
 												routeName="pages"
 												icon="file-text"
 												classList="lg:hidden"
@@ -252,7 +243,6 @@ export default function AdminRoute() {
 
 			<div className="w-full py-6 2xl:py-10">
 				<div className="rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-4 2xl:px-8 2xl:py-8">
-					{/* rounded-3xl bg-backgroundDashboard  */}
 					<Outlet />
 				</div>
 			</div>
