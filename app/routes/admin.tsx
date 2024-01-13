@@ -146,7 +146,7 @@ export default function AdminRoute() {
 					)}
 				>
 					<div
-						className="pb-2 max-lg:px-2 lg:w-[152px] lg:pb-20 lg:pr-9 xl:py-6 2xl:py-10"
+						className="pb-2 max-lg:px-2 lg:w-[152px] lg:pb-20 lg:pr-9 lg:py-6 2xl:py-10"
 						onMouseOver={handleMouseOver}
 						onMouseLeave={handleMouseOut}
 					>
