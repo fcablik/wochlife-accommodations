@@ -225,10 +225,10 @@ export default function AdminRoute() {
 									<Icon
 										name="dots-horizontal"
 										size="xl"
-										className="w-full cursor-pointer my-3"
+										className="my-3 w-full cursor-pointer"
 									/>
 
-									<div className="pointer-events-none absolute z-3001 group-hover/additional:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:left-full lg:bottom-[-7rem]">
+									<div className="pointer-events-none absolute z-3001 group-hover/additional:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:bottom-[-7rem] lg:left-full">
 										<div className="ml-4 rounded-2xl bg-foreground px-4 py-2 opacity-0 transition group-hover/additional:opacity-100">
 											<div
 												className="max-lg:hidden"
