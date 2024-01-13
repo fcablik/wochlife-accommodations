@@ -126,15 +126,16 @@ export default function AdminRoute() {
 
 	const [isHovered, setIsHovered] = useState(false)
 
-	const handleMouseEnter = () => {
+	const handleMouseOver = () => {
 		setIsHovered(true)
 	}
 
-	const handleMouseLeave = () => {
+	const handleMouseOut = () => {
 		setTimeout(() => {
 			setIsHovered(false)
 		}, 300)
 	}
+
 	return (
 		<div className="flex items-start justify-center">
 			<div className="max-lg:contents">
@@ -146,8 +147,8 @@ export default function AdminRoute() {
 				>
 					<div
 						className="pb-2 max-lg:px-2 lg:w-[152px] lg:pb-20 lg:pr-9 xl:py-6 2xl:py-10"
-						onMouseEnter={handleMouseEnter}
-						onMouseLeave={handleMouseLeave}
+						onMouseOver={handleMouseOver}
+						onMouseLeave={handleMouseOut}
 					>
 						<div className={cn(sidebarBoxBaseClasslist, 'py-2 lg:py-10')}>
 							<div className="text-center max-lg:hidden">logo</div>
