@@ -37,7 +37,7 @@ function SidebarMainNavLink({
 				{({ isActive }) => (
 					<div
 						className={cn(
-							'group/item p-2 text-center capitalize',
+							'group/item px-2 py-4 text-center capitalize',
 							isActive ? 'rounded-xl bg-background text-foreground' : '',
 						)}
 					>
@@ -146,14 +146,14 @@ export default function AdminRoute() {
 					)}
 				>
 					<div
-						className="pb-2 max-lg:px-2 lg:w-[152px] lg:pb-20 lg:pr-9 lg:py-6 2xl:py-10"
+						className="pb-2 max-lg:px-2 lg:w-[152px] lg:py-6 lg:pb-20 lg:pr-9 2xl:py-10"
 						onMouseOver={handleMouseOver}
 						onMouseLeave={handleMouseOut}
 					>
 						<div className={cn(sidebarBoxBaseClasslist, 'py-2 lg:py-10')}>
 							<div className="text-center max-lg:hidden">logo</div>
 
-							<div className="custom-admin-sidebar-height flex w-full items-center justify-between lg:flex-col lg:gap-2 2xl:gap-5">
+							<div className="custom-admin-sidebar-height flex w-full items-center justify-between gap-1 lg:flex-col 2xl:gap-2">
 								<SidebarMainNavLink
 									first={true}
 									routeName="dashboard"
@@ -170,8 +170,22 @@ export default function AdminRoute() {
 								<div className="group/rooms relative w-full">
 									<SidebarMainNavLink routeName="rooms" icon="home" />
 
-									<div className="pointer-events-none absolute z-3001 group-hover/rooms:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:left-full lg:top-[-2rem]">
+									<div className="pointer-events-none absolute z-3001 group-hover/rooms:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:left-full lg:top-[-50%]">
 										<div className="ml-4 rounded-2xl bg-foreground px-4 py-2 opacity-0 transition group-hover/rooms:opacity-100">
+											<div
+												className="max-lg:hidden"
+												style={{
+													content: "''",
+													position: 'absolute',
+													top: '5rem',
+													left: '-.6rem',
+													borderWidth: '13px',
+													borderStyle: 'solid',
+													borderColor:
+														'transparent #000 transparent transparent',
+												}}
+											/>
+
 											<SidebarNavLink
 												routeName="rooms/pricing"
 												title="pricings"
@@ -214,8 +228,23 @@ export default function AdminRoute() {
 										className="w-full cursor-pointer"
 									/>
 
-									<div className="pointer-events-none absolute z-3001 group-hover/additional:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:bottom-[-5rem] lg:left-full">
+									<div className="pointer-events-none absolute z-3001 group-hover/additional:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:left-full lg:top-[-50%]">
 										<div className="ml-4 rounded-2xl bg-foreground px-4 py-2 opacity-0 transition group-hover/additional:opacity-100">
+											<div
+												className="max-lg:hidden"
+												style={{
+													content: "''",
+													position: 'absolute',
+													top: '1.25rem',
+													left: '-.6rem',
+													borderWidth: '13px',
+													borderStyle: 'solid',
+													borderColor:
+														'transparent #000 transparent transparent',
+												}}
+											/>
+
+											<SidebarNavLink title="homepage" routeName="/" />
 											<SidebarNavLink
 												routeName="pages"
 												icon="file-text"
