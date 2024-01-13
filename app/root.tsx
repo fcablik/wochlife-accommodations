@@ -231,7 +231,7 @@ function App() {
 
 	return (
 		<Document nonce={nonce} theme={theme} env={data.ENV}>
-			<HeaderBase />
+			<HeaderBase routeAdmin={routeAdmin} />
 
 			<div className={baseContainerWidthClassList}>
 				<Outlet />

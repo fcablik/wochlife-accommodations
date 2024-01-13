@@ -1,22 +1,22 @@
-import { Link, NavLink } from "@remix-run/react"
-import { cn } from "#app/utils/misc.tsx"
-import ThemeSwitcher from "../theme-switch.tsx"
-import { Button } from "../ui/button.tsx"
+import { Link, NavLink } from '@remix-run/react'
+import { cn } from '#app/utils/misc.tsx'
+import ThemeSwitcher from '../theme-switch.tsx'
+import { Button } from '../ui/button.tsx'
 // import { useOptionalUser } from "#app/utils/user.ts"
 // import UserDropdown from "../dropdowns/dropdown-user.tsx"
 
-export function HeaderBase() {
-    // const user = useOptionalUser()
-    const headerHeight = "h-[60px]"
+export function HeaderBase({ routeAdmin }: { routeAdmin?: boolean }) {
+	// const user = useOptionalUser()
+	const headerHeight = 'h-[60px]'
 
 	return (
-		<header className="max-md:absolute">
+		<header className={cn('max-md:absolute', routeAdmin && 'max-lg:hidden')}>
 			<div className="fixed z-1999 w-full max-md:bottom-2 md:top-0">
 				<div
 					className={cn(
 						'bg-background max-md:mx-2 max-md:rounded-xl',
 						headerHeight,
-						'py-2 max-md:px-2 max-md:py-4 shadow-header-menu',
+						'py-2 shadow-header-menu max-md:px-2 max-md:py-4',
 					)}
 				>
 					<nav className="space-between flex items-center justify-between">
@@ -27,23 +27,29 @@ export function HeaderBase() {
 
 						<div className="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
 							<div className="flex justify-center gap-5">
-                            <NavLink to="rooms">
-                                        {({ isActive }) => (
-                                            <Button variant={isActive ? "highlight" : "secondary"}>rooms</Button>
-                                        )}
-                                    </NavLink>
+								<NavLink to="rooms">
+									{({ isActive }) => (
+										<Button variant={isActive ? 'highlight' : 'secondary'}>
+											rooms
+										</Button>
+									)}
+								</NavLink>
 
-                                    <NavLink to="pages">
-                                        {({ isActive }) => (
-                                            <Button variant={isActive ? "highlight" : "secondary"}>pages</Button>
-                                        )}
-                                    </NavLink>
+								<NavLink to="pages">
+									{({ isActive }) => (
+										<Button variant={isActive ? 'highlight' : 'secondary'}>
+											pages
+										</Button>
+									)}
+								</NavLink>
 
-                                    <NavLink to="contact">
-                                        {({ isActive }) => (
-                                            <Button variant={isActive ? "highlight" : "secondary"}>contact</Button>
-                                        )}
-                                    </NavLink>
+								<NavLink to="contact">
+									{({ isActive }) => (
+										<Button variant={isActive ? 'highlight' : 'secondary'}>
+											contact
+										</Button>
+									)}
+								</NavLink>
 							</div>
 						</div>
 
@@ -64,5 +70,5 @@ export function HeaderBase() {
 
 			<div className={headerHeight} />
 		</header>
-    )
+	)
 }
