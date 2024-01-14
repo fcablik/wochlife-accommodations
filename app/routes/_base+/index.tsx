@@ -1,10 +1,12 @@
-import { type DataFunctionArgs, type MetaFunction } from '@remix-run/node'
-import { requireUserWithRole } from '#app/utils/permissions.ts'
+import { 
+	// type DataFunctionArgs, 
+	type MetaFunction } from '@remix-run/node'
+// import { requireUserWithRole } from '#app/utils/permissions.ts'
 
-export async function loader({ request }: DataFunctionArgs) {
-	await requireUserWithRole(request, 'admin') // Temporary DEVelopment Phase
-	return null
-}
+// export async function loader({ request }: DataFunctionArgs) {
+// 	await requireUserWithRole(request, 'admin') // Temporary DEVelopment Phase
+// 	return null
+// }
 
 export default function Index() {
 	return (
