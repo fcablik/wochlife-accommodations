@@ -31,13 +31,13 @@ function SidebarMainNavLink({
 }) {
 	return (
 		<div
-			className={cn(classList, !first ? 'lg:mt-2' : '', 'w-full px-1 lg:mb-2')}
+			className={cn(classList, !first ? 'lg:mt-2' : '', 'w-full px-1 lg:px-2 lg:mb-2')}
 		>
 			<NavLink to={routeName} target={target}>
 				{({ isActive }) => (
 					<div
 						className={cn(
-							'group/item p-2 lg:px-2 lg:py-4 text-center capitalize',
+							'group/item p-2 lg:px-2 lg:py-3 text-center capitalize',
 							isActive ? 'rounded-xl bg-background text-foreground' : '',
 						)}
 					>
@@ -49,7 +49,7 @@ function SidebarMainNavLink({
 						{routeName !== 'more' && (
 							<div
 								className={cn(
-									'no-scrollbar overflow-x-scroll text-sm max-lg:text-xs',
+									'no-scrollbar overflow-x-scroll text-sm max-lg:text-xs mt-1',
 									!isActive
 										? 'group-hover/item:pointer-events-auto group-hover/rooms:opacity-100 lg:opacity-0 lg:transition-opacity lg:duration-300 lg:group-hover/item:opacity-100'
 										: '',
@@ -140,11 +140,11 @@ export default function AdminRoute() {
 				<div
 					className={cn(
 						'fixed z-3001 w-full max-lg:bottom-0 lg:h-full lg:overflow-y-scroll',
-						!isHovered && 'lg:w-[152px]',
+						!isHovered && 'lg:w-[135px] xl:w-[145px] 2xl:w-[152px]',
 					)}
 				>
 					<div
-						className="pb-1 max-lg:px-1 lg:w-[152px] lg:py-6 lg:pb-16 lg:pr-9 2xl:py-10"
+						className="pb-1 max-lg:px-1 lg:w-[135px] xl:w-[145px] 2xl:w-[152px] lg:py-6 lg:pb-16 lg:pr-9 2xl:py-10"
 						onMouseOver={handleMouseOver}
 						onMouseLeave={handleMouseOut}
 					>
@@ -288,7 +288,7 @@ export default function AdminRoute() {
 				</div>
 			</div>
 
-			<div className="h-full w-full max-lg:hidden lg:w-[152px]" />
+			<div className="h-full w-full max-lg:hidden lg:w-[135px] xl:w-[145px] 2xl:w-[152px]" />
 
 			<div className="w-full py-6 2xl:py-10">
 				<div className="rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-4 2xl:px-8 2xl:py-8">

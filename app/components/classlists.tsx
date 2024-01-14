@@ -1,5 +1,5 @@
 export const baseContainerWidthClassList =
-	'md:max-w-[93%] lg:max-w-[90%] 2xl:max-w-[88%] 7xl:max-w-[1700px] md:mx-auto'
+	'md:max-w-[93%] lg:max-w-[95%] xl:max-w-[93%] 2xl:max-w-[88%] 7xl:max-w-[1700px] md:mx-auto'
 
 export const pagesContentContainerClassList =
 	'md:max-w-[93%] lg:max-w-[90%] 2xl:max-w-[88%] 7xl:max-w-[1600px] max-md:mx-3 md:mx-auto'

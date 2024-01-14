@@ -1,5 +1,6 @@
 import { Link, NavLink } from '@remix-run/react'
 import { cn } from '#app/utils/misc.tsx'
+import { baseContainerWidthClassList } from '../classlists.tsx'
 import ThemeSwitcher from '../theme-switch.tsx'
 import { Button } from '../ui/button.tsx'
 // import { useOptionalUser } from "#app/utils/user.ts"
@@ -19,7 +20,7 @@ export function HeaderBase({ routeAdmin }: { routeAdmin?: boolean }) {
 						'py-2 shadow-header-menu max-md:px-2 max-md:py-4',
 					)}
 				>
-					<nav className="space-between flex items-center justify-between">
+					<nav className={cn("space-between flex items-center justify-between", baseContainerWidthClassList)}>
 						<Link to="/">
 							<div className="font-light">wochdev</div>
 							<div>hotels</div>
