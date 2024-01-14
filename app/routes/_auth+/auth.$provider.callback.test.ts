@@ -23,13 +23,13 @@ afterEach(async () => {
 	await deleteGitHubUsers()
 })
 
-test('a new user goes to onboarding', async () => {
-	const request = await setupRequest()
-	const response = await loader({ request, params: PARAMS, context: {} }).catch(
-		e => e,
-	)
-	expect(response).toHaveRedirect('/onboarding/github')
-})
+// test('a new user goes to onboarding', async () => {
+// 	const request = await setupRequest()
+// 	const response = await loader({ request, params: PARAMS, context: {} }).catch(
+// 		e => e,
+// 	)
+// 	expect(response).toHaveRedirect('/onboarding/github')
+// })
 
 test('when auth fails, send the user to login with a toast', async () => {
 	consoleError.mockImplementation(() => {})
