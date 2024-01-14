@@ -144,11 +144,11 @@ export default function AdminRoute() {
 					)}
 				>
 					<div
-						className="pb-1 max-lg:px-1 lg:w-[152px] lg:py-6 lg:pb-20 lg:pr-9 2xl:py-10"
+						className="pb-1 max-lg:px-1 lg:w-[152px] lg:py-6 lg:pb-16 lg:pr-9 2xl:py-10"
 						onMouseOver={handleMouseOver}
 						onMouseLeave={handleMouseOut}
 					>
-						<div className={cn(sidebarBoxBaseClasslist, 'py-1 lg:py-10')}>
+						<div className={cn(sidebarBoxBaseClasslist, 'py-1 lg:py-8')}>
 							<div className="text-center max-lg:hidden">logo</div>
 
 							<div className="custom-admin-sidebar-height flex w-full items-center justify-between gap-1 lg:flex-col 2xl:gap-2">
@@ -226,7 +226,7 @@ export default function AdminRoute() {
 										className="my-3 w-full cursor-pointer"
 									/>
 
-									<div className="pointer-events-none absolute z-3001 group-hover/additional:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:bottom-[-7rem] lg:left-full">
+									<div className="pointer-events-none absolute z-3001 group-hover/additional:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:bottom-[-6.5rem] lg:left-full">
 										<div className="ml-4 rounded-2xl bg-foreground px-4 py-2 opacity-0 transition group-hover/additional:opacity-100">
 											<div
 												className="max-lg:hidden"
