@@ -1,12 +1,12 @@
 import { type DataFunctionArgs } from '@remix-run/node'
-import { Link, NavLink, Outlet } from '@remix-run/react'
+import { NavLink, Outlet } from '@remix-run/react'
 import { useState } from 'react'
+import UserDropdown from '#app/components/dropdowns/dropdown-user.tsx'
 import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { Icon } from '#app/components/ui/icon.tsx'
-import { cn, getUserImgSrc } from '#app/utils/misc.tsx'
+import { cn } from '#app/utils/misc.tsx'
 import { requireUserWithRole } from '#app/utils/permissions.ts'
-import { useUser } from '#app/utils/user.ts'
 import { type IconName } from '@/icon-name'
 
 export async function loader({ request }: DataFunctionArgs) {
@@ -119,7 +119,6 @@ function SidebarNavLink({
 }
 
 export default function AdminRoute() {
-	const user = useUser()
 	const [isHovered, setIsHovered] = useState(false)
 
 	const handleMouseOver = () => {
@@ -259,7 +258,7 @@ export default function AdminRoute() {
 
 											<SidebarNavLink routeName="cache" />
 
-											<Button variant="secondary" className="z-9999">
+											{/* <Button variant="secondary" className="z-9999">
 												<Link
 													to="/me"
 													// this is for progressive enhancement
@@ -274,7 +273,8 @@ export default function AdminRoute() {
 														{user.name ?? user.username}
 													</span>
 												</Link>
-											</Button>
+											</Button> */}
+											<UserDropdown />
 										</div>
 									</div>
 								</div>

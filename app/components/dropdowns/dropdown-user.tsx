@@ -33,7 +33,7 @@ export default function UserDropdown() {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuPortal>
-				<DropdownMenuContent sideOffset={8} align="start" className='z-2000'>
+				<DropdownMenuContent sideOffset={8} align="start" className='z-9999'>
 					<DropdownMenuItem asChild>
 						<Link prefetch="intent" to={`/me`}>
 							<Icon className="text-body-md" name="avatar">

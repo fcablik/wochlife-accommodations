@@ -1,4 +1,6 @@
-import { redirect, type DataFunctionArgs } from '@remix-run/node'
+import { type DataFunctionArgs,
+	// redirect, 
+} from '@remix-run/node'
 import {
 	authenticator,
 	getSessionExpirationDate,
@@ -9,25 +11,25 @@ import { prisma } from '#app/utils/db.server.ts'
 import { combineHeaders } from '#app/utils/misc.tsx'
 import {
 	destroyRedirectToHeader,
-	getRedirectCookieValue,
+	// getRedirectCookieValue,
 } from '#app/utils/redirect-cookie.server.ts'
 import {
 	createToastHeaders,
 	redirectWithToast,
 } from '#app/utils/toast.server.ts'
-import { verifySessionStorage } from '#app/utils/verification.server.ts'
+// import { verifySessionStorage } from '#app/utils/verification.server.ts'
 import { handleNewSession } from './login.tsx'
-import {
-	onboardingEmailSessionKey,
-	prefilledProfileKey,
-	providerIdKey,
-} from './onboarding_.$provider.tsx'
+// import {
+// 	onboardingEmailSessionKey,
+// 	prefilledProfileKey,
+// 	providerIdKey,
+// } from './onboarding_.$provider.tsx'
 
 const destroyRedirectTo = { 'set-cookie': destroyRedirectToHeader }
 
 export async function loader({ request, params }: DataFunctionArgs) {
 	const providerName = ProviderNameSchema.parse(params.provider)
-	const redirectTo = getRedirectCookieValue(request)
+	// const redirectTo = getRedirectCookieValue(request)
 	const label = providerLabels[providerName]
 
 	const authResult = await authenticator
@@ -134,26 +136,26 @@ export async function loader({ request, params }: DataFunctionArgs) {
 	}
 
 	// this is a new user, so let's get them onboarded
-	const verifySession = await verifySessionStorage.getSession()
-	verifySession.set(onboardingEmailSessionKey, profile.email)
-	verifySession.set(prefilledProfileKey, {
-		...profile,
-		email: profile.email.toLowerCase(),
-		username: profile.username?.replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase(),
-	})
-	verifySession.set(providerIdKey, profile.id)
-	const onboardingRedirect = [
-		`/onboarding/${providerName}`,
-		redirectTo ? new URLSearchParams({ redirectTo }) : null,
-	]
-		.filter(Boolean)
-		.join('?')
-	return redirect(onboardingRedirect, {
-		headers: combineHeaders(
-			{ 'set-cookie': await verifySessionStorage.commitSession(verifySession) },
-			destroyRedirectTo,
-		),
-	})
+	// const verifySession = await verifySessionStorage.getSession()
+	// verifySession.set(onboardingEmailSessionKey, profile.email)
+	// verifySession.set(prefilledProfileKey, {
+	// 	...profile,
+	// 	email: profile.email.toLowerCase(),
+	// 	username: profile.username?.replace(/[^a-zA-Z0-9_]/g, '_').toLowerCase(),
+	// })
+	// verifySession.set(providerIdKey, profile.id)
+	// const onboardingRedirect = [
+	// 	`/onboarding/${providerName}`,
+	// 	redirectTo ? new URLSearchParams({ redirectTo }) : null,
+	// ]
+	// 	.filter(Boolean)
+	// 	.join('?')
+	// return redirect(onboardingRedirect, {
+	// 	headers: combineHeaders(
+	// 		{ 'set-cookie': await verifySessionStorage.commitSession(verifySession) },
+	// 		destroyRedirectTo,
+	// 	),
+	// })
 }
 
 async function makeSession(
