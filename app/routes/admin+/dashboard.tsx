@@ -194,116 +194,118 @@ export default function AdminDashboard() {
 	}
 
 	return (
-		<div className="container mx-auto flex flex-col justify-center pb-32 pt-20 text-center">
-			<p className="text-2xl">
-				Welcome back <strong>{user.username}</strong>!
-			</p>
+		<div className='rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-4 2xl:px-8 2xl:py-8'>
+			<div className="container mx-auto flex flex-col justify-center pb-32 pt-20 text-center">
+				<p className="text-2xl">
+					Welcome back <strong>{user.username}</strong>!
+				</p>
 
-			<Spacer size="3xs" />
-			<div className="flex justify-center gap-5 max-sm:flex-wrap">
-				<Link to="/admin/reservations">
-					<Button variant="secondary">reservations</Button>
-				</Link>
-
-				<Link to="/admin/rooms">
-					<Button variant="secondary">rooms</Button>
-				</Link>
-
-				<Link to="/admin/pages">
-					<Button variant="secondary">pages</Button>
-				</Link>
-
-				<Link to="/admin/users">
-					<Button variant="secondary">users</Button>
-				</Link>
-
-				{/* <Link to='cache'>
-                    <Button variant='secondary'>cache</Button>
-                </Link> */}
-			</div>
-
-			<div className="mx-auto">
-				{newReservationsDataToday ? (
-					<Link
-						className={cn(
-							'mt-4 capitalize 2xl:mt-8',
-							sidebarBoxClasslist,
-							'hover:bg-highlight hover:text-background',
-						)}
-						to="/admin/reservations?search=new-today"
-					>
-						{newReservationsDataToday ?? '0'} new reservations
-						<div className="text-xs">(today)</div>
+				<Spacer size="3xs" />
+				<div className="flex justify-center gap-5 max-sm:flex-wrap">
+					<Link to="/admin/reservations">
+						<Button variant="secondary">reservations</Button>
 					</Link>
-				) : (
-					<div className={cn('mt-4 capitalize 2xl:mt-8', sidebarBoxClasslist)}>
-						0 new reservations
-						<div className="text-xs">(today)</div>
-					</div>
-				)}
 
-				<div
-					className={cn('mt-4 gap-2 capitalize 2xl:mt-8', sidebarBoxClasslist)}
-				>
-					check-ins
-					{checkInsDataToday ? (
-						<Link
-							className={cn(
-								sidebarCheckInsOutsBoxClassList,
-								'hover:bg-highlight',
-							)}
-							to="/admin/reservations?search=todays-check-ins"
-						>
-							Today: {checkInsDataToday ?? '0'}
-						</Link>
-					) : (
-						<div className={sidebarCheckInsOutsBoxClassList}>Today: 0</div>
-					)}
-					{checkInsDataTomorrow ? (
-						<Link
-							className={cn(
-								sidebarCheckInsOutsBoxClassList,
-								'hover:bg-highlight',
-							)}
-							to="/admin/reservations?search=tomorrows-check-ins"
-						>
-							Tomorrow: {checkInsDataTomorrow ?? '0'}
-						</Link>
-					) : (
-						<div className={sidebarCheckInsOutsBoxClassList}>Tomorrow: 0</div>
-					)}
+					<Link to="/admin/rooms">
+						<Button variant="secondary">rooms</Button>
+					</Link>
+
+					<Link to="/admin/pages">
+						<Button variant="secondary">pages</Button>
+					</Link>
+
+					<Link to="/admin/users">
+						<Button variant="secondary">users</Button>
+					</Link>
+
+					{/* <Link to='cache'>
+						<Button variant='secondary'>cache</Button>
+					</Link> */}
 				</div>
 
-				<div
-					className={cn('mt-4 gap-2 capitalize 2xl:mt-8', sidebarBoxClasslist)}
-				>
-					check-outs
-					{checkOutsDataToday ? (
+				<div className="mx-auto">
+					{newReservationsDataToday ? (
 						<Link
 							className={cn(
-								sidebarCheckInsOutsBoxClassList,
-								'hover:bg-highlight',
+								'mt-4 capitalize 2xl:mt-8',
+								sidebarBoxClasslist,
+								'hover:bg-highlight hover:text-background',
 							)}
-							to="/admin/reservations?search=todays-check-outs"
+							to="/admin/reservations?search=new-today"
 						>
-							Today: {checkOutsDataToday ?? '0'}
+							{newReservationsDataToday ?? '0'} new reservations
+							<div className="text-xs">(today)</div>
 						</Link>
 					) : (
-						<div className={sidebarCheckInsOutsBoxClassList}>Today: 0</div>
+						<div className={cn('mt-4 capitalize 2xl:mt-8', sidebarBoxClasslist)}>
+							0 new reservations
+							<div className="text-xs">(today)</div>
+						</div>
 					)}
-					{checkOutsDataTomorrow ? (
-						<Link
-							className={cn(
-								sidebarCheckInsOutsBoxClassList,
-								'hover:bg-highlight',
-							)}
-							to="/admin/reservations?search=tomorrows-check-outs"
-						>
-							Tomorrow: {checkOutsDataTomorrow ?? '0'}
-						</Link>
-					) : (
-						<div className={sidebarCheckInsOutsBoxClassList}>Tomorrow: 0</div>
-					)}
+
+					<div
+						className={cn('mt-4 gap-2 capitalize 2xl:mt-8', sidebarBoxClasslist)}
+					>
+						check-ins
+						{checkInsDataToday ? (
+							<Link
+								className={cn(
+									sidebarCheckInsOutsBoxClassList,
+									'hover:bg-highlight',
+								)}
+								to="/admin/reservations?search=todays-check-ins"
+							>
+								Today: {checkInsDataToday ?? '0'}
+							</Link>
+						) : (
+							<div className={sidebarCheckInsOutsBoxClassList}>Today: 0</div>
+						)}
+						{checkInsDataTomorrow ? (
+							<Link
+								className={cn(
+									sidebarCheckInsOutsBoxClassList,
+									'hover:bg-highlight',
+								)}
+								to="/admin/reservations?search=tomorrows-check-ins"
+							>
+								Tomorrow: {checkInsDataTomorrow ?? '0'}
+							</Link>
+						) : (
+							<div className={sidebarCheckInsOutsBoxClassList}>Tomorrow: 0</div>
+						)}
+					</div>
+
+					<div
+						className={cn('mt-4 gap-2 capitalize 2xl:mt-8', sidebarBoxClasslist)}
+					>
+						check-outs
+						{checkOutsDataToday ? (
+							<Link
+								className={cn(
+									sidebarCheckInsOutsBoxClassList,
+									'hover:bg-highlight',
+								)}
+								to="/admin/reservations?search=todays-check-outs"
+							>
+								Today: {checkOutsDataToday ?? '0'}
+							</Link>
+						) : (
+							<div className={sidebarCheckInsOutsBoxClassList}>Today: 0</div>
+						)}
+						{checkOutsDataTomorrow ? (
+							<Link
+								className={cn(
+									sidebarCheckInsOutsBoxClassList,
+									'hover:bg-highlight',
+								)}
+								to="/admin/reservations?search=tomorrows-check-outs"
+							>
+								Tomorrow: {checkOutsDataTomorrow ?? '0'}
+							</Link>
+						) : (
+							<div className={sidebarCheckInsOutsBoxClassList}>Tomorrow: 0</div>
+						)}
+					</div>
 				</div>
 			</div>
 		</div>
