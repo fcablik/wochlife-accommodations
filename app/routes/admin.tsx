@@ -135,7 +135,7 @@ export default function AdminRoute() {
 					)}
 				>
 					<div
-						className="pb-1 max-lg:px-1 lg:w-[135px] lg:py-6 lg:pb-16 lg:pr-9 xl:w-[145px] 2xl:w-[152px] 2xl:py-10"
+						className="pb-1 max-lg:px-1 lg:w-[135px] lg:pb-16 lg:pr-9 xl:w-[145px] 2xl:w-[152px] custom-admin-sidebar-wrapper"
 						onMouseOver={handleMouseOver}
 						onMouseLeave={handleMouseOut}
 					>
@@ -171,7 +171,7 @@ export default function AdminRoute() {
 													borderWidth: '13px',
 													borderStyle: 'solid',
 													borderColor:
-														'transparent #000 transparent transparent',
+														'transparent #161414 transparent transparent',
 												}}
 											/>
 
@@ -217,7 +217,7 @@ export default function AdminRoute() {
 										className="my-3 w-full cursor-pointer"
 									/>
 
-									<div className="pointer-events-none absolute z-3001 group-hover/additional:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:bottom-[-6.5rem] lg:left-full">
+									<div className="pointer-events-none absolute z-3001 group-hover/additional:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:bottom-[-3.5rem] 2xl:bottom-[-4.15rem] lg:left-full">
 										<div className="ml-4 rounded-2xl bg-foreground px-4 py-2 opacity-0 transition group-hover/additional:opacity-100 dark:bg-black dark:text-foreground">
 											<div
 												className="max-lg:hidden"
@@ -229,11 +229,11 @@ export default function AdminRoute() {
 													borderWidth: '13px',
 													borderStyle: 'solid',
 													borderColor:
-														'transparent #000 transparent transparent',
+														'transparent #161414 transparent transparent',
 												}}
 											/>
 
-											<SidebarNavLink title="homepage" routeName="/" icon='home' />
+											<SidebarNavLink title="homepage" routeName="/" icon='home' target='_blank' />
 											<SidebarNavLink
 												routeName="pages"
 												icon="file-text"

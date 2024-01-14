@@ -116,12 +116,24 @@
 }
 @media (min-height: 650px) {
 	.custom-admin-sidebar-height {
-		@apply lg:my-10;
+		@apply lg:my-6;
 	}
 }
 @media (min-height: 750px) {
 	.custom-admin-sidebar-height {
-		@apply lg:my-12;
+		@apply lg:my-10;
+	}
+}
+
+@media (max-height: 750px) {
+	.custom-admin-sidebar-wrapper {
+		@apply lg:py-2;
+	}
+}
+
+@media (min-height: 750px) {
+	.custom-admin-sidebar-wrapper {
+		@apply lg:py-6 xl:py-8 2xl:py-10;
 	}
 }
 
