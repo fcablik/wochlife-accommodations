@@ -2,49 +2,49 @@ import { type Config } from 'tailwindcss'
 
 export const extendedTheme = {
 	colors: {
-		border: 'var(--border)',
+		border: 'hsl(var(--border))',
 		input: {
-			DEFAULT: 'var(--input)',
-			invalid: 'var(--input-invalid)',
+			DEFAULT: 'hsl(var(--input))',
+			invalid: 'hsl(var(--input-invalid))',
 		},
 		ring: {
-			DEFAULT: 'var(--ring)',
-			invalid: 'var(--foreground-destructive)',
+			DEFAULT: 'hsl(var(--ring))',
+			invalid: 'hsl(var(--foreground-destructive))',
 		},
-		background: 'var(--background)',
+		background: 'hsl(var(--background))',
 		foreground: {
-			DEFAULT: 'var(--foreground)',
-			destructive: 'var(--foreground-destructive)',
+			DEFAULT: 'hsl(var(--foreground))',
+			destructive: 'hsl(var(--foreground-destructive))',
 		},
-		backgroundDashboard: 'var(--background-dashboard)',
+		backgroundDashboard: 'hsl(var(--background-dashboard))',
 		primary: {
-			DEFAULT: 'var(--primary)',
-			foreground: 'var(--primary-foreground)',
+			DEFAULT: 'hsl(var(--primary))',
+			foreground: 'hsl(var(--primary-foreground))',
 		},
 		secondary: {
-			DEFAULT: 'var(--secondary)',
-			foreground: 'var(--secondary-foreground)',
+			DEFAULT: 'hsl(var(--secondary))',
+			foreground: 'hsl(var(--secondary-foreground))',
 		},
-		highlight: 'var(--highlight)',
+		highlight: 'hsl(var(--highlight))',
 		destructive: {
-			DEFAULT: 'var(--destructive)',
-			foreground: 'var(--destructive-foreground)',
+			DEFAULT: 'hsl(var(--destructive))',
+			foreground: 'hsl(var(--destructive-foreground))',
 		},
 		muted: {
-			DEFAULT: 'var(--muted)',
-			foreground: 'var(--muted-foreground)',
+			DEFAULT: 'hsl(var(--muted))',
+			foreground: 'hsl(var(--muted-foreground))',
 		},
 		accent: {
-			DEFAULT: 'var(--accent)',
-			foreground: 'var(--accent-foreground)',
+			DEFAULT: 'hsl(var(--accent))',
+			foreground: 'hsl(var(--accent-foreground))',
 		},
 		popover: {
-			DEFAULT: 'var(--popover)',
-			foreground: 'var(--popover-foreground)',
+			DEFAULT: 'hsl(var(--popover))',
+			foreground: 'hsl(var(--popover-foreground))',
 		},
 		card: {
-			DEFAULT: 'var(--card)',
-			foreground: 'var(--card-foreground)',
+			DEFAULT: 'hsl(var(--card))',
+			foreground: 'hsl(var(--card-foreground))',
 		},
 	},
 	boxShadow: {
@@ -57,6 +57,10 @@ export const extendedTheme = {
 		'1/2': '50%',
 		'1/3': '33.33%',
 		'2/3': '66.66%',
+		'1/4': '25%',
+		'3/4': '75%',
+		'2/5': '40%',
+		'3/5': '60%',
 	},
 	maxWidth: {
 		'1/2': '50%',
@@ -137,6 +141,8 @@ export const extendedTheme = {
 		'2001': '2001',
 		'3000': '3000',
 		'3001': '3001',
+		'4000': '4000',
+		'4001': '4001',
 	},
 	backgroundImage: {
 		'checkin-day': 'linear-gradient(-45deg, var(--tw-gradient-stops))',

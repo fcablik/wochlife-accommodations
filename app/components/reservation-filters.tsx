@@ -2,7 +2,11 @@ import { Form, useSearchParams, useSubmit } from '@remix-run/react'
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 import { cn, useDebounce, useIsPending } from '#app/utils/misc.tsx'
-import { generateCalendar, useCalendarsCommonLogic } from './calendar-helpers.tsx'
+import {
+	generateCalendar,
+	useCalendarsCommonLogic,
+} from './calendar-helpers.tsx'
+import { modalBackDropOverMenuClassList } from './modal-backdrop.tsx'
 import { Button } from './ui/button.tsx'
 import { Icon } from './ui/icon.tsx'
 import { Input } from './ui/input.tsx'
@@ -31,7 +35,6 @@ export function FiltersWithSearchAndCalendar({
 		submit(form)
 	}, 400)
 
-	const [showCalendar, setShowCalendar] = useState(false)
 	const [currentSearch, setCurrentSearch] = useState(
 		searchParams.get('search') ?? '',
 	)
@@ -40,19 +43,11 @@ export function FiltersWithSearchAndCalendar({
 		setCurrentSearch(searchParams.get('search') ?? '')
 	}, [searchParams])
 
-	function toggleCalendarVisibility() {
-		setShowCalendar(prevVisible => !prevVisible)
-	}
 	function handleSelectedFilter(e: React.ChangeEvent<HTMLInputElement>) {
 		setCurrentSearch(e.target.value)
-		setShowCalendar(false)
 	}
 	function handleSelect(selectString: string) {
 		setCurrentSearch(selectString)
-
-		if (!selectString.includes(certainDateSearchString)) {
-			setShowCalendar(false)
-		}
 	}
 
 	// calendarSelections... (calendar from reservation-handlers-extensions.tsx)
@@ -65,8 +60,7 @@ export function FiltersWithSearchAndCalendar({
 	displayedCalendarDate.setFullYear(selectedYear)
 	const selectedMonthDates = generateCalendar(displayedCalendarDate)
 
-	const highlightHoverClassList =
-		'hover:bg-highlight hover:text-background'
+	const highlightHoverClassList = 'hover:bg-highlight hover:text-background'
 
 	let certainDateSearch = ''
 	const certainDateSearchString = 'check-in-out-dates-'
@@ -100,7 +94,7 @@ export function FiltersWithSearchAndCalendar({
 								? 'bg-black/20 dark:bg-white/20'
 								: null,
 							selectedDateForSearch
-								? 'bg-black/70 dark:bg-white/70 text-background'
+								? 'bg-black/70 text-background dark:bg-white/70'
 								: null,
 						)}
 						onClick={() => handleSelect(dateHandler)}
@@ -115,6 +109,11 @@ export function FiltersWithSearchAndCalendar({
 		}),
 	)
 
+	const [dropdownFiltersState, setDropdownFiltersState] = useState(false)
+	function handleChangeFilterDropdownState() {
+		setDropdownFiltersState(prevVisible => !prevVisible)
+	}
+
 	return (
 		<Form
 			method="GET"
@@ -122,67 +121,109 @@ export function FiltersWithSearchAndCalendar({
 			className="flex flex-col md:gap-2"
 			onChange={e => autoSubmit && handleFormChange(e.currentTarget)}
 		>
-			<p className="mb-4 text-lg font-normal sm:mb-2">Filters</p>
+			<p className="mb-4 text-lg font-semibold sm:mb-2">Filter Reservations</p>
 
 			<div className="relative sm:max-xl:flex sm:max-md:flex-col-reverse ">
-				<div className="xl:max-w-2/3">
+				<div>
 					<div className="mb-4 flex w-full flex-col gap-3">
-						<div className="flex flex-wrap gap-3 max-sm:justify-center">
-							<Button
-								onClick={() => handleSelect('new-today')}
-								variant={
-									currentSearch === 'new-today' ? 'highlight' : 'secondary'
-								}
-								className="capitalize"
-							>
-								new today
-							</Button>
+						<div className="relative flex flex-wrap gap-3 max-sm:justify-center">
+							<div className="flex w-full gap-2">
+								<Button
+									className="no-scrollbar w-3/5 justify-start overflow-scroll capitalize"
+									variant="highlight"
+									onClick={handleChangeFilterDropdownState}
+								>
+									{currentSearch !== '' ? currentSearch : 'select filter'}
+								</Button>
 
-							<Button
-								onClick={() => handleSelect('todays-check-ins')}
-								variant={
-									currentSearch === 'todays-check-ins'
-										? 'highlight'
-										: 'secondary'
-								}
-								className="capitalize"
-							>
-								check-ins today
-							</Button>
-							<Button
-								onClick={() => handleSelect('todays-check-outs')}
-								variant={
-									currentSearch === 'todays-check-outs'
-										? 'highlight'
-										: 'secondary'
-								}
-								className="capitalize"
-							>
-								check-outs today
-							</Button>
+								<Button onClick={() => handleSelect('')} variant="highlight">
+									<Icon name="cross-1" />
+								</Button>
+							</div>
 
-							<Button
-								onClick={() => handleSelect('tomorrows-check-ins')}
-								variant={
-									currentSearch === 'tomorrows-check-ins'
-										? 'highlight'
-										: 'secondary'
-								}
-								className="capitalize"
-							>
-								check-ins tomorrow
-							</Button>
-							<Button
-								onClick={() => handleSelect('tomorrows-check-outs')}
-								variant={
-									currentSearch === 'tomorrows-check-outs'
-										? 'highlight'
-										: 'secondary'
-								}
-								className="capitalize"
-							>
-								check-outs tomorrow
-							</Button>
+							{dropdownFiltersState && (
+								<>
+									<div
+										className={modalBackDropOverMenuClassList}
+										onClick={handleChangeFilterDropdownState}
+									/>
+									<div
+										className="z-4001 bg-highlight/80 absolute flex w-3/5 flex-col gap-2 rounded-xl p-3"
+										// onClick={handleChangeFilterDropdownState}
+									>
+										<div className="mb-4 flex items-center justify-between text-background">
+											<p className="text-body-sm font-semibold">
+												Select Filter
+											</p>
+
+											<Icon
+												name="cross-1"
+												size="sm"
+												className="cursor-pointer"
+												onClick={handleChangeFilterDropdownState}
+											/>
+										</div>
+
+										<Button
+											onClick={() => handleSelect('new-today')}
+											variant={
+												currentSearch === 'new-today'
+													? 'highlight-contrast'
+													: 'outline-contrast'
+											}
+											className="capitalize"
+										>
+											new today
+										</Button>
+
+										<Button
+											onClick={() => handleSelect('todays-check-ins')}
+											variant={
+												currentSearch === 'todays-check-ins'
+													? 'highlight-contrast'
+													: 'outline-contrast'
+											}
+											className="capitalize"
+										>
+											check-ins today
+										</Button>
+										<Button
+											onClick={() => handleSelect('todays-check-outs')}
+											variant={
+												currentSearch === 'todays-check-outs'
+													? 'highlight-contrast'
+													: 'outline-contrast'
+											}
+											className="capitalize"
+										>
+											check-outs today
+										</Button>
+
+										<Button
+											onClick={() => handleSelect('tomorrows-check-ins')}
+											variant={
+												currentSearch === 'tomorrows-check-ins'
+													? 'highlight-contrast'
+													: 'outline-contrast'
+											}
+											className="capitalize"
+										>
+											check-ins tomorrow
+										</Button>
+										<Button
+											onClick={() => handleSelect('tomorrows-check-outs')}
+											variant={
+												currentSearch === 'tomorrows-check-outs'
+													? 'highlight-contrast'
+													: 'outline-contrast'
+											}
+											className="capitalize"
+										>
+											check-outs tomorrow
+										</Button>
+									</div>
+								</>
+							)}
 
 							<div className="flex flex-wrap gap-3">
 								<div className="sm:max-xl:min-w-[250px] xl:min-w-[300px]">
@@ -200,7 +241,7 @@ export function FiltersWithSearchAndCalendar({
 									/>
 								</div>
 
-								{!autoSubmit ? (
+								{!autoSubmit && (
 									<div>
 										<StatusButton
 											type="submit"
@@ -212,43 +253,20 @@ export function FiltersWithSearchAndCalendar({
 											<span className="sr-only">Search</span>
 										</StatusButton>
 									</div>
-								) : null}
-
-								<Button onClick={() => handleSelect('')} variant="secondary">
-									<Icon name="cross-1" />
-								</Button>
+								)}
 							</div>
 
-							{/* <div className=""> */}
-							<Button
-								type="button"
-								className="w-48 capitalize"
-								onClick={() => toggleCalendarVisibility()}
-							>
-								<Icon name="calendar">
-									{showCalendar ? 'hide calendar' : 'select date'}{' '}
-								</Icon>
-							</Button>
+							<div className="inline-block w-full rounded-lg border-2 border-highlight bg-background px-3 pb-2 pt-4 text-foreground">
+								<div className="mx-1">{calendarNavigation}</div>
 
-							<div
-								className={cn(
-									'z-50 max-sm:w-full xl:absolute xl:bottom-0 xl:right-0',
-									showCalendar ? '' : 'hidden',
-								)}
-							>
-								<div className="inline-block rounded-lg border-2 border-highlight bg-background px-3 pb-2 pt-4 text-foreground">
-									<div className="mx-1">{calendarNavigation}</div>
+								<div className="flex min-h-[270px] flex-col justify-center">
+									{daysTitles}
 
-									<div className="flex min-h-[270px] flex-col justify-center">
-										{daysTitles}
-
-										<div className="grid max-w-[30em] grid-cols-7">
-											{calendarDates}
-										</div>
+									<div className="grid max-w-[30em] grid-cols-7">
+										{calendarDates}
 									</div>
 								</div>
 							</div>
-							{/* </div> */}
 						</div>
 					</div>
 

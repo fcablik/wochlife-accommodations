@@ -1,5 +1,5 @@
 import { type DataFunctionArgs } from '@remix-run/node'
-import { NavLink, Outlet } from '@remix-run/react'
+import { NavLink, Outlet, useNavigate } from '@remix-run/react'
 import { useState } from 'react'
 import UserDropdown from '#app/components/dropdowns/dropdown-user.tsx'
 import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
@@ -93,7 +93,7 @@ function SidebarNavLink({
 						className={cn(
 							'capitalize',
 							isActive
-								? 'bg-background font-bold text-highlight '
+								? routeName !== "rooms" ? 'bg-background font-bold text-highlight' : 'hover:bg-background hover:text-foreground'
 								: 'hover:bg-background hover:text-foreground',
 						)}
 					>
@@ -125,6 +125,15 @@ export default function AdminRoute() {
 	const sidebarBoxBaseClasslist =
 		'lg:flex lg:flex-col lg:justify-between lg:items-center rounded-2xl lg:rounded-3xl bg-foreground dark:bg-backgroundDashboard dark:text-foreground text-background'
 
+	const navigate = useNavigate()
+	const handleForwardClick = () => {
+		navigate(1)
+	}
+
+	const handleBackwardClick = () => {
+		navigate(-1)
+	}
+
 	return (
 		<div className="flex items-start justify-center">
 			<div className="max-lg:contents">
@@ -135,7 +144,7 @@ export default function AdminRoute() {
 					)}
 				>
 					<div
-						className="pb-1 max-lg:px-1 lg:w-[135px] lg:pb-16 lg:pr-9 xl:w-[145px] 2xl:w-[152px] custom-admin-sidebar-wrapper"
+						className="custom-admin-sidebar-wrapper pb-1 max-lg:px-1 lg:w-[135px] lg:pb-16 lg:pr-9 xl:w-[145px] 2xl:w-[152px]"
 						onMouseOver={handleMouseOver}
 						onMouseLeave={handleMouseOut}
 					>
@@ -175,6 +184,10 @@ export default function AdminRoute() {
 												}}
 											/>
 
+											<SidebarNavLink
+												routeName="rooms"
+												icon="home"
+											/>
 											<SidebarNavLink
 												routeName="rooms/pricing"
 												title="pricings"
@@ -217,7 +230,7 @@ export default function AdminRoute() {
 										className="my-3 w-full cursor-pointer"
 									/>
 
-									<div className="pointer-events-none absolute z-3001 group-hover/additional:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:bottom-[-3.5rem] 2xl:bottom-[-4.15rem] lg:left-full">
+									<div className="pointer-events-none absolute z-3001 group-hover/additional:pointer-events-auto max-lg:bottom-16 max-lg:right-0 lg:bottom-[-3.5rem] lg:left-full 2xl:bottom-[-4.15rem]">
 										<div className="ml-4 rounded-2xl bg-foreground px-4 py-2 opacity-0 transition group-hover/additional:opacity-100 dark:bg-black dark:text-foreground">
 											<div
 												className="max-lg:hidden"
@@ -233,7 +246,12 @@ export default function AdminRoute() {
 												}}
 											/>
 
-											<SidebarNavLink title="homepage" routeName="/" icon='home' target='_blank' />
+											<SidebarNavLink
+												title="homepage"
+												routeName="/"
+												icon="home"
+												target="_blank"
+											/>
 											<SidebarNavLink
 												routeName="pages"
 												icon="file-text"
@@ -284,8 +302,18 @@ export default function AdminRoute() {
 			<div className="w-full py-6 2xl:py-10">
 				<div className="relative mb-4 flex items-center justify-between p-2 lg:mb-6">
 					<div className="flex gap-2 max-lg:hidden">
-						<Icon name="arrow-left" size="lg" />
-						<Icon name="arrow-right" size="lg" />
+						<Icon
+							name="arrow-left"
+							size="lg"
+							onClick={handleBackwardClick}
+							className="cursor-pointer hover:opacity-50"
+						/>
+						<Icon
+							name="arrow-right"
+							size="lg"
+							onClick={handleForwardClick}
+							className="cursor-pointer hover:opacity-50"
+						/>
 					</div>
 
 					<h5 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-h5 capitalize">
@@ -296,10 +324,8 @@ export default function AdminRoute() {
 						<UserDropdown />
 					</div>
 				</div>
-				<div className="">
-					{/* rounded-3xl bg-backgroundDashboard */}
-					<Outlet />
-				</div>
+
+				<Outlet />
 			</div>
 		</div>
 	)

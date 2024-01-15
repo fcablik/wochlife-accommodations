@@ -16,6 +16,8 @@ const buttonVariants = cva(
 					'bg-destructive text-destructive-foreground hover:bg-destructive',
 				outline:
 					'border border-input hover:bg-backgroundDashboard hover:text-highlight',
+				'outline-contrast':
+					'bg-transparent text-background border border-input hover:bg-backgroundDashboard hover:text-highlight',
 				primary: 'rounded-lg bg-backgroundDashboard border-2 hover:border-highlight',
 				secondary:
 					'bg-secondary text-secondary-foreground hover:bg-highlight hover:text-background',
@@ -23,7 +25,8 @@ const buttonVariants = cva(
 				link: 'text-primary underline-offset-4 hover:underline',
 				
 				// highlight w/o Hover
-				highlight: 'rounded-lg shadow-highlight bg-highlight text-background',
+				highlight: 'rounded-lg shadow-highlight bg-highlight text-background hover:bg-highlight/70',
+				'highlight-contrast': 'rounded-lg shadow-highlight bg-background text-foreground',
 				
 				// highlight w/ Hover
 				'highlight-secondary': 'font-500 rounded-lg shadow-highlight bg-highlight text-background hover:bg-highlight/20 border-2 border-highlight',

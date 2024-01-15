@@ -116,17 +116,72 @@ export default function ReservationsRoute() {
 	}
 
 	return (
-		<div className="max-w-7xl p-2 md:p-6">
-			<div className="mb-12 max-sm:text-center">
-				<h2 className="mb-2 text-h2 capitalize text-foreground">
-					reservations overview
-				</h2>
-				<p className="text-xl">
-					View or change all Your property’s reservations at one place.
-				</p>
+		<div className="grid xl:grid-cols-3 gap-5">
+			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:col-span-2 xl:px-6 2xl:px-8 2xl:py-8">
+				<div className="mb-12 max-sm:text-center">
+					<h3 className="mb-2 text-h3 capitalize text-foreground">
+						reservations overview
+					</h3>
+					<p className="text-lg">
+						View or change all Your property’s reservations at one place.
+					</p>
+				</div>
+
+				<div>
+					{data.status === 'idle' ? (
+						data.reservations.length ? (
+							<div
+								className={cn(
+									'flex w-full flex-wrap items-center justify-center gap-4 delay-200',
+									{ 'opacity-50': isPending },
+								)}
+							>
+								{data.reservations.map(reservation => (
+									<div key={reservation.id} className="relative w-full">
+										{format(new Date(reservation.createdAt), 'yyyy/MM/dd') ===
+										format(new Date(), 'yyyy/MM/dd') ? (
+											<div className="absolute left-[-1em] top-[-1em] rotate-[-20deg] rounded-sm bg-foreground px-2 text-background xl:top-[-.5em] xl:px-4 xl:py-1 2xl:top-[-.2em]">
+												new
+											</div>
+										) : (
+											reservation.status === 'cancelled' && (
+												<>
+													<div className="absolute left-[-1em] top-[-1em] rotate-[-20deg] rounded-sm bg-destructive px-2 text-background xl:top-[-.5em] xl:px-4 xl:py-1 2xl:top-[-.2em]">
+														cancelled
+													</div>
+												</>
+											)
+										)}
+
+										<ReservationAccordion
+											roomId={reservation.roomId}
+											roomTitle={reservation.roomTitle ?? reservation.roomId}
+											reservationStatus={reservation.status}
+											reservationNumber={reservation.reservationNumber}
+											guestName={reservation.name}
+											checkIn={reservation.reservationDateFrom}
+											checkOut={reservation.reservationDateTo}
+											guestEmail={reservation.email}
+											guestMessage={reservation.message ?? ''}
+											reservationId={reservation.id}
+											numberOfGuests={reservation.numberOfGuests}
+											numberOfNights={reservation.numberOfNights}
+											totalPrice={reservation.totalPrice}
+											createdAt={new Date(reservation.createdAt)}
+										/>
+									</div>
+								))}
+							</div>
+						) : (
+							<p>No reservations found</p>
+						)
+					) : data.status === 'error' ? (
+						<ErrorList errors={['There was an error parsing the results']} />
+					) : null}
+				</div>
 			</div>
 
-			<div className="mb-24 max-sm:text-center">
+			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-6 2xl:px-8 2xl:py-8">
 				<div className="w-full">
 					<FiltersWithSearchAndCalendar
 						actionUrl="admin/reservations"
@@ -134,59 +189,6 @@ export default function ReservationsRoute() {
 						autoSubmit
 					/>
 				</div>
-			</div>
-
-			<div>
-				{data.status === 'idle' ? (
-					data.reservations.length ? (
-						<div
-							className={cn(
-								'flex w-full flex-wrap items-center justify-center gap-4 delay-200',
-								{ 'opacity-50': isPending },
-							)}
-						>
-							{data.reservations.map(reservation => (
-								<div key={reservation.id} className="relative w-full">
-									{format(new Date(reservation.createdAt), 'yyyy/MM/dd') ===
-									format(new Date(), 'yyyy/MM/dd') ? (
-										<div className="absolute left-[-1em] top-[-1em] rotate-[-20deg] rounded-sm bg-foreground px-2 text-background xl:top-[-.5em] xl:px-4 xl:py-1 2xl:top-[-.2em]">
-											new
-										</div>
-									) : (
-										reservation.status === 'cancelled' && (
-											<>
-												<div className="absolute left-[-1em] top-[-1em] rotate-[-20deg] rounded-sm bg-destructive px-2 text-background xl:top-[-.5em] xl:px-4 xl:py-1 2xl:top-[-.2em]">
-													cancelled
-												</div>
-											</>
-										)
-									)}
-
-									<ReservationAccordion
-										roomId={reservation.roomId}
-										roomTitle={reservation.roomTitle ?? reservation.roomId}
-										reservationStatus={reservation.status}
-										reservationNumber={reservation.reservationNumber}
-										guestName={reservation.name}
-										checkIn={reservation.reservationDateFrom}
-										checkOut={reservation.reservationDateTo}
-										guestEmail={reservation.email}
-										guestMessage={reservation.message ?? ''}
-										reservationId={reservation.id}
-										numberOfGuests={reservation.numberOfGuests}
-										numberOfNights={reservation.numberOfNights}
-										totalPrice={reservation.totalPrice}
-										createdAt={new Date(reservation.createdAt)}
-									/>
-								</div>
-							))}
-						</div>
-					) : (
-						<p>No reservations found</p>
-					)
-				) : data.status === 'error' ? (
-					<ErrorList errors={['There was an error parsing the results']} />
-				) : null}
 			</div>
 		</div>
 	)

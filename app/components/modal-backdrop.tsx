@@ -23,3 +23,9 @@ export const modalBackDropOnBackdropClassList = cn(
 	'backdrop-blur-sm',
 	'bg-black/20 h-full z-3000',
 )
+
+export const modalBackDropOverMenuClassList = cn(
+	backdropClassList,
+	'backdrop-blur-sm',
+	'bg-black/20 h-full z-4000',
+)
