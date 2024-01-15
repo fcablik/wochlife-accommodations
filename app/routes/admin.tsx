@@ -1,5 +1,5 @@
 import { type DataFunctionArgs } from '@remix-run/node'
-import { NavLink, Outlet, useNavigate } from '@remix-run/react'
+import { Link, NavLink, Outlet, useNavigate } from '@remix-run/react'
 import { useState } from 'react'
 import UserDropdown from '#app/components/dropdowns/dropdown-user.tsx'
 import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
@@ -315,9 +315,11 @@ export default function AdminRoute() {
 						/>
 					</div>
 
-					<h5 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-h5 capitalize">
-						dashboard
-					</h5>
+					<Link to="/admin">
+						<h5 className="hover:opacity-80 transition-opacity absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-h5 capitalize">
+							dashboard
+						</h5>
+					</Link>
 
 					<div className="max-lg:hidden">
 						<UserDropdown />
