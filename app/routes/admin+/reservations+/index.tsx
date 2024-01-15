@@ -116,7 +116,7 @@ export default function ReservationsRoute() {
 	}
 
 	return (
-		<div className="grid xl:grid-cols-3 gap-5">
+		<div className="grid items-start gap-5 xl:grid-cols-3">
 			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:col-span-2 xl:px-6 2xl:px-8 2xl:py-8">
 				<div className="mb-12 max-sm:text-center">
 					<h3 className="mb-2 text-h3 capitalize text-foreground">

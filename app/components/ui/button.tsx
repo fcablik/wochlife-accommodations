@@ -18,21 +18,26 @@ const buttonVariants = cva(
 					'border border-input hover:bg-backgroundDashboard hover:text-highlight',
 				'outline-contrast':
 					'bg-transparent text-background border border-input hover:bg-backgroundDashboard hover:text-highlight',
-				primary: 'rounded-lg bg-backgroundDashboard border-2 hover:border-highlight',
+				primary:
+					'rounded-lg bg-backgroundDashboard border-2 hover:border-highlight',
 				secondary:
 					'bg-secondary text-secondary-foreground hover:bg-highlight hover:text-background',
 				ghost: 'hover:bg-accent hover:text-accent-foreground',
 				link: 'text-primary underline-offset-4 hover:underline',
-				
+
 				// highlight w/o Hover
-				highlight: 'rounded-lg shadow-highlight bg-highlight text-background hover:bg-highlight/70',
-				'highlight-contrast': 'rounded-lg shadow-highlight bg-background text-foreground',
-				
+				highlight:
+					'rounded-lg shadow-highlight bg-highlight text-background hover:bg-highlight/70',
+				'highlight-contrast':
+					'rounded-lg shadow-highlight bg-background text-foreground',
+
 				// highlight w/ Hover
-				'highlight-secondary': 'font-500 rounded-lg shadow-highlight bg-highlight text-background hover:bg-highlight/20 border-2 border-highlight',
-				
+				'highlight-secondary':
+					'font-500 rounded-lg shadow-highlight bg-highlight text-background hover:bg-highlight/20 border-2 border-highlight',
+
 				disabled: 'border border-input bg-background cursor-auto opacity-60',
-				activedashboardSidebar: 'rounded-lg shadow-lg shadow-highlight bg-highlight text-background',
+				activedashboardSidebar:
+					'rounded-lg shadow-lg shadow-highlight bg-highlight text-background',
 				dashboardSidebar: 'rounded-lg bg-transparent ',
 			},
 			size: {

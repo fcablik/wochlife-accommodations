@@ -309,8 +309,7 @@ export default function AdminDashboard() {
 				</div>
 			</div>
 			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-6 2xl:px-8 2xl:py-8">
-			<p className="mb-4 text-lg font-semibold sm:mb-2">Params</p>
-
+				<p className="mb-4 text-lg font-semibold sm:mb-2">Params</p>
 				second column
 			</div>
 		</div>
