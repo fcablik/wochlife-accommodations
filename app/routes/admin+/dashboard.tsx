@@ -137,7 +137,7 @@ export async function loader() {
 }
 
 export default function AdminDashboard() {
-    const user = useUser()
+	const user = useUser()
 
 	const sidebarBoxBaseClasslist =
 		'flex flex-col items-center rounded-2xl bg-backgroundDashboard'
@@ -194,40 +194,13 @@ export default function AdminDashboard() {
 	}
 
 	return (
-		<div className='rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-4 2xl:px-8 2xl:py-8'>
-			<div className="container mx-auto flex flex-col justify-center pb-32 pt-20 text-center">
-				<p className="text-2xl">
-					Welcome back <strong>{user.username}</strong>!
-				</p>
-
-				<Spacer size="3xs" />
-				<div className="flex justify-center gap-5 max-sm:flex-wrap">
-					<Link to="/admin/reservations">
-						<Button variant="secondary">reservations</Button>
-					</Link>
-
-					<Link to="/admin/rooms">
-						<Button variant="secondary">rooms</Button>
-					</Link>
-
-					<Link to="/admin/pages">
-						<Button variant="secondary">pages</Button>
-					</Link>
-
-					<Link to="/admin/users">
-						<Button variant="secondary">users</Button>
-					</Link>
-
-					{/* <Link to='cache'>
-						<Button variant='secondary'>cache</Button>
-					</Link> */}
-				</div>
-
-				<div className="mx-auto">
+		<div className="grid gap-5 xl:grid-cols-3">
+			<div className="xl:col-span-2">
+				<div className="mb-4 grid grid-cols-2 gap-5 md:grid-cols-3">
 					{newReservationsDataToday ? (
 						<Link
 							className={cn(
-								'mt-4 capitalize 2xl:mt-8',
+								'capitalize',
 								sidebarBoxClasslist,
 								'hover:bg-highlight hover:text-background',
 							)}
@@ -237,15 +210,12 @@ export default function AdminDashboard() {
 							<div className="text-xs">(today)</div>
 						</Link>
 					) : (
-						<div className={cn('mt-4 capitalize 2xl:mt-8', sidebarBoxClasslist)}>
+						<div className={cn('capitalize', sidebarBoxClasslist)}>
 							0 new reservations
 							<div className="text-xs">(today)</div>
 						</div>
 					)}
-
-					<div
-						className={cn('mt-4 gap-2 capitalize 2xl:mt-8', sidebarBoxClasslist)}
-					>
+					<div className={cn('gap-2 capitalize', sidebarBoxClasslist)}>
 						check-ins
 						{checkInsDataToday ? (
 							<Link
@@ -275,9 +245,7 @@ export default function AdminDashboard() {
 						)}
 					</div>
 
-					<div
-						className={cn('mt-4 gap-2 capitalize 2xl:mt-8', sidebarBoxClasslist)}
-					>
+					<div className={cn('capitalize8 gap-2', sidebarBoxClasslist)}>
 						check-outs
 						{checkOutsDataToday ? (
 							<Link
@@ -307,6 +275,43 @@ export default function AdminDashboard() {
 						)}
 					</div>
 				</div>
+
+				<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-6 2xl:px-8 2xl:py-8">
+					{/* <div className='rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-4 2xl:px-8 2xl:py-8'> */}
+					<div className="container mx-auto flex flex-col justify-center pb-32 pt-20 text-center">
+						<p className="text-2xl">
+							Welcome back <strong>{user.username}</strong>!
+						</p>
+
+						<Spacer size="3xs" />
+						<div className="flex justify-center gap-5 max-sm:flex-wrap">
+							<Link to="/admin/reservations">
+								<Button variant="secondary">reservations</Button>
+							</Link>
+
+							<Link to="/admin/rooms">
+								<Button variant="secondary">rooms</Button>
+							</Link>
+
+							<Link to="/admin/pages">
+								<Button variant="secondary">pages</Button>
+							</Link>
+
+							<Link to="/admin/users">
+								<Button variant="secondary">users</Button>
+							</Link>
+
+							<Link to="cache">
+								<Button variant="secondary">cache</Button>
+							</Link>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-6 2xl:px-8 2xl:py-8">
+			<p className="mb-4 text-lg font-semibold sm:mb-2">Params</p>
+
+				second column
 			</div>
 		</div>
 	)

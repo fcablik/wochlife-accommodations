@@ -182,13 +182,11 @@ export default function ReservationsRoute() {
 			</div>
 
 			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-6 2xl:px-8 2xl:py-8">
-				<div className="w-full">
-					<FiltersWithSearchAndCalendar
-						actionUrl="admin/reservations"
-						status={data.status}
-						autoSubmit
-					/>
-				</div>
+				<FiltersWithSearchAndCalendar
+					actionUrl="admin/reservations"
+					status={data.status}
+					autoSubmit
+				/>
 			</div>
 		</div>
 	)
