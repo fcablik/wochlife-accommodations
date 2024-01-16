@@ -54,42 +54,55 @@ export async function loader({ request }: DataFunctionArgs) {
 		certainDateSearch = dateOnly[1]
 	}
 
+	const yesterday = addDays(new Date(), -1)
+	const todaysDate = new Date()
+
 	const limit = 50 //#later make dynamic load or some kind of pagination/continue load
 	const rawReservations = await prisma.$queryRaw`
 		SELECT Reservation.id, Reservation.status, Reservation.reservationNumber, Reservation.numberOfGuests, Reservation.numberOfNights, Reservation.name, Reservation.email, Reservation.message, Reservation.roomId, Reservation.reservationDateFrom, Reservation.reservationDateTo, Reservation.totalPrice, Reservation.createdAt, Reservation.createdAtString, Room.title AS roomTitle
 		FROM Reservation
 		LEFT JOIN Room ON Reservation.roomId = Room.id
-		WHERE Reservation.reservationNumber LIKE ${like}
-		OR Reservation.name LIKE ${like}
-		OR Reservation.email LIKE ${like}
-		OR Reservation.message LIKE ${like}
-		OR (
-			${searchTerm === 'todays-check-ins'} 
-			AND Reservation.reservationDateFrom LIKE ${today}
-		)
-		OR (
-			${searchTerm === 'todays-check-outs'}
-			AND Reservation.reservationDateTo LIKE ${today}
-		)
-		OR (
-			${searchTerm === 'tomorrows-check-ins'}
-			AND Reservation.reservationDateFrom LIKE ${tomorrow}
-		)
-		OR (
-			${searchTerm === 'tomorrows-check-outs'}
-			AND Reservation.reservationDateTo LIKE ${tomorrow}
-		)
-		OR (
-			${searchTerm === 'new-today'}
-			AND Reservation.createdAtString LIKE ${today}
-		)
-		OR (
-			${searchTerm?.includes(certainDateSearchString)}
-			AND Reservation.reservationDateFrom LIKE ${certainDateSearch}
-		)
-		OR (
-			${searchTerm?.includes(certainDateSearchString)}
-			AND Reservation.reservationDateTo LIKE ${certainDateSearch}
+		WHERE (
+			Reservation.reservationNumber LIKE ${like}
+			OR Reservation.name LIKE ${like}
+			OR Reservation.email LIKE ${like}
+			OR Reservation.message LIKE ${like}
+			OR (
+				${searchTerm === 'upcoming'} 
+				AND Reservation.reservationDateTo > ${yesterday.toISOString()}
+			)
+			OR (
+				${searchTerm === 'past'} 
+				AND Reservation.reservationDateTo < ${todaysDate.toISOString()}
+			)
+			OR (
+				${searchTerm === 'todays-check-ins'} 
+				AND Reservation.reservationDateFrom LIKE ${today}
+			)
+			OR (
+				${searchTerm === 'todays-check-outs'}
+				AND Reservation.reservationDateTo LIKE ${today}
+			)
+			OR (
+				${searchTerm === 'tomorrows-check-ins'}
+				AND Reservation.reservationDateFrom LIKE ${tomorrow}
+			)
+			OR (
+				${searchTerm === 'tomorrows-check-outs'}
+				AND Reservation.reservationDateTo LIKE ${tomorrow}
+			)
+			OR (
+				${searchTerm === 'new-today'}
+				AND Reservation.createdAtString LIKE ${today}
+			)
+			OR (
+				${searchTerm?.includes(certainDateSearchString)}
+				AND Reservation.reservationDateFrom LIKE ${certainDateSearch}
+			)
+			OR (
+				${searchTerm?.includes(certainDateSearchString)}
+				AND Reservation.reservationDateTo LIKE ${certainDateSearch}
+			)
 		)
 		ORDER BY (Reservation.createdAt) DESC
 		LIMIT ${limit}
@@ -128,27 +141,28 @@ export default function ReservationsRoute() {
 				</div>
 
 				<div>
-					<div className="mb-4 flex w-full items-center justify-between px-2 md:max-xl:relative lg:px-4">
-						<div className="flex w-[94%] items-center">
-							<div className="w-[7%]" />
-							<div className="w-[13%] capitalize">number</div>
-							<div className="w-1/5 capitalize">room name</div>
-							<div className="w-1/5 capitalize">guests</div>
-							<div className="w-2/5 capitalize pl-1">check in/out</div>
-						</div>
-					</div>
-
 					{data.status === 'idle' ? (
 						data.reservations.length ? (
-							<div
-								className={cn(
-									'flex w-full flex-wrap items-center justify-center gap-4 delay-200',
-									{ 'opacity-50': isPending },
-								)}
-							>
-								{data.reservations.map(reservation => (
-									<div key={reservation.id} className="relative w-full">
-										{/* {format(new Date(reservation.createdAt), 'yyyy/MM/dd') ===
+							<>
+								<div className="mb-4 flex w-full items-center justify-between px-2 md:max-xl:relative lg:px-4">
+									<div className="flex w-[94%] items-center">
+										<div className="w-[7%]" />
+										<div className="w-[13%] capitalize">number</div>
+										<div className="w-1/5 capitalize">room name</div>
+										<div className="w-1/5 capitalize">guests</div>
+										<div className="w-2/5 pl-1 capitalize">check in/out</div>
+									</div>
+								</div>
+
+								<div
+									className={cn(
+										'flex w-full flex-wrap items-center justify-center gap-4 delay-200',
+										{ 'opacity-50': isPending },
+									)}
+								>
+									{data.reservations.map(reservation => (
+										<div key={reservation.id} className="relative w-full">
+											{/* {format(new Date(reservation.createdAt), 'yyyy/MM/dd') ===
 										format(new Date(), 'yyyy/MM/dd') ? (
 											<div className="absolute left-[-1em] top-[-1em] rotate-[-20deg] rounded-sm bg-foreground px-2 text-background xl:top-[-.5em] xl:px-4 xl:py-1 2xl:top-[-.2em]">
 												new
@@ -163,25 +177,26 @@ export default function ReservationsRoute() {
 											)
 										)} */}
 
-										<ReservationAccordion
-											roomId={reservation.roomId}
-											roomTitle={reservation.roomTitle ?? reservation.roomId}
-											reservationStatus={reservation.status}
-											reservationNumber={reservation.reservationNumber}
-											guestName={reservation.name}
-											checkIn={reservation.reservationDateFrom}
-											checkOut={reservation.reservationDateTo}
-											guestEmail={reservation.email}
-											guestMessage={reservation.message ?? ''}
-											reservationId={reservation.id}
-											numberOfGuests={reservation.numberOfGuests}
-											numberOfNights={reservation.numberOfNights}
-											totalPrice={reservation.totalPrice}
-											createdAt={new Date(reservation.createdAt)}
-										/>
-									</div>
-								))}
-							</div>
+											<ReservationAccordion
+												roomId={reservation.roomId}
+												roomTitle={reservation.roomTitle ?? reservation.roomId}
+												reservationStatus={reservation.status}
+												reservationNumber={reservation.reservationNumber}
+												guestName={reservation.name}
+												checkIn={reservation.reservationDateFrom}
+												checkOut={reservation.reservationDateTo}
+												guestEmail={reservation.email}
+												guestMessage={reservation.message ?? ''}
+												reservationId={reservation.id}
+												numberOfGuests={reservation.numberOfGuests}
+												numberOfNights={reservation.numberOfNights}
+												totalPrice={reservation.totalPrice}
+												createdAt={new Date(reservation.createdAt)}
+											/>
+										</div>
+									))}
+								</div>
+							</>
 						) : (
 							<p>No reservations found</p>
 						)

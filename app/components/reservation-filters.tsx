@@ -127,6 +127,25 @@ export function FiltersWithSearchAndCalendar({
 				<div>
 					<div className="mb-4 flex w-full flex-col gap-3">
 						<div className="relative flex flex-wrap gap-3 max-sm:justify-center">
+							<div className="mb8 flex w-full gap-2">
+								<Button
+									onClick={() => handleSelect('upcoming')}
+									variant={
+										currentSearch === 'upcoming' ? 'highlight-static' : 'outline'
+									}
+									className="capitalize"
+								>
+									upcoming / current
+								</Button>
+								<Button
+									onClick={() => handleSelect('past')}
+									variant={currentSearch === 'past' ? 'highlight-static' : 'outline'}
+									className="capitalize"
+								>
+									past
+								</Button>
+							</div>
+
 							<div className="flex w-full gap-2">
 								<Button
 									className="no-scrollbar w-3/5 justify-start overflow-scroll capitalize"
@@ -148,7 +167,7 @@ export function FiltersWithSearchAndCalendar({
 										onClick={handleChangeFilterDropdownState}
 									/>
 									<div
-										className="z-4001 bg-highlight/80 absolute flex w-3/5 flex-col gap-2 rounded-xl p-3"
+										className="absolute z-4001 flex w-3/5 flex-col gap-2 rounded-xl bg-highlight/80 p-3"
 										// onClick={handleChangeFilterDropdownState}
 									>
 										<div className="mb-4 flex items-center justify-between text-background">

@@ -28,6 +28,8 @@ const buttonVariants = cva(
 				// highlight w/o Hover
 				highlight:
 					'rounded-lg shadow-highlight bg-highlight text-background hover:bg-highlight/70',
+				'highlight-static':
+					'rounded-lg shadow-highlight bg-highlight text-background cursor-auto',
 				'highlight-contrast':
 					'rounded-lg shadow-highlight bg-background text-foreground',
 
