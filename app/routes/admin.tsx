@@ -42,7 +42,7 @@ function SidebarMainNavLink({
 					<div
 						className={cn(
 							'group/item p-2 text-center capitalize lg:px-2 lg:py-3',
-							isActive ? 'rounded-xl bg-background text-foreground' : '',
+							isActive ? 'rounded-xl lg:rounded-2xl bg-background text-foreground' : '',
 						)}
 					>
 						<Icon

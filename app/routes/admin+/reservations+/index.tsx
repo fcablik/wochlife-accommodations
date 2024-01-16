@@ -128,6 +128,16 @@ export default function ReservationsRoute() {
 				</div>
 
 				<div>
+					<div className="mb-4 flex w-full items-center justify-between px-2 md:max-xl:relative lg:px-4">
+						<div className="flex w-[94%] items-center">
+							<div className="w-[7%]" />
+							<div className="w-[13%] capitalize">number</div>
+							<div className="w-1/5 capitalize">room name</div>
+							<div className="w-1/5 capitalize">guests</div>
+							<div className="w-2/5 capitalize pl-1">check in/out</div>
+						</div>
+					</div>
+
 					{data.status === 'idle' ? (
 						data.reservations.length ? (
 							<div
@@ -138,7 +148,7 @@ export default function ReservationsRoute() {
 							>
 								{data.reservations.map(reservation => (
 									<div key={reservation.id} className="relative w-full">
-										{format(new Date(reservation.createdAt), 'yyyy/MM/dd') ===
+										{/* {format(new Date(reservation.createdAt), 'yyyy/MM/dd') ===
 										format(new Date(), 'yyyy/MM/dd') ? (
 											<div className="absolute left-[-1em] top-[-1em] rotate-[-20deg] rounded-sm bg-foreground px-2 text-background xl:top-[-.5em] xl:px-4 xl:py-1 2xl:top-[-.2em]">
 												new
@@ -151,7 +161,7 @@ export default function ReservationsRoute() {
 													</div>
 												</>
 											)
-										)}
+										)} */}
 
 										<ReservationAccordion
 											roomId={reservation.roomId}

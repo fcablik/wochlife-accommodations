@@ -30,6 +30,10 @@ export const extendedTheme = {
 			DEFAULT: 'hsl(var(--destructive))',
 			foreground: 'hsl(var(--destructive-foreground))',
 		},
+		accepted: {
+			DEFAULT: 'hsl(var(--accepted))',
+			foreground: 'hsl(var(--accepted-foreground))',
+		},
 		muted: {
 			DEFAULT: 'hsl(var(--muted))',
 			foreground: 'hsl(var(--muted-foreground))',
@@ -147,15 +151,15 @@ export const extendedTheme = {
 	backgroundImage: {
 		'checkin-day': 'linear-gradient(-45deg, var(--tw-gradient-stops))',
 		'checkout-day': 'linear-gradient(45deg, var(--tw-gradient-stops))',
-		'check-in-out-arrowed-white': "url('/img/check-in-out-arrowed-white.svg')",
-		'check-in-out-arrowed-rose': "url('/img/check-in-out-arrowed-rose.svg')",
-		'check-in-out-arrowed-lime': "url('/img/check-in-out-arrowed-lime.svg')",
-		'check-in-out-arrowed-white-sm':
-			"url('/img/check-in-out-arrowed-white-sm.svg')",
-		'check-in-out-arrowed-rose-sm':
-			"url('/img/check-in-out-arrowed-rose-sm.svg')",
-		'check-in-out-arrowed-lime-sm':
-			"url('/img/check-in-out-arrowed-lime-sm.svg')",
+		// 'check-in-out-arrowed-white': "url('/img/check-in-out-arrowed-white.svg')",
+		// 'check-in-out-arrowed-rose': "url('/img/check-in-out-arrowed-rose.svg')",
+		// 'check-in-out-arrowed-lime': "url('/img/check-in-out-arrowed-lime.svg')",
+		// 'check-in-out-arrowed-white-sm':
+		// 	"url('/img/check-in-out-arrowed-white-sm.svg')",
+		// 'check-in-out-arrowed-rose-sm':
+		// 	"url('/img/check-in-out-arrowed-rose-sm.svg')",
+		// 'check-in-out-arrowed-lime-sm':
+		// 	"url('/img/check-in-out-arrowed-lime-sm.svg')",
 	},
 	padding: {
 		'18': '4.5rem',

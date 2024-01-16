@@ -39,8 +39,11 @@
 		--accent: 210, 40%, 90%;
 		--accent-foreground: 222.2, 47.4%, 11.2%;
 
-		--destructive: 0 88% 83%;
-		--destructive-foreground: 0 5% 8%;
+		--destructive: 0 76% 58%;
+		--destructive-foreground: 0 0% 100%;
+
+		--accepted: 111 55% 40%;
+		--accepted-foreground: 0 0% 100%;
 
 		--ring: 215, 2.2%, 65.1%;
 

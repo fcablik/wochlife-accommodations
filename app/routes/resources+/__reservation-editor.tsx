@@ -551,7 +551,7 @@ export function ReservationEditor({
 	}
 
 	return (
-		<div className="reservationModalCustomMaxHeight fixed z-2001 flex flex-col justify-between overflow-scroll rounded-[40px] bg-white shadow-lg max-md:bottom-0 max-md:left-0 max-md:max-h-full max-md:w-full md:right-0 md:top-1/2 md:min-w-[500px] md:-translate-y-1/2">
+		<div className="reservationModalCustomMaxHeight fixed z-4001 flex flex-col justify-between overflow-scroll rounded-[40px] bg-white shadow-lg max-md:bottom-0 max-md:left-0 max-md:max-h-full max-md:w-full md:right-0 md:top-1/2 md:min-w-[500px] md:-translate-y-1/2">
 			<div className="relative">
 				<div
 					className="absolute right-6 top-6 cursor-pointer"

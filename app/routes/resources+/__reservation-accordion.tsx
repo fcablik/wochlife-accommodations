@@ -44,105 +44,72 @@ export function ReservationAccordion({
 }) {
 	const currency = '€' //#later dynamic
 
-	const checkInOutBoxesClassList =
-		'flex w-1/2 flex-wrap flex-col justify-center bg-contain bg-center bg-no-repeat px-3 py-2 md:max-xl:flex-row md:max-xl:items-center md:max-xl:pl-4 md:max-xl:pr-10 xl:w-48'
-
 	const doubleCheckCancell = useDoubleCheck()
 
 	return (
 		<Accordion type="single" collapsible>
 			<AccordionItem
 				value={'id_' + roomId}
-				className="mb-4 rounded-xl bg-background max-xl:shadow-md md:max-xl:mb-16"
+				className="AccordionItem rounded-xl bg-background shadow-md"
 			>
-				<AccordionHeader className="AccordionHeader flex justify-between py-3 md:max-xl:relative">
-					<div className="flex w-full items-center justify-between xl:px-8">
-						<div className="max-lg:px-4 lg:max-xl:px-8">
-							<div className="mb-1 flex flex-nowrap md:text-lg">
-								<span>Room:&nbsp;</span>
-								<span className="hover:underline">
-									<Link to={`/admin/rooms/${roomId}`}>{roomTitle}</Link>
-									{/* &nbsp;<span> / X nights</span> */}
-								</span>
-							</div>
-
-							<div className="flex items-center">
-								<div className="mr-4 rounded-md px-2 py-[.15em] text-sm font-bold text-highlight shadow-reservation-number">
-									{reservationNumber}
+				<AccordionHeader className="AccordionHeader flex items-center justify-between px-2 py-3 md:max-xl:relative lg:px-4">
+					<div className="flex w-[94%] items-center">
+						<div className="w-[7%]">
+							{!!(reservationStatus === 'accepted') && (
+								<div className="bg-accepted text-accepted-foreground flex h-7 w-7 items-center justify-center rounded-3xl">
+									<Icon name="check" size="md" />
 								</div>
-
-								<div className="flex flex-wrap">
-									<span>Guest's Name:&nbsp;</span>
-									<span>{guestName}</span>
+							)}
+							{!!(reservationStatus === 'cancelled') && (
+								<div className="text-accepted-foreground flex h-7 w-7 items-center justify-center rounded-3xl bg-destructive">
+									<Icon name="cross-1" size="sm" />
 								</div>
-							</div>
+							)}
 						</div>
 
-						<div className="w-full max-xl:top-full max-lg:px-4 max-md:hidden md:max-xl:absolute lg:max-xl:px-8 xl:max-w-[450px]">
-							<div className="AccordionDatesBox flex justify-center gap-5 bg-backgroundDashboard p-1 max-xl:shadow-md xl:border-2 xl:border-slate-400 xl:p-3">
-								<div
-									className={cn(
-										checkInOutBoxesClassList,
-										format(new Date(checkIn), 'yyyy/MM/dd') ===
-											format(new Date(), 'yyyy/MM/dd')
-											? 'bg-check-in-out-arrowed-lime md:max-xl:bg-check-in-out-arrowed-lime-sm'
-											: 'bg-check-in-out-arrowed-white md:max-xl:bg-check-in-out-arrowed-white-sm',
-										'dark:text-background',
-									)}
-								>
-									<div className="capitalize">
-										<span>check-in</span>
-										<span className="max-xl:hidden">
-											{format(new Date(checkIn), 'yyyy/MM/dd') ===
-											format(new Date(), 'yyyy/MM/dd') ? (
-												<span className="px-1">
-													<Icon className="mb-1" name="caret-right" size="md" />
-													&nbsp;<strong>Today</strong>
-												</span>
-											) : (
-												''
-											)}
-										</span>
-										<span className="xl:hidden">:&nbsp;</span>
-									</div>
-									<div>
-										<strong>
-											{format(new Date(checkIn), 'MMM. do, yyyy')}
-										</strong>
-									</div>
-								</div>
-
-								<div
-									className={cn(
-										checkInOutBoxesClassList,
-										format(new Date(checkOut), 'yyyy/MM/dd') ===
-											format(new Date(), 'yyyy/MM/dd')
-											? 'bg-check-in-out-arrowed-rose md:max-xl:bg-check-in-out-arrowed-rose-sm'
-											: '',
-									)}
-								>
-									<div className="capitalize">
-										check-out
-										<span className="max-xl:hidden">
-											{format(new Date(checkOut), 'yyyy/MM/dd') ===
-											format(new Date(), 'yyyy/MM/dd') ? (
-												<span className="px-1">
-													<Icon className="mb-1" name="caret-right" size="md" />
-													&nbsp;<strong>Today</strong>
-												</span>
-											) : (
-												''
-											)}
-										</span>
-										<span className="xl:hidden">:&nbsp;</span>
-									</div>
-									<div>{format(new Date(checkOut), 'PPP')}</div>
-								</div>
+						<div className="w-[13%] px-1 text-sm">{reservationNumber}</div>
+						<div className="w-1/5 truncate px-1">
+							{/* <span>Deluxe Room Title</span> */}
+							{roomTitle}
+						</div>
+						<div className="flex w-1/5 truncate px-1 capitalize">
+							{numberOfGuests} guest{numberOfGuests > 1 ? 's' : ''}
+						</div>
+						<div className="w-2/5 px-1">
+							<div className="flex">
+								<p className="w-12 capitalize">
+									<span
+										className={cn(
+											'px-1',
+											format(new Date(checkIn), 'yyyy/MM/dd') ===
+												format(new Date(), 'yyyy/MM/dd') &&
+												'bg-accepted text-accepted-foreground rounded-sm font-bold',
+										)}
+									>
+										in:
+									</span>{' '}
+								</p>
+								{format(new Date(checkIn), 'PPP')}
+							</div>
+							<div className="flex">
+								<p className="w-12 capitalize">
+									<span
+										className={cn(
+											'px-1',
+											format(new Date(checkOut), 'yyyy/MM/dd') ===
+												format(new Date(), 'yyyy/MM/dd') &&
+												'rounded-sm bg-destructive font-bold text-destructive-foreground',
+										)}
+									>
+										out:
+									</span>{' '}
+								</p>
+								{format(new Date(checkOut), 'PPP')}
 							</div>
 						</div>
 					</div>
 
-					<AccordionTrigger className="pr-4 lg:pr-8">
+					<AccordionTrigger>
 						<Icon name="caret-down" size="4xl" className="" />
 					</AccordionTrigger>
 				</AccordionHeader>

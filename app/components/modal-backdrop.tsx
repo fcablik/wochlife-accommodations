@@ -6,7 +6,7 @@ const backdropClassList =
 export const modalBackdropClassList = cn(
 	backdropClassList,
 	'backdrop-blur-sm',
-	'h-[100vh] z-2000 bg-black/40 ',
+	'h-[100vh] z-4000 bg-black/40 ',
 )
 
 export const modalBackdropLightClassList = cn(

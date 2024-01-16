@@ -45,6 +45,11 @@
 	}
 
 
+	.AccordionItem[data-state='closed'] {
+		@apply hover:bg-foreground hover:text-background transition-colors;
+	}
+
+
 	.AccordionContent {
 		overflow: hidden;
 		@apply border-t-2 ;
