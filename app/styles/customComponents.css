@@ -27,7 +27,7 @@
 
 
 /* @radix-accordion */
-	.AccordionHeader[data-state='open'] > button[data-radix-collection-item] svg {
+	.AccordionHeader[data-state='open'] > button[data-radix-collection-item] svg.opener {
 		@apply rotate-180;
 	}
 	.AccordionHeader button[data-radix-collection-item] svg {

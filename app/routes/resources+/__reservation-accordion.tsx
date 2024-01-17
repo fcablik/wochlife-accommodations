@@ -53,29 +53,34 @@ export function ReservationAccordion({
 				className="AccordionItem rounded-xl bg-background shadow-md"
 			>
 				<AccordionHeader className="AccordionHeader flex items-center justify-between px-2 py-3 md:max-xl:relative lg:px-4">
-					<div className="flex w-[94%] items-center">
-						<div className="w-[7%]">
+					<AccordionTrigger className="flex w-[92%] sm:w-[94%] items-center max-sm:justify-between">
+						<div className="text-left w-[7%]">
 							{!!(reservationStatus === 'accepted') && (
-								<div className="bg-accepted text-accepted-foreground flex h-7 w-7 items-center justify-center rounded-3xl">
+								<div className="flex h-5 w-5 sm:h-7 sm:w-7 items-center justify-center rounded-3xl bg-accepted text-accepted-foreground">
 									<Icon name="check" size="md" />
 								</div>
 							)}
 							{!!(reservationStatus === 'cancelled') && (
-								<div className="text-accepted-foreground flex h-7 w-7 items-center justify-center rounded-3xl bg-destructive">
+								<div className="flex h-5 w-5 sm:h-7 sm:w-7 items-center justify-center rounded-3xl bg-destructive text-accepted-foreground">
 									<Icon name="cross-1" size="sm" />
 								</div>
 							)}
 						</div>
 
-						<div className="w-[13%] px-1 text-sm">{reservationNumber}</div>
-						<div className="w-1/5 truncate px-1">
+						<div className="text-left w-[18%] sm:px-1 text-sm sm:w-[13%]">
+							{reservationNumber}
+						</div>
+
+						<div className="text-left w-[40%] truncate sm:px-1 sm:w-1/5">
 							{/* <span>Deluxe Room Title</span> */}
 							{roomTitle}
 						</div>
-						<div className="flex w-1/5 truncate px-1 capitalize">
+
+						<div className="text-left w-[24%] sm:px-1 capitalize sm:w-1/5">
 							{numberOfGuests} guest{numberOfGuests > 1 ? 's' : ''}
 						</div>
-						<div className="w-2/5 px-1">
+
+						<div className="text-left sm:w-2/5 sm:px-1 max-sm:hidden">
 							<div className="flex">
 								<p className="w-12 capitalize">
 									<span
@@ -83,7 +88,7 @@ export function ReservationAccordion({
 											'px-1',
 											format(new Date(checkIn), 'yyyy/MM/dd') ===
 												format(new Date(), 'yyyy/MM/dd') &&
-												'bg-accepted text-accepted-foreground rounded-sm font-bold',
+												'rounded-sm bg-accepted font-bold text-accepted-foreground',
 										)}
 									>
 										in:
@@ -91,6 +96,7 @@ export function ReservationAccordion({
 								</p>
 								{format(new Date(checkIn), 'PPP')}
 							</div>
+
 							<div className="flex">
 								<p className="w-12 capitalize">
 									<span
@@ -107,16 +113,16 @@ export function ReservationAccordion({
 								{format(new Date(checkOut), 'PPP')}
 							</div>
 						</div>
-					</div>
+					</AccordionTrigger>
 
-					<AccordionTrigger>
-						<Icon name="caret-down" size="4xl" className="" />
+					<AccordionTrigger className='w-8% sm:w-[6%]'>
+						<Icon name="caret-down" className="opener w-6 h-6 sm:w-10 sm:h-10" />
 					</AccordionTrigger>
 				</AccordionHeader>
 
 				<AccordionContent className="AccordionContent px-4 lg:px-8">
 					<div className="py-4 md:max-xl:mt-12 lg:py-8">
-						<div className="mb-4 md:hidden">
+						<div className="mb-4 sm:hidden">
 							<div
 								className={cn(
 									'my-1 rounded-sm py-1 text-center',

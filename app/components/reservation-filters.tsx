@@ -10,7 +10,7 @@ import { modalBackDropOverMenuClassList } from './modal-backdrop.tsx'
 import { Button } from './ui/button.tsx'
 import { Icon } from './ui/icon.tsx'
 import { Input } from './ui/input.tsx'
-import { Label } from './ui/label.tsx'
+// import { Label } from './ui/label.tsx'
 import { StatusButton } from './ui/status-button.tsx'
 
 export function FiltersWithSearchAndCalendar({
@@ -126,7 +126,7 @@ export function FiltersWithSearchAndCalendar({
 			<div className="relative sm:max-xl:flex sm:max-md:flex-col-reverse ">
 				<div>
 					<div className="mb-4 flex w-full flex-col gap-3">
-						<div className="relative flex flex-wrap gap-3 max-sm:justify-center">
+						<div className="relative flex flex-wrap gap-3">
 							<div className="mb8 flex w-full gap-2">
 								<Button
 									onClick={() => handleSelect('upcoming')}
@@ -148,31 +148,30 @@ export function FiltersWithSearchAndCalendar({
 
 							<div className="flex w-full gap-2">
 								<Button
-									className="no-scrollbar w-3/5 justify-start overflow-scroll capitalize"
+									className="no-scrollbar w-4/5 justify-start overflow-scroll capitalize"
 									variant="highlight"
 									onClick={handleChangeFilterDropdownState}
 								>
-									{currentSearch !== '' ? currentSearch : 'select filter'}
+									{currentSearch !== '' ? 'change filter' : 'select filter'}
 								</Button>
 
 								<Button onClick={() => handleSelect('')} variant="highlight">
 									<Icon name="cross-1" />
 								</Button>
-							</div>
 
-							{dropdownFiltersState && (
+								{dropdownFiltersState && (
 								<>
 									<div
 										className={modalBackDropOverMenuClassList}
 										onClick={handleChangeFilterDropdownState}
 									/>
 									<div
-										className="absolute z-4001 flex w-3/5 flex-col gap-2 rounded-xl bg-highlight/80 p-3"
+										className="absolute z-4001 flex w-4/5 flex-col gap-2 rounded-xl bg-highlight/80 p-3"
 										// onClick={handleChangeFilterDropdownState}
 									>
 										<div className="mb-4 flex items-center justify-between text-background">
-											<p className="text-body-sm font-semibold">
-												Select Filter
+											<p className="text-body-sm font-semibold capitalize">
+												{currentSearch !== '' ? 'change filter' : 'select filter'}
 											</p>
 
 											<Icon
@@ -243,12 +242,13 @@ export function FiltersWithSearchAndCalendar({
 									</div>
 								</>
 							)}
+							</div>
 
-							<div className="flex flex-wrap gap-3">
-								<div className="sm:max-xl:min-w-[250px] xl:min-w-[300px]">
-									<Label htmlFor="search" className="sr-only">
+							<div className="flex flex-wrap gap-3 w-full">
+								<div className="w-full">
+									{/* <Label htmlFor="search" className="sr-only">
 										Search
-									</Label>
+									</Label> */}
 									<Input
 										type="search"
 										name="search"
@@ -257,6 +257,7 @@ export function FiltersWithSearchAndCalendar({
 										// autoFocus={autoFocus}
 										onChange={handleSelectedFilter}
 										value={currentSearch}
+										className={cn("border-2", currentSearch !== '' ? "border-teal-500" : "")}
 									/>
 								</div>
 
@@ -288,8 +289,6 @@ export function FiltersWithSearchAndCalendar({
 							</div>
 						</div>
 					</div>
-
-					<div className="text-sm max-xl:mb-4">(Order: Newest first)</div>
 				</div>
 			</div>
 		</Form>

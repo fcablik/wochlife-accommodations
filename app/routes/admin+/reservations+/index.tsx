@@ -1,10 +1,15 @@
 import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { addDays, format } from 'date-fns'
+import { useState } from 'react'
 import { z } from 'zod'
 import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
 import { ErrorList } from '#app/components/forms.tsx'
 import { FiltersWithSearchAndCalendar } from '#app/components/reservation-filters.tsx'
+import {
+	MobileModalCaretOpener,
+	ModalCloserIcon,
+} from '#app/components/ui/modal-helpers.tsx'
 import { ReservationAccordion } from '#app/routes/resources+/__reservation-accordion.tsx'
 import { prisma } from '#app/utils/db.server.ts'
 import { cn, useDelayedIsPending } from '#app/utils/misc.tsx'
@@ -57,7 +62,7 @@ export async function loader({ request }: DataFunctionArgs) {
 	const yesterday = addDays(new Date(), -1)
 	const todaysDate = new Date()
 
-	const limit = 50 //#later make dynamic load or some kind of pagination/continue load
+	const limit = 50 //#later make dynamic load or some kind of pagination/continue load (or leave it like it is, 'cause we're displaying 50 newest, older are available via. filters)
 	const rawReservations = await prisma.$queryRaw`
 		SELECT Reservation.id, Reservation.status, Reservation.reservationNumber, Reservation.numberOfGuests, Reservation.numberOfNights, Reservation.name, Reservation.email, Reservation.message, Reservation.roomId, Reservation.reservationDateFrom, Reservation.reservationDateTo, Reservation.totalPrice, Reservation.createdAt, Reservation.createdAtString, Room.title AS roomTitle
 		FROM Reservation
@@ -128,30 +133,48 @@ export default function ReservationsRoute() {
 		console.error(data.error)
 	}
 
+	const [isMobExtraMenuToggled, setMobExtraMenuToggled] = useState(false)
+	const handleToggle = () => {
+		setMobExtraMenuToggled(prev => !prev)
+	}
+
 	return (
 		<div className="grid items-start gap-5 xl:grid-cols-3">
 			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:col-span-2 xl:px-6 2xl:px-8 2xl:py-8">
-				<div className="mb-12 max-sm:text-center">
+				<div className="mb-12">
 					<h3 className="mb-2 text-h3 capitalize text-foreground">
 						reservations overview
 					</h3>
 					<p className="text-lg">
 						View or change all Your property’s reservations at one place.
 					</p>
+					<div className="text-sm max-xl:mt-4">(Order: Newest first)</div>
 				</div>
 
 				<div>
 					{data.status === 'idle' ? (
 						data.reservations.length ? (
 							<>
-								<div className="mb-4 flex w-full items-center justify-between px-2 md:max-xl:relative lg:px-4">
-									<div className="flex w-[94%] items-center">
-										<div className="w-[7%]" />
-										<div className="w-[13%] capitalize">number</div>
-										<div className="w-1/5 capitalize">room name</div>
-										<div className="w-1/5 capitalize">guests</div>
-										<div className="w-2/5 pl-1 capitalize">check in/out</div>
+								<div className="mb-4 flex w-full items-center px-2 sm:justify-between lg:px-4">
+									<div className="flex w-[92%] items-center max-sm:justify-between sm:w-[94%] ">
+										<div className="w-[7%]">
+											<div className="h-5 w-5 sm:h-7 sm:w-7" />
+										</div>
+										<div className="w-[18%] text-sm sm:w-[13%] sm:px-1">
+											number
+										</div>
+										<div className="w-[40%] truncate sm:w-1/5 sm:px-1">
+											room name
+										</div>
+										<div className="w-[24%] capitalize sm:w-1/5 sm:px-1">
+											guests
+										</div>
+										<div className="max-sm:hidden sm:w-2/5 sm:px-1">
+											<span className="px-1">check in/out</span>
+										</div>
 									</div>
+
+									<div className="w-[8%] sm:w-[6%]" />
 								</div>
 
 								<div
@@ -163,19 +186,19 @@ export default function ReservationsRoute() {
 									{data.reservations.map(reservation => (
 										<div key={reservation.id} className="relative w-full">
 											{/* {format(new Date(reservation.createdAt), 'yyyy/MM/dd') ===
-										format(new Date(), 'yyyy/MM/dd') ? (
-											<div className="absolute left-[-1em] top-[-1em] rotate-[-20deg] rounded-sm bg-foreground px-2 text-background xl:top-[-.5em] xl:px-4 xl:py-1 2xl:top-[-.2em]">
-												new
-											</div>
-										) : (
-											reservation.status === 'cancelled' && (
-												<>
-													<div className="absolute left-[-1em] top-[-1em] rotate-[-20deg] rounded-sm bg-destructive px-2 text-background xl:top-[-.5em] xl:px-4 xl:py-1 2xl:top-[-.2em]">
-														cancelled
+												format(new Date(), 'yyyy/MM/dd') ? (
+													<div className="absolute left-[-1em] top-[-1em] rotate-[-20deg] rounded-sm bg-foreground px-2 text-background xl:top-[-.5em] xl:px-4 xl:py-1 2xl:top-[-.2em]">
+														new
 													</div>
-												</>
-											)
-										)} */}
+												) : (
+													reservation.status === 'cancelled' && (
+														<>
+															<div className="absolute left-[-1em] top-[-1em] rotate-[-20deg] rounded-sm bg-destructive px-2 text-background xl:top-[-.5em] xl:px-4 xl:py-1 2xl:top-[-.2em]">
+																cancelled
+															</div>
+														</>
+													)
+											)} */}
 
 											<ReservationAccordion
 												roomId={reservation.roomId}
@@ -206,7 +229,24 @@ export default function ReservationsRoute() {
 				</div>
 			</div>
 
-			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-6 2xl:px-8 2xl:py-8">
+			<MobileModalCaretOpener
+				isMobExtraMenuToggled={isMobExtraMenuToggled}
+				handleToggle={handleToggle}
+				classList="xl:hidden"
+			/>
+
+			<div
+				className={cn(
+					isMobExtraMenuToggled
+						? 'z-4001 max-xl:visible top-4 md:max-xl:right-4 md:max-lg:max-w-3/5 lg:max-xl:max-w-2/5'
+						: 'max-xl:hidden',
+					'rounded-3xl bg-backgroundDashboard px-2 py-8 max-xl:fixed sm:px-3 xl:w-full xl:px-6 2xl:px-8 2xl:py-8',
+				)}
+			>
+				{isMobExtraMenuToggled && (
+					<ModalCloserIcon handleToggle={handleToggle} />
+				)}
+
 				<FiltersWithSearchAndCalendar
 					actionUrl="admin/reservations"
 					status={data.status}

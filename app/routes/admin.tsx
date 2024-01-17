@@ -298,8 +298,8 @@ export default function AdminRoute() {
 
 			<div className="h-full w-full max-lg:hidden lg:w-[135px] xl:w-[145px] 2xl:w-[152px]" />
 
-			<div className="w-full lg:py-6 xl:pb-8 xl:pt-4 2xl:pb-10 2xl:pt-6">
-				<div className="relative mb-4 flex items-center justify-between p-2 lg:mb-6">
+			<div className="w-full pb-28 lg:pb-12 xl:pb-10">
+				<div className="relative my-6 flex items-center justify-between p-2 lg:mb-6">
 					<div className="flex gap-2 max-lg:hidden">
 						<Icon
 							name="arrow-left"
@@ -315,10 +315,8 @@ export default function AdminRoute() {
 						/>
 					</div>
 
-					<Link to="/admin">
-						<h5 className="hover:opacity-80 transition-opacity absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-h5 capitalize">
-							dashboard
-						</h5>
+					<Link to="/admin" className='hover:opacity-80 transition-opacity absolute left-1/2 lg:top-1/2 -translate-x-1/2 lg:-translate-y-1/2 text-h5 capitalize'>
+						dashboard
 					</Link>
 
 					<div className="max-lg:hidden">
