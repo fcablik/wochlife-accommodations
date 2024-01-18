@@ -141,9 +141,17 @@ export default function AdminDashboard() {
 
 	const sidebarBoxBaseClasslist =
 		'flex flex-col items-center rounded-2xl bg-backgroundDashboard'
-	const sidebarBoxClasslist = sidebarBoxBaseClasslist + ' px-2 2xl:px-4 py-4'
+	const sidebarBoxClasslist =
+		sidebarBoxBaseClasslist +
+		' px-2 2xl:px-4 py-4 gap-2 font-semibold capitalize'
 	const sidebarCheckInsOutsBoxClassList =
-		'w-full text-center rounded-xl bg-highlight py-3 text-background'
+		'w-full text-center rounded-xl bg-highlight border-2 border-foreground py-2 text-background'
+	const clickableSidebarCheckInsOutsBoxClassList =
+		'hover:bg-backgroundDashboard hover:text-highlight transition duration-200'
+
+	const newReservationsAlertBox =
+		'capitalize justify-center max-md:col-span-2 max-md:py-8 ' +
+		sidebarBoxClasslist
 
 	const data = useLoaderData<typeof loader>()
 	if (data.status === 'error') {
@@ -196,32 +204,41 @@ export default function AdminDashboard() {
 	return (
 		<div className="grid gap-5 xl:grid-cols-3">
 			<div className="xl:col-span-2">
-				<div className="mb-4 grid grid-cols-2 gap-5 md:grid-cols-3">
+				<div className="mb-4 grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-5">
 					{newReservationsDataToday ? (
 						<Link
 							className={cn(
-								'capitalize',
-								sidebarBoxClasslist,
-								'hover:bg-highlight hover:text-background',
+								newReservationsAlertBox,
+								'text-md group font-semibold transition duration-200 hover:bg-highlight hover:text-background lg:text-lg xl:px-4',
 							)}
 							to="/admin/reservations?search=new-today"
 						>
-							{newReservationsDataToday ?? '0'} new reservations
-							<div className="text-xs">(today)</div>
+							<div className="rounded-3xl bg-highlight px-3 py-2 text-background group-hover:bg-background group-hover:text-foreground lg:px-4 lg:py-2 2xl:mb-2">
+								{newReservationsDataToday ?? '0'}
+							</div>
+
+							<div className="max-2xl:text-md text-center">
+								new reservations (today)
+							</div>
 						</Link>
 					) : (
-						<div className={cn('capitalize', sidebarBoxClasslist)}>
+						<div className={newReservationsAlertBox}>
 							0 new reservations
 							<div className="text-xs">(today)</div>
 						</div>
 					)}
-					<div className={cn('gap-2 capitalize', sidebarBoxClasslist)}>
-						check-ins
+
+					{/* <div className={cn(newReservationsAlertBox, "text-center lg:hidden")}>
+							go to <br/>homepage
+						</div> */}
+
+					<div className={sidebarBoxClasslist}>
+						<div className="mb-3 mt-1">check-ins</div>
 						{checkInsDataToday ? (
 							<Link
 								className={cn(
 									sidebarCheckInsOutsBoxClassList,
-									'hover:bg-highlight',
+									clickableSidebarCheckInsOutsBoxClassList,
 								)}
 								to="/admin/reservations?search=todays-check-ins"
 							>
@@ -234,7 +251,7 @@ export default function AdminDashboard() {
 							<Link
 								className={cn(
 									sidebarCheckInsOutsBoxClassList,
-									'hover:bg-highlight',
+									clickableSidebarCheckInsOutsBoxClassList,
 								)}
 								to="/admin/reservations?search=tomorrows-check-ins"
 							>
@@ -245,13 +262,13 @@ export default function AdminDashboard() {
 						)}
 					</div>
 
-					<div className={cn('capitalize8 gap-2', sidebarBoxClasslist)}>
-						check-outs
+					<div className={sidebarBoxClasslist}>
+						<div className="mb-3 mt-1">check-outs</div>
 						{checkOutsDataToday ? (
 							<Link
 								className={cn(
 									sidebarCheckInsOutsBoxClassList,
-									'hover:bg-highlight',
+									clickableSidebarCheckInsOutsBoxClassList,
 								)}
 								to="/admin/reservations?search=todays-check-outs"
 							>
@@ -264,7 +281,7 @@ export default function AdminDashboard() {
 							<Link
 								className={cn(
 									sidebarCheckInsOutsBoxClassList,
-									'hover:bg-highlight',
+									clickableSidebarCheckInsOutsBoxClassList,
 								)}
 								to="/admin/reservations?search=tomorrows-check-outs"
 							>
