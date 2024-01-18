@@ -18,11 +18,13 @@ export function FiltersWithSearchAndCalendar({
 	status,
 	// autoFocus = false,
 	autoSubmit = false,
+	reservationsFound,
 }: {
 	actionUrl: 'admin/reservations'
 	status: 'idle' | 'pending' | 'success' | 'error'
 	// autoFocus?: boolean
 	autoSubmit?: boolean
+	reservationsFound: boolean
 }) {
 	const action = actionUrl
 	const [searchParams] = useSearchParams()
@@ -257,7 +259,7 @@ export function FiltersWithSearchAndCalendar({
 										// autoFocus={autoFocus}
 										onChange={handleSelectedFilter}
 										value={currentSearch}
-										className={cn("border-2", currentSearch !== '' ? "border-teal-500" : "")}
+										className={cn("border-2", currentSearch !== '' ? reservationsFound ? "border-accepted" : "border-destructive" : "")}
 									/>
 								</div>
 

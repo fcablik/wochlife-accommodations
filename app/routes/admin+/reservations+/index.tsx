@@ -1,7 +1,7 @@
 import { json, redirect, type DataFunctionArgs } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
+import { Link, useLoaderData, useSearchParams } from '@remix-run/react'
 import { addDays, format } from 'date-fns'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { z } from 'zod'
 import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
 import { ErrorList } from '#app/components/forms.tsx'
@@ -13,6 +13,7 @@ import {
 import { ReservationAccordion } from '#app/routes/resources+/__reservation-accordion.tsx'
 import { prisma } from '#app/utils/db.server.ts'
 import { cn, useDelayedIsPending } from '#app/utils/misc.tsx'
+import { Icon } from '#app/components/ui/icon.tsx'
 
 const ReservationSearchResultSchema = z.object({
 	id: z.string(),
@@ -138,6 +139,17 @@ export default function ReservationsRoute() {
 		setMobExtraMenuToggled(prev => !prev)
 	}
 
+
+
+	const [searchParams] = useSearchParams()
+	const [currentSearch, setCurrentSearch] = useState(
+		searchParams.get('search') ?? '',
+	)
+	// handling live search param changes -(e.g. on change of searchParams by external Link from sidebar)
+	useEffect(() => {
+		setCurrentSearch(searchParams.get('search') ?? '')
+	}, [searchParams])
+
 	return (
 		<div className="grid items-start gap-5 xl:grid-cols-3">
 			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:col-span-2 xl:px-6 2xl:px-8 2xl:py-8">
@@ -229,10 +241,26 @@ export default function ReservationsRoute() {
 				</div>
 			</div>
 
+			{currentSearch !== ''
+			&& (
+				<Link to="/admin/reservations">
+				<Icon
+					name="cross-1"
+					className='xl:hidden h-8 w-8 p-2 fixed bottom-[4.5rem] right-[5.25rem] z-1999 cursor-pointer gap-3 rounded-lg bg-foreground text-background'
+				/>
+				</Link>
+			)
+			}
 			<MobileModalCaretOpener
 				isMobExtraMenuToggled={isMobExtraMenuToggled}
 				handleToggle={handleToggle}
-				classList="xl:hidden"
+				classList={cn(
+					"xl:hidden border-2",
+					currentSearch !== '' 
+					? data.status === 'idle' && data.reservations.length ? "border-accepted" : "border-destructive"
+					: "border-foreground",
+				)}
+				triggerTitle='filters'
 			/>
 
 			<div
@@ -251,6 +279,7 @@ export default function ReservationsRoute() {
 					actionUrl="admin/reservations"
 					status={data.status}
 					autoSubmit
+					reservationsFound={data.status === 'idle' && data.reservations.length ? true : false}
 				/>
 			</div>
 		</div>
