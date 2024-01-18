@@ -46,7 +46,7 @@
 
 
 	.AccordionItem[data-state='closed'] {
-		@apply hover:bg-foreground hover:text-background transition-colors;
+		@apply lg:hover:bg-foreground lg:hover:text-background lg:transition-colors;
 	}
 
 
