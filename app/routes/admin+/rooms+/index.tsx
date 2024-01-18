@@ -5,9 +5,12 @@ import { Button } from '#app/components/ui/button.tsx'
 import { Icon } from '#app/components/ui/icon.tsx'
 import { prisma } from '#app/utils/db.server.ts'
 import {
+	cn,
 	generateShortString,
 	useDoubleCheckInsideMap,
 } from '#app/utils/misc.tsx'
+import { useState } from 'react'
+import { MobileModalCaretOpener, ModalCloserIcon } from '#app/components/ui/modal-helpers.tsx'
 
 export async function loader() {
 	const rooms = await prisma.room.findMany({
@@ -62,6 +65,11 @@ async function duplicateRoom(roomId: string) {
 export default function AdminRoomsIndex() {
 	const data = useLoaderData<typeof loader>()
 	const doubleCheckDuplicate = useDoubleCheckInsideMap()
+
+	const [isMobExtraMenuToggled, setMobExtraMenuToggled] = useState(false)
+	const handleToggle = () => {
+		setMobExtraMenuToggled(prev => !prev)
+	}
 
 	return (
 		<div className="grid items-start gap-5 xl:grid-cols-5 3xl:grid-cols-3">
@@ -145,56 +153,81 @@ export default function AdminRoomsIndex() {
 				</div>
 			</div>
 
-			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-6 2xl:px-8 2xl:py-8">
-				<p className="mb-4 text-lg font-semibold capitalize sm:mb-2">
-					rooms options
-				</p>
+			<MobileModalCaretOpener
+				isMobExtraMenuToggled={isMobExtraMenuToggled}
+				handleToggle={handleToggle}
+				classList='xl:hidden'
+				triggerTitle="options"
+			/>
 
-				<div className="mt-4 flex w-full gap-3 max-xl:flex-wrap xl:max-3xl:flex-col 3xl:flex-wrap">
-					<Link to="/admin/rooms/createnew" className="">
-						<Button size="lg" variant="highlight" className="w-full capitalize">
-							create new
-						</Button>
-					</Link>
+			<div
+				className={cn(
+					isMobExtraMenuToggled
+						? 'top-4 z-4001 max-xl:visible md:max-xl:right-4 md:max-lg:max-w-3/5 lg:max-xl:max-w-2/5'
+						: 'max-xl:hidden',
+					'rounded-3xl bg-backgroundDashboard px-2 py-8 max-xl:fixed sm:px-3 xl:w-full xl:px-6 2xl:px-8 2xl:py-8',
+				)}
+			>
+				{isMobExtraMenuToggled && (
+					<ModalCloserIcon handleToggle={handleToggle} />
+				)}
 
-					<Link to="/rooms/" target="_blank" className="">
-						<Button size="lg" variant="highlight" className="w-full capitalize">
-							live room list
-						</Button>
-					</Link>
+				{/* <div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-6 2xl:px-8 2xl:py-8"> */}
+					<p className="mb-4 text-lg font-semibold capitalize sm:mb-2">
+						rooms options
+					</p>
 
-					<div className="my-3 w-full border-b border-highlight/20" />
+					<div className="mt-4 flex w-full gap-3 max-xl:flex-wrap xl:max-3xl:flex-col 3xl:flex-wrap">
+						<Link to="/admin/rooms/createnew" className="">
+							<Button size="lg" variant="highlight" className="w-full capitalize">
+								create new
+							</Button>
+						</Link>
 
-					<Link to="pricing" className="">
-						<Button size="lg" variant="highlight" className="w-full capitalize">
-							pricing
-						</Button>
-					</Link>
+						<Link to="/rooms/" target="_blank" className="">
+							<Button size="lg" variant="highlight" className="w-full capitalize">
+								live room list
+							</Button>
+						</Link>
 
-					<Link to="facility" className="">
-						<Button size="lg" variant="highlight" className="w-full capitalize">
-							facilities
-						</Button>
-					</Link>
+						<div className="my-3 w-full border-b border-highlight/20" />
 
-					<Link to="gallery" className="">
-						<Button size="lg" variant="highlight" className="w-full capitalize">
-							galleries
-						</Button>
-					</Link>
+						<p className="w-full text-lg font-semibold capitalize mb-1">
+							manage extras
+						</p>
 
-					<Link to="packagedeals" className="">
-						<Button size="lg" variant="highlight" className="w-full capitalize">
-							package deals
-						</Button>
-					</Link>
+						<Link to="pricing" className="">
+							<Button size="lg" variant="highlight" className="w-full capitalize">
+								pricing
+							</Button>
+						</Link>
 
-					<Link to="discounts" className="">
-						<Button size="lg" variant="highlight" className="w-full capitalize">
-							discounts
-						</Button>
-					</Link>
-				</div>
+						<Link to="facility" className="">
+							<Button size="lg" variant="highlight" className="w-full capitalize">
+								facilities
+							</Button>
+						</Link>
+
+						<Link to="gallery" className="">
+							<Button size="lg" variant="highlight" className="w-full capitalize">
+								galleries
+							</Button>
+						</Link>
+
+						<Link to="packagedeals" className="">
+							<Button size="lg" variant="highlight" className="w-full capitalize">
+								package deals
+							</Button>
+						</Link>
+
+						<Link to="discounts" className="">
+							<Button size="lg" variant="highlight" className="w-full capitalize">
+								discounts
+							</Button>
+						</Link>
+					</div>
+				{/* </div> */}
+
 			</div>
 		</div>
 	)
