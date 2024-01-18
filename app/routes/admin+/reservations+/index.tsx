@@ -6,6 +6,7 @@ import { z } from 'zod'
 import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
 import { ErrorList } from '#app/components/forms.tsx'
 import { FiltersWithSearchAndCalendar } from '#app/components/reservation-filters.tsx'
+import { Icon } from '#app/components/ui/icon.tsx'
 import {
 	MobileModalCaretOpener,
 	ModalCloserIcon,
@@ -13,7 +14,6 @@ import {
 import { ReservationAccordion } from '#app/routes/resources+/__reservation-accordion.tsx'
 import { prisma } from '#app/utils/db.server.ts'
 import { cn, useDelayedIsPending } from '#app/utils/misc.tsx'
-import { Icon } from '#app/components/ui/icon.tsx'
 
 const ReservationSearchResultSchema = z.object({
 	id: z.string(),
@@ -139,8 +139,6 @@ export default function ReservationsRoute() {
 		setMobExtraMenuToggled(prev => !prev)
 	}
 
-
-
 	const [searchParams] = useSearchParams()
 	const [currentSearch, setCurrentSearch] = useState(
 		searchParams.get('search') ?? '',
@@ -241,32 +239,32 @@ export default function ReservationsRoute() {
 				</div>
 			</div>
 
-			{currentSearch !== ''
-			&& (
-				<Link to="/admin/reservations">
-				<Icon
-					name="cross-1"
-					className='xl:hidden h-8 w-8 p-2 fixed bottom-[4.5rem] right-[5.25rem] z-1999 cursor-pointer gap-3 rounded-lg bg-foreground text-background'
-				/>
+			{currentSearch !== '' && (
+				<Link to="/admin/reservations" className="xl:hidden">
+					<Icon
+						name="cross-1"
+						className="fixed bottom-[4.5rem] right-[5.25rem] z-1999 h-8 w-8 cursor-pointer gap-3 rounded-lg bg-foreground p-2 text-background"
+					/>
 				</Link>
-			)
-			}
+			)}
 			<MobileModalCaretOpener
 				isMobExtraMenuToggled={isMobExtraMenuToggled}
 				handleToggle={handleToggle}
 				classList={cn(
-					"xl:hidden border-2",
-					currentSearch !== '' 
-					? data.status === 'idle' && data.reservations.length ? "border-accepted" : "border-destructive"
-					: "border-foreground",
+					'xl:hidden border-2',
+					currentSearch !== ''
+						? data.status === 'idle' && data.reservations.length
+							? 'border-accepted'
+							: 'border-destructive'
+						: 'border-foreground',
 				)}
-				triggerTitle='filters'
+				triggerTitle="filters"
 			/>
 
 			<div
 				className={cn(
 					isMobExtraMenuToggled
-						? 'z-4001 max-xl:visible top-4 md:max-xl:right-4 md:max-lg:max-w-3/5 lg:max-xl:max-w-2/5'
+						? 'top-4 z-4001 max-xl:visible md:max-xl:right-4 md:max-lg:max-w-3/5 lg:max-xl:max-w-2/5'
 						: 'max-xl:hidden',
 					'rounded-3xl bg-backgroundDashboard px-2 py-8 max-xl:fixed sm:px-3 xl:w-full xl:px-6 2xl:px-8 2xl:py-8',
 				)}
@@ -279,7 +277,9 @@ export default function ReservationsRoute() {
 					actionUrl="admin/reservations"
 					status={data.status}
 					autoSubmit
-					reservationsFound={data.status === 'idle' && data.reservations.length ? true : false}
+					reservationsFound={
+						data.status === 'idle' && data.reservations.length ? true : false
+					}
 				/>
 			</div>
 		</div>
