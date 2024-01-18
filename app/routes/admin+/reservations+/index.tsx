@@ -239,7 +239,7 @@ export default function ReservationsRoute() {
 				</div>
 			</div>
 
-			{currentSearch !== '' && (
+			{!isMobExtraMenuToggled && currentSearch !== '' && (
 				<Link to="/admin/reservations" className="xl:hidden">
 					<Icon
 						name="cross-1"
