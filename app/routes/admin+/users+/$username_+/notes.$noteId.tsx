@@ -205,7 +205,7 @@ export const meta: MetaFunction<
 			? data?.note.content.slice(0, 97) + '...'
 			: 'No content'
 	return [
-		{ title: `${noteTitle} | ${displayName}'s Notes | wochdev hotels` },
+		{ title: `${noteTitle} | ${displayName}'s Notes | wochdev properties` },
 		{
 			name: 'description',
 			content: noteContentsSummary,

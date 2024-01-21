@@ -61,7 +61,7 @@ export default function UsersRoute() {
 
 	return (
 		<div className="py-8 flex flex-col items-center justify-center gap-6">
-			<h3 className="mb-8 text-h3 sm:text-h2">wochdev hotels Users</h3>
+			<h3 className="mb-8 text-h3 sm:text-h2">wochdev properties Users</h3>
 
 			<div className="w-full max-w-[700px] mb-8">
 				<SearchBar actionUrl='admin/users' status={data.status} autoFocus autoSubmit />

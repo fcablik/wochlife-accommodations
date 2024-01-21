@@ -23,7 +23,7 @@ export function HeaderBase({ routeAdmin }: { routeAdmin?: boolean }) {
 					<nav className={cn("space-between flex items-center justify-between", baseContainerWidthClassList)}>
 						<Link to="/">
 							<div className="font-light">wochdev</div>
-							<div>hotels</div>
+							<div>properties</div>
 						</Link>
 
 						<div className="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">

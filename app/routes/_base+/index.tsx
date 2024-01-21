@@ -11,7 +11,7 @@ import {
 export default function Index() {
 	return (
 		<div className='flex flex-col justify-center mx-auto text-center h-80'>
-			<h1 className='text-h1'>Wochdev Hotels System</h1>
+			<h1 className='text-h1'>Wochdev Properties System</h1>
 		</div>
 	)
 }

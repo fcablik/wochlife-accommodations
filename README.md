@@ -1,4 +1,4 @@
-# wochdev hotels
+# wochdev properties
 
 ## version control: 7.0.0
 

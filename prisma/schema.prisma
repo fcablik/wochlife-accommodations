@@ -237,7 +237,7 @@ model WeekDay {
 }
 
 //* mode 2 - pricing - seasonal prices the same collectively for all selected objects inside seasonal pricing
-// - keeping this mode for future usage to implement for bigger properties/hotels who need bulk edit
+// - keeping this mode for future usage to implement for bigger properties/properties who need bulk edit
 // model Season {
 //   id       String                @id @unique @default(cuid())
 //   name     String
