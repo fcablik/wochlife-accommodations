@@ -384,3 +384,10 @@ model PageImage {
   // non-unique foreign key
   @@index([pageId])
 }
+
+model Translation {
+  id   String @id @unique @default(cuid())
+  name String @unique
+  en   String
+  cs   String
+}

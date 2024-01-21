@@ -252,6 +252,10 @@ export default function AdminRoute() {
 												target="_blank"
 											/>
 											<SidebarNavLink
+												routeName="translations"
+												icon="file-text"
+											/>
+											<SidebarNavLink
 												routeName="pages"
 												icon="file-text"
 												classList="lg:hidden"
