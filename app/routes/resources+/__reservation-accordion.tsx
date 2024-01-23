@@ -73,7 +73,9 @@ export function ReservationAccordion({
 
 						<div className="text-left w-[40%] truncate sm:px-1 sm:w-1/5">
 							{/* <span>Deluxe Room Title</span> */}
-							{roomTitle}
+							<Link to={`/admin/rooms/${roomId}`} className='hover:underline'>
+								{roomTitle}
+							</Link>
 						</div>
 
 						<div className="text-left w-[24%] sm:px-1 capitalize sm:w-1/5">
@@ -182,6 +184,11 @@ export function ReservationAccordion({
 									<div className="flex flex-wrap">
 										<span className="capitalize">guest's email:&nbsp;</span>
 										{guestEmail}
+									</div>
+
+									<div className="flex flex-wrap">
+										<span className="capitalize">Booking made by:&nbsp;</span>
+										<strong>{guestName}</strong>
 									</div>
 
 									<div className="mt-2">

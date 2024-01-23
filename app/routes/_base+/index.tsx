@@ -30,7 +30,7 @@ export default function Index() {
 	const data = useLoaderData<typeof loader>()
 
 	return (
-		<div className="mx-auto flex h-[90vh] flex-col justify-center text-center">
+		<div className="mx-auto flex min-h-[90vh] flex-col justify-center text-center">
 			<h1 className="text-h2">Filapps Hospitality System</h1>
 
 			<div className="mt-48">
