@@ -183,7 +183,7 @@ export async function action({ params, request }: DataFunctionArgs) {
 
 	const mailMessage =
 		'We have successfully received Your created reservation. Here are the further steps: ... ...'
-	const subjectMessage = 'Created Reservation at Wochdev Properties'
+	const subjectMessage = 'Created Reservation at Filapps Hospitality System'
 
 	// TODO: //! I need to add mail send to the owner, not only to the user
 	// params.url ?? --> if not reservation from admin, but from FE (this is default/base, that's why it comes first)

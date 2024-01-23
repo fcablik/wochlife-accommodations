@@ -164,14 +164,14 @@ export async function action({ request, params }: DataFunctionArgs) {
 	let toastTitle
 	let toastDescription
 	if (params.id) {
-		toastTitle = 'RoomsGallery Edited!'
+		toastTitle = `Gallery "${updatedRoomsGallery.name}" Edited!`
 		toastDescription = 'Your edits were saved. 😊'
 	} else {
-		toastTitle = 'RoomsGallery Created!'
-		toastDescription = `RoomsGallery: "${updatedRoomsGallery.name}" successfully created!`
+		toastTitle = 'Gallery Created!'
+		toastDescription = `Gallery: "${updatedRoomsGallery.name}" successfully created!`
 	}
 
-	return redirectWithToast(`/admin/rooms/gallery/${updatedRoomsGallery.id}`, {
+	return redirectWithToast(`/admin/rooms/gallery/`, {
 		type: 'success',
 		title: toastTitle,
 		description: toastDescription,

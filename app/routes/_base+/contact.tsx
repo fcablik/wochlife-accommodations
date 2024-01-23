@@ -52,7 +52,7 @@ export async function action({ request }: DataFunctionArgs) {
 	const { email, name, message, redirectTo } = submission.value
 
 	const response = await sendEmail({
-		from: "Contact Form from Wochdev Properties <noreply@wochdev.com>",
+		from: "Contact Form from Filapps Hospitality System <noreply@wochdev.com>",
 		to: 'filip.cablik@icloud.com', // mail of preference where the message should be delivered to (owner of web, admin, etc.)
 		reply_to: email,
 		subject: `Web Form message from ` + email,
@@ -80,7 +80,7 @@ export async function action({ request }: DataFunctionArgs) {
 }
 
 export const meta: MetaFunction = () => {
-	return [{ title: 'Contact Us | Wochdev Properties' }]
+	return [{ title: 'Contact Us | Filapps Hospitality System' }]
 }
 
 export default function ContactForm() {

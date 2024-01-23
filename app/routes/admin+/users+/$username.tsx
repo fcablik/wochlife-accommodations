@@ -100,10 +100,10 @@ export default function ProfileRoute() {
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
 	const displayName = data?.user.name ?? params.username
 	return [
-		{ title: `${displayName} | wochdev properties` },
+		{ title: `${displayName} | Filapps Hospitality System` },
 		{
 			name: 'description',
-			content: `Profile of ${displayName} on wochdev properties`,
+			content: `Profile of ${displayName} on Filapps Hospitality System`,
 		},
 	]
 }

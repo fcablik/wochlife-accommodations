@@ -216,14 +216,14 @@ export default function PricingRoute() {
 														<Button variant="primary">edit</Button>
 													</Link>
 
-													<Link to={`${seasonList.id}/delete`}>
+													{/* <Link to={`${seasonList.id}/delete`}>
 														<button className="text-destructive">
 															<span aria-hidden>
 																<Icon name="cross-1" />
 															</span>{' '}
 															<span className="sr-only">delete</span>
 														</button>
-													</Link>
+													</Link> */}
 												</div>
 											</div>
 										</div>

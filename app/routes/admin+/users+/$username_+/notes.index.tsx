@@ -20,10 +20,10 @@ export const meta: MetaFunction<
 	const noteCount = notesMatch?.data?.owner.notes.length ?? 0
 	const notesText = noteCount === 1 ? 'note' : 'notes'
 	return [
-		{ title: `${displayName}'s Notes | wochdev properties` },
+		{ title: `${displayName}'s Notes | Filapps Hospitality System` },
 		{
 			name: 'description',
-			content: `Checkout ${displayName}'s ${noteCount} ${notesText} on wochdev properties`,
+			content: `Checkout ${displayName}'s ${noteCount} ${notesText} on Filapps Hospitality System`,
 		},
 	]
 }
