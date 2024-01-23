@@ -4,11 +4,15 @@ import { useState } from 'react'
 import { Spacer } from '#app/components/spacer.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { Icon } from '#app/components/ui/icon.tsx'
-import { MobileModalCaretOpener, ModalCloserIcon } from '#app/components/ui/modal-helpers.tsx'
+import {
+	MobileModalCaretOpener,
+	ModalCloserIcon,
+} from '#app/components/ui/modal-helpers.tsx'
 import { prisma } from '#app/utils/db.server.ts'
 import {
 	cn,
 	generateShortString,
+	getRoomsGalleryImgSrc,
 	useDoubleCheckInsideMap,
 } from '#app/utils/misc.tsx'
 
@@ -19,6 +23,13 @@ export async function loader() {
 			title: true,
 			url: true,
 			visibility: true,
+			roomPreviewImages: {
+				take: 1,
+				select: {
+					id: true,
+					altText: true,
+				},
+			},
 		},
 	})
 	if (!rooms) {
@@ -82,11 +93,33 @@ export default function AdminRoomsIndex() {
 				</div>
 
 				<Spacer size="2xs" />
-				<div className="grid grid-cols-2 gap-5 xl:grid-cols-3">
+				<div className="grid grid-cols-2 gap-5 md:grid-cols-3">
 					{data.rooms.map(room => (
 						<div key={room.id} className="w-full text-center ">
-							<div className="flex min-h-full flex-col justify-center rounded-lg border-2 border-foreground px-2 py-6">
-								<div className="p-2 2xl:p-4">
+							<div className="relative flex min-h-full flex-col justify-between rounded-lg border-2 border-foreground/20 pb-6">
+								<div className="relative h-[100px] xl:h-[145px]">
+									<>
+										{room.roomPreviewImages.length ? (
+											<img
+												src={getRoomsGalleryImgSrc(
+													room.roomPreviewImages[0]?.id,
+												)}
+												alt={room.roomPreviewImages[0]?.altText ?? ''}
+												className="pointer-events-none h-full w-full rounded-t-lg bg-cover bg-center object-cover"
+											/>
+										) : (
+											<img
+												src="/img/room-preview-img-placeholder.png"
+												alt=""
+												className="pointer-events-none h-full w-full rounded-t-lg bg-cover bg-center object-cover"
+											/>
+										)}
+
+										<div className="absolute inset-0 rounded-t-lg bg-gradient-to-l from-transparent to-black opacity-60"></div>
+									</>
+								</div>
+
+								<div className="p-2 2xl:px-4 2xl:pt-4">
 									<div className="overflow-hidden truncate pb-4 text-highlight dark:text-highlight">
 										{' '}
 										/{room.url}{' '}
@@ -115,7 +148,7 @@ export default function AdminRoomsIndex() {
 										<Button variant="secondary">Detail</Button>
 									</Link>
 
-									{room.visibility ? (
+									{room.visibility && (
 										<Link
 											to={'/rooms/' + room.url}
 											className="text-center"
@@ -123,15 +156,20 @@ export default function AdminRoomsIndex() {
 										>
 											<Button variant="outline">See Live</Button>
 										</Link>
-									) : null}
+									)}
 
-									<Form method="POST">
+									<Form method="POST" className="max-lg:hidden">
 										<input type="hidden" name="roomId" value={room.id} />
 
 										<Button
+											className={
+												doubleCheckDuplicate.doubleCheckStates[room.id]
+													? 'absolute bottom-[-1.25rem] right-0'
+													: ''
+											}
 											variant={
 												doubleCheckDuplicate.doubleCheckStates[room.id]
-													? 'highlight-secondary'
+													? 'secondary'
 													: 'outline'
 											}
 											{...doubleCheckDuplicate.getButtonProps(room.id, {
@@ -140,9 +178,9 @@ export default function AdminRoomsIndex() {
 											})}
 										>
 											{doubleCheckDuplicate.doubleCheckStates[room.id] ? (
-												'Are you sure?'
+												'Click Again To Duplicate Room'
 											) : (
-												<Icon name="file-text">duplicate</Icon>
+												<Icon name="copy" />
 											)}
 										</Button>
 									</Form>
@@ -156,7 +194,7 @@ export default function AdminRoomsIndex() {
 			<MobileModalCaretOpener
 				isMobExtraMenuToggled={isMobExtraMenuToggled}
 				handleToggle={handleToggle}
-				classList='xl:hidden'
+				classList="xl:hidden"
 				triggerTitle="options"
 			/>
 
@@ -183,15 +221,15 @@ export default function AdminRoomsIndex() {
 						</Button>
 					</Link>
 
-					<Link to="/rooms/" target="_blank" className="">
-						<Button size="lg" variant="highlight" className="w-full capitalize">
+					<Link to="/rooms/" target="_blank">
+						<Button size="lg" variant="highlight" className="w-full capitalize px-1">
 							live room list
 						</Button>
 					</Link>
 
 					<div className="my-3 w-full border-b border-highlight/20" />
 
-					<p className="w-full text-lg font-semibold capitalize mb-1">
+					<p className="mb-1 w-full text-lg font-semibold capitalize">
 						manage extras
 					</p>
 

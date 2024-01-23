@@ -13,6 +13,7 @@ export function IconNames(): string[] {
 		'check',
 		'clock',
 		'codesandbox-logo',
+		'copy',
 		'cross-1',
 		'dashboard',
 		'dots-horizontal',

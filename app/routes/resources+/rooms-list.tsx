@@ -38,22 +38,27 @@ export function RoomsListLoader({
 									<div className="w-1/2 p-2 text-center md:p-6">
 										<div className="z-1 border bg-background transition-opacity hover:opacity-95">
 											<Link to={`/rooms/${room.url}`} className="text-center ">
-                                                <div className='max-h-[165px]'>
-                                                    {room.roomPreviewImages.length ? (
-                                                        <img
-                                                            src={getRoomsGalleryImgSrc(
-                                                                room.roomPreviewImages[0]?.id,
-                                                            )}
-                                                            alt={room.roomPreviewImages[0]?.altText ?? ''}
-                                                            className='object-contain'
-                                                        />
-                                                    ) : (
-                                                        <img
-                                                            src="/img/room-preview-img-placeholder.png"
-                                                            alt=""
-                                                        />
-                                                    )}
-                                                </div>
+												<div className="relative h-[165px]">
+													<>
+														{room.roomPreviewImages.length ? (
+															<img
+																src={getRoomsGalleryImgSrc(
+																	room.roomPreviewImages[0]?.id,
+																)}
+																alt={room.roomPreviewImages[0]?.altText ?? ''}
+																className="pointer-events-none h-full w-full rounded-t-xl bg-cover bg-center object-cover"
+															/>
+														) : (
+															<img
+																src="/img/room-preview-img-placeholder.png"
+																alt=""
+																className="pointer-events-none h-full w-full rounded-t-xl bg-cover bg-center object-cover"
+															/>
+														)}
+
+														<div className="absolute inset-0 rounded-t-xl bg-gradient-to-l from-transparent to-black opacity-60"></div>
+													</>
+												</div>
 
 												<div className="px-3 pb-6 pt-4 lg:px-4 lg:pb-10 lg:pt-6">
 													<div className="overflow-hidden py-6 lg:p-8">
