@@ -45,7 +45,7 @@ export default function PageUrlRoute() {
 		<div className={frontendRoutesSpacingFromHeaderAndFooter}>
 			{/* {room.previewImageId ? */}
 			<div className="relative h-[20vh] max-h-[350px] min-h-[250px] md:h-[40vh]">
-				<div className="relative h-full rounded-2xl bg-[url('/img/test-room.png')] bg-cover bg-center"></div>
+				<div className="relative h-full rounded-2xl bg-[url('/img/room-preview-img-placeholder.png')] bg-cover bg-center"></div>
 				<div className="absolute inset-0 rounded-2xl bg-gradient-to-l from-transparent to-black opacity-60"></div>
 				<div className="absolute left-10 top-1/2 -translate-y-1/2 text-background md:left-1/2 md:-translate-x-1/2">
 					<h1 className="text-h3 capitalize lg:text-h1">{page.title}</h1>

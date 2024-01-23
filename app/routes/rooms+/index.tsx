@@ -13,6 +13,13 @@ export async function loader() {
 			title: true,
 			visibility: true,
 			price1: true,
+			roomPreviewImages: {
+				take: 1,
+				select: {
+					id: true,
+					altText: true,
+				},
+			},
 		},
 	})
 	if (!rooms) {
@@ -37,3 +44,5 @@ export default function RoomsIndex() {
 export function ErrorBoundary() {
 	return <GeneralErrorBoundary />
 }
+
+

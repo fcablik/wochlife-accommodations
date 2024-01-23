@@ -1,6 +1,7 @@
 import { Link } from '@remix-run/react'
 import React from 'react'
 import { Button } from '#app/components/ui/button.tsx'
+import { getRoomsGalleryImgSrc } from '#app/utils/misc.tsx'
 
 export function RoomsListLoader({
 	roomData,
@@ -12,6 +13,10 @@ export function RoomsListLoader({
 			title: string
 			visibility: boolean
 			price1: number
+			roomPreviewImages: {
+				id: string
+				altText: string | null
+			}[]
 		}[]
 	}
 }) {
@@ -31,16 +36,35 @@ export function RoomsListLoader({
 							<React.Fragment key={room.id}>
 								{room.visibility && (
 									<div className="w-1/2 p-2 text-center md:p-6">
-										<div className="z-1 border bg-background px-3 pb-6 pt-4 transition-opacity hover:opacity-95 lg:px-4 lg:pb-10 lg:pt-6">
-											<Link to={`/rooms/${room.url}`} className="text-center">
-												<div className="overflow-hidden py-6 lg:p-8">
-													<div>{room.title}</div>
-													<div>{room.price1}</div>
-												</div>
+										<div className="z-1 border bg-background transition-opacity hover:opacity-95">
+											<Link to={`/rooms/${room.url}`} className="text-center ">
+                                                <div className='max-h-[165px]'>
+                                                    {room.roomPreviewImages.length ? (
+                                                        <img
+                                                            src={getRoomsGalleryImgSrc(
+                                                                room.roomPreviewImages[0]?.id,
+                                                            )}
+                                                            alt={room.roomPreviewImages[0]?.altText ?? ''}
+                                                            className='object-contain'
+                                                        />
+                                                    ) : (
+                                                        <img
+                                                            src="/img/room-preview-img-placeholder.png"
+                                                            alt=""
+                                                        />
+                                                    )}
+                                                </div>
 
-												<Button variant="secondary" className="">
-													Detail
-												</Button>
+												<div className="px-3 pb-6 pt-4 lg:px-4 lg:pb-10 lg:pt-6">
+													<div className="overflow-hidden py-6 lg:p-8">
+														<div>{room.title}</div>
+														<div>{room.price1}</div>
+													</div>
+
+													<Button variant="secondary" className="">
+														Detail
+													</Button>
+												</div>
 											</Link>
 										</div>
 									</div>
