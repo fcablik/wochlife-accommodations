@@ -5,7 +5,7 @@ import * as React from 'react'
 import { cn } from '#app/utils/misc.tsx'
 
 const buttonVariants = cva(
-	'inline-flex items-center justify-center rounded-lg font-medium bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:bg-background disabled:pointer-events-none disabled:opacity-50 transition duration-250',
+	'inline-flex items-center justify-center rounded-lg lg:rounded-xl font-medium bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:bg-background disabled:pointer-events-none disabled:opacity-50 transition duration-250',
 	{
 		variants: {
 			variant: {
@@ -18,8 +18,7 @@ const buttonVariants = cva(
 					'border border-input hover:bg-backgroundDashboard hover:text-highlight',
 				'outline-contrast':
 					'bg-transparent text-background border border-input hover:bg-backgroundDashboard hover:text-highlight',
-				primary:
-					'rounded-lg bg-backgroundDashboard border-2 hover:border-highlight',
+				primary: 'bg-backgroundDashboard border-2 hover:border-highlight',
 				secondary:
 					'bg-secondary text-secondary-foreground hover:bg-highlight hover:text-background',
 				ghost: 'hover:bg-accent hover:text-accent-foreground',
@@ -27,20 +26,19 @@ const buttonVariants = cva(
 
 				// highlight w/o Hover
 				highlight:
-					'rounded-lg shadow-highlight bg-highlight text-background hover:bg-highlight/70',
+					'shadow-highlight bg-highlight text-background hover:bg-highlight/70',
 				'highlight-static':
-					'rounded-lg shadow-highlight bg-highlight text-background cursor-auto',
-				'highlight-contrast':
-					'rounded-lg shadow-highlight bg-background text-foreground',
+					'shadow-highlight bg-highlight text-background cursor-auto',
+				'highlight-contrast': 'shadow-highlight bg-background text-foreground',
 
 				// highlight w/ Hover
 				'highlight-secondary':
-					'font-500 rounded-lg shadow-highlight bg-highlight text-background hover:bg-highlight/20 border-2 border-highlight',
+					'font-500 shadow-highlight bg-highlight text-background hover:bg-highlight/20 border-2 border-highlight',
 
 				disabled: 'border border-input bg-background cursor-auto opacity-60',
 				activedashboardSidebar:
-					'rounded-lg shadow-lg shadow-highlight bg-highlight text-background',
-				dashboardSidebar: 'rounded-lg bg-transparent ',
+					'shadow-lg shadow-highlight bg-highlight text-background',
+				dashboardSidebar: 'bg-transparent',
 			},
 			size: {
 				default: 'h-10 px-4 py-2',

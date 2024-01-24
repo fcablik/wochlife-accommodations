@@ -237,7 +237,7 @@ function App() {
 				<Outlet />
 			</div>
 
-			{!routeAdmin ? <FooterBase /> : null}
+			{!routeAdmin && <FooterBase />}
 			<Confetti id={data.confettiId} />
 			<WochToaster toast={data.toast} />
 			<EpicProgress />

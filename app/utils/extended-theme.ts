@@ -56,6 +56,7 @@ export const extendedTheme = {
 		'admin-detail-box': '0px 0px 15px rgba(0, 0, 0, .15)',
 		'header-menu': '0px 0px 8px 4px rgba(0, 0, 0, .15)',
 		'page-container': '0px 10px 10px rgba(0, 0, 0, .1)',
+		'room-box': '0px 5px 20px rgba(0, 0, 0, .2)',
 	},
 	minWidth: {
 		'1/2': '50%',
@@ -76,6 +77,14 @@ export const extendedTheme = {
 		'4/5': '80%',
 	},
 	borderRadius: {
+		'6xl': 'calc(var(--radius) * 5.5)',
+		'5xl': 'calc(var(--radius) * 5)',
+		'4xl': 'calc(var(--radius) * 4.5)',
+		// '3xl': 'calc(var(--radius) * 4)',
+		// '2xl': 'calc(var(--radius) * 3)',
+		// 'xl-to-2xl': 'calc(var(--radius) * 2.25)',
+		// xl: 'calc(var(--radius) * 2)',
+		// 'lg-to-xl': 'calc(var(--radius) * 1.5)',
 		lg: 'var(--radius)',
 		md: 'calc(var(--radius) - 2px)',
 		sm: 'calc(var(--radius) - 4px)',

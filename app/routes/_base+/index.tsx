@@ -30,11 +30,11 @@ export default function Index() {
 	const data = useLoaderData<typeof loader>()
 
 	return (
-		<div className="mx-auto flex min-h-[90vh] flex-col justify-center text-center">
+		<div className="mx-auto flex min-h-[90vh] my-24 flex-col justify-center text-center">
 			<h1 className="text-h2">Filapps Hospitality System</h1>
 
-			<div className="mt-48">
-				<h2 className="mb-8 text-h4">Rooms</h2>
+			<div className="mt-24">
+				<h4 className="text-h4">Rooms</h4>
 				<RoomsListLoader roomData={data} />
 			</div>
 		</div>

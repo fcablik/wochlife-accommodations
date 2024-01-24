@@ -152,9 +152,9 @@ export default function ReservationsRoute() {
 		<div className="grid items-start gap-5 xl:grid-cols-3">
 			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:col-span-2 xl:px-6 2xl:px-8 2xl:py-8">
 				<div className="mb-12">
-					<h3 className="mb-2 text-h3 capitalize text-foreground">
+					<h5 className="mb-2 text-h5 capitalize text-foreground">
 						reservations overview
-					</h3>
+					</h5>
 					<p className="text-lg">
 						View or change all Your property’s reservations at one place.
 					</p>
@@ -266,7 +266,7 @@ export default function ReservationsRoute() {
 					isMobExtraMenuToggled
 						? 'top-4 z-4001 max-xl:visible md:max-xl:right-4 md:max-lg:max-w-3/5 lg:max-xl:max-w-2/5'
 						: 'max-xl:hidden',
-					'rounded-3xl bg-backgroundDashboard px-2 py-8 max-xl:fixed sm:px-3 xl:w-full xl:px-6 2xl:px-8 2xl:py-8',
+					'rounded-3xl bg-backgroundDashboard px-2 py-8 max-xl:fixed sm:px-3 xl:sticky xl:top-[75px] xl:w-full xl:px-6 2xl:px-8 2xl:py-8',
 				)}
 			>
 				{isMobExtraMenuToggled && (

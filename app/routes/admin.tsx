@@ -303,8 +303,8 @@ export default function AdminRoute() {
 			<div className="h-full w-full max-lg:hidden lg:w-[135px] xl:w-[145px] 2xl:w-[152px]" />
 
 			<div className="w-full pb-28 lg:pb-12 xl:pb-10">
-				<div className="relative my-6 flex items-center justify-between p-2 lg:mb-6">
-					<div className="flex gap-2 max-lg:hidden">
+				<div className="relative my-6 max-lg:hidden lg:mx-2 flex items-center justify-between p-2 lg:mb-6">
+					<div className="flex gap-2 ">
 						<Icon
 							name="arrow-left"
 							size="lg"
@@ -323,9 +323,8 @@ export default function AdminRoute() {
 						dashboard
 					</Link>
 
-					<div className="max-lg:hidden">
-						<UserDropdown />
-					</div>
+					
+					<UserDropdown />
 				</div>
 
 				<Outlet />
