@@ -76,10 +76,10 @@ export default function PackageDealsRoute() {
 
 			<div className="mb-8 w-full max-sm:text-center">
 				<h2 className="mb-2 text-h2 capitalize text-black dark:text-foreground">
-					package items, multi packages, deals
+					Benefits, Items & Packages
 				</h2>
 				<p className="text-xl">
-					Create and manage Your special deals from here. 🤗
+					Create and manage Your special benefits, items or deals from here. 🤗
 				</p>
 			</div>
 
