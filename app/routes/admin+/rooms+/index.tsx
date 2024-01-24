@@ -1,6 +1,7 @@
 import { type DataFunctionArgs, json } from '@remix-run/node'
 import { Link, useLoaderData } from '@remix-run/react'
 import { useState } from 'react'
+import { Spacer } from '#app/components/spacer.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import {
 	MobileModalCaretOpener,
@@ -87,7 +88,7 @@ export default function AdminRoomsIndex() {
 		<>
 			<div className="px-2 max-lg:mt-4 max-lg:px-4 max-lg:py-4">
 				<h5 className="mb-2 text-h5 capitalize text-foreground">rooms list</h5>
-				<p className="text-lg">Manage Your rooms from here. 🤗</p>
+				<p>Manage Your rooms from here. 🤗</p>
 			</div>
 
 			<div className="mt-6 grid items-start gap-5 lg:mt-12 xl:grid-cols-5 3xl:grid-cols-3">
@@ -284,6 +285,8 @@ export default function AdminRoomsIndex() {
 					</div>
 				</div>
 			</div>
+
+			<Spacer size="lg" />
 		</>
 	)
 }

@@ -409,3 +409,7 @@ export function generateShortString(length: number) {
 
 	return result
 }
+
+export function isNumberOdd(num: number) {
+	return num % 2
+}

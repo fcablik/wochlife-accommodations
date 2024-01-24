@@ -155,7 +155,7 @@ export default function ReservationsRoute() {
 					<h5 className="mb-2 text-h5 capitalize text-foreground">
 						reservations overview
 					</h5>
-					<p className="text-lg">
+					<p>
 						View or change all Your property’s reservations at one place.
 					</p>
 					<div className="text-sm max-xl:mt-4">(Order: Newest first)</div>
@@ -264,7 +264,7 @@ export default function ReservationsRoute() {
 			<div
 				className={cn(
 					isMobExtraMenuToggled
-						? 'top-4 z-4001 max-xl:visible md:max-xl:right-4 md:max-lg:max-w-3/5 lg:max-xl:max-w-2/5'
+						? 'bottom-24 z-4001 max-xl:visible md:max-xl:right-4 md:max-lg:max-w-3/5 lg:max-xl:max-w-2/5'
 						: 'max-xl:hidden',
 					'rounded-3xl bg-backgroundDashboard px-2 py-8 max-xl:fixed sm:px-3 xl:sticky xl:top-[75px] xl:w-full xl:px-6 2xl:px-8 2xl:py-8',
 				)}

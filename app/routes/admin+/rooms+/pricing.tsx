@@ -1,12 +1,17 @@
 import { json } from '@remix-run/node'
 import { Link, Outlet, useLoaderData } from '@remix-run/react'
-import { format } from 'date-fns'
 import { useState } from 'react'
 import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
 import { useRedirectWithScrollToTop } from '#app/components/reservation-modal-animation.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { Icon } from '#app/components/ui/icon.tsx'
+import {
+	MobileModalCaretOpener,
+	ModalCloserIcon,
+} from '#app/components/ui/modal-helpers.tsx'
+import { SeasonAccordion } from '#app/routes/resources+/__season-accordion.tsx'
 import { prisma } from '#app/utils/db.server.ts'
+import { cn, isNumberOdd } from '#app/utils/misc.tsx'
 
 export async function loader() {
 	const seasonLists = await prisma.seasonList.findMany({
@@ -83,265 +88,248 @@ export default function PricingRoute() {
 	const weekIsDivided = numberOfWeekParts > 0
 	const [showWeekDivision, setShowWeekDivision] = useState(weekIsDivided)
 
+	const [isMobExtraMenuToggled, setMobExtraMenuToggled] = useState(false)
+	const handleToggle = () => {
+		setMobExtraMenuToggled(prev => !prev)
+	}
+
 	const currency = '€' //switch to dynamic #later
 
 	return (
-		<div className="relative flex flex-col items-center justify-center gap-6 py-8">
+		<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:col-span-2 xl:px-6 2xl:px-8 2xl:py-8">
 			<Outlet />
 
-			<div className="mb-8 w-full max-sm:text-center">
-				<h2 className="mb-2 text-h2 capitalize text-black dark:text-foreground">
-					rooms pricings, seasons & events
-				</h2>
-				<p className="mb-4 text-xl">Manage Your rooms prices from here. 🤗</p>
+			<div className="mb-16 w-full max-sm:text-center">
+				<h5 className="mb-2 text-h5 capitalize text-black dark:text-foreground">
+					pricing management
+				</h5>
+				<p>Manage default prices, seasons and week division here.. 🤗</p>
 			</div>
 
-			{data.rooms.length ? (
-				<>
-					<div className="w-full md:mb-12">
-						<h5 className="mb-4 text-h5 capitalize">Rooms' Default Prices</h5>
+			<h6 className="mb-4 text-h6 capitalize">Rooms' Default Prices</h6>
 
-						<div className="relative flex flex-row flex-wrap">
-							<div className="mb-4 w-full text-center">
-								<div className="flex gap-5">
-									<div className="w-24">title</div>
-									<div className="w-24"></div>
-									<div className="w-24">price</div>
-									<div className="w-24">+bed price</div>
-									<div className="w-24">url</div>
-								</div>
-							</div>
+			<div className="grid items-start gap-5 xl:grid-cols-3">
+				<div className="w-full rounded-3xl xl:col-span-2">
+					<div className="flex gap-5 pb-4">
+						<div className="w-1/4"></div>
+						<div className="w-1/4">week parts</div>
+						<div className="w-1/4">price</div>
+						<div className="w-1/4">+bed price</div>
+					</div>
+				</div>
+			</div>
 
-							{data.rooms.map(room => (
-								<div key={room.id} className="mb-4 w-full text-center">
-									<div className="flex justify-between rounded-lg border border-black py-4">
-										<div className="flex items-center gap-5">
-											<div className="w-24">{room.title}</div>
-											<div className="w-24">
-												<div>1. week part:</div>
-												{numberOfWeekParts > 1 && <div>2. week part:</div>}
-												{numberOfWeekParts > 2 && <div>3. week part:</div>}
-											</div>
-											<div className="w-24">
-												<div>
-													{currency}
-													{room.price1}
+			<div className="mb-12 grid items-start gap-5 xl:grid-cols-3">
+				<div className="w-full rounded-3xl bg-background px-2 py-8 sm:px-3 xl:col-span-2 xl:px-6 2xl:px-8 2xl:py-8">
+					<div>
+						{data.rooms.length ? (
+							<div className="w-full">
+								<div className="relative flex flex-row flex-wrap">
+									{data.rooms.map((room, i) => (
+										<div
+											key={room.id}
+											className={cn(
+												'shadow-pricing-box relative mb-4 flex w-full rounded-lg px-4 py-3',
+												isNumberOdd(i)
+													? 'bg-background'
+													: 'bg-backgroundDashboard',
+											)}
+										>
+											<div className="flex w-full items-center gap-5">
+												<div className="w-1/4">{room.title}</div>
+												<div className="w-1/4">
+													<div>1.</div>
+													{numberOfWeekParts > 1 && <div>2.</div>}
+													{numberOfWeekParts > 2 && <div>3.</div>}
 												</div>
-												{numberOfWeekParts > 1 && (
+												<div className="w-1/4">
 													<div>
 														{currency}
-														{room.price2}
+														{room.price1}
 													</div>
-												)}
-												{numberOfWeekParts > 2 && (
-													<div>
-														{currency}
-														{room.price3}
-													</div>
-												)}
-											</div>
-											<div className="w-24">
-												<div>
-													{currency}
-													{room.additionalNightPrice1}
+													{numberOfWeekParts > 1 && (
+														<div>
+															{currency}
+															{room.price2}
+														</div>
+													)}
+													{numberOfWeekParts > 2 && (
+														<div>
+															{currency}
+															{room.price3}
+														</div>
+													)}
 												</div>
-												{numberOfWeekParts > 1 && (
+												<div className="w-1/4">
 													<div>
 														{currency}
-														{room.additionalNightPrice2}
+														{room.additionalNightPrice1}
 													</div>
-												)}
-												{numberOfWeekParts > 2 && (
-													<div>
-														{currency}
-														{room.additionalNightPrice3}
-													</div>
-												)}
+													{numberOfWeekParts > 1 && (
+														<div>
+															{currency}
+															{room.additionalNightPrice2}
+														</div>
+													)}
+													{numberOfWeekParts > 2 && (
+														<div>
+															{currency}
+															{room.additionalNightPrice3}
+														</div>
+													)}
+												</div>
 											</div>
-											<div className="w-24">
-												<Link
-													to={`/admin/rooms/${room.id}`}
-													className="underline hover:no-underline"
-												>
-													{room.url}
-												</Link>
-											</div>
-										</div>
 
-										<div className="min-w-[6rem]">
-											<Button
-												variant="primary"
+											<Icon
+												className="absolute right-2 top-2 cursor-pointer"
+												name="pencil-2"
+												size="md"
 												onClick={() =>
 													openRoomPricesRoute(`defaultprices/${room.id}/edit`)
 												}
-											>
-												edit
-											</Button>
+											/>
 										</div>
-									</div>
+									))}
 								</div>
-							))}
-						</div>
+							</div>
+						) : (
+							<div className="w-full">
+								<p className="text-xl font-semibold capitalize">
+									- Rooms Prices
+								</p>
+								<p className="text-xl font-semibold capitalize">
+									- Seasons / Seasonal Prices
+								</p>
+								<p className="font-bold">
+									! create rooms to handle their prices !
+								</p>
+							</div>
+						)}
 					</div>
+				</div>
 
-					<div className="w-full md:mb-12">
-						<div className="mb-6">
-							<h5 className="mb-4 text-h5 capitalize">Seasons List</h5>
-							<Link to="season/createnew">
-								<Button variant="highlight">create new</Button>
-							</Link>
-						</div>
-						{data.seasonLists.length ? (
-							<>
-								<div className="mb-4 text-center text-lg capitalize underline md:mb-8">
-									your seasonal pricings
+				<MobileModalCaretOpener
+					isMobExtraMenuToggled={isMobExtraMenuToggled}
+					handleToggle={handleToggle}
+					classList="xl:hidden"
+					triggerTitle="week division"
+				/>
+
+				<div
+					className={cn(
+						isMobExtraMenuToggled
+							? 'bottom-24 z-4001 max-xl:visible md:max-xl:right-4 md:max-lg:max-w-3/5 lg:max-xl:max-w-2/5'
+							: 'max-xl:hidden',
+						'rounded-3xl bg-background px-2 py-8 max-xl:fixed sm:px-3 xl:sticky xl:top-[75px] xl:w-full xl:px-6 2xl:px-8 2xl:py-8',
+					)}
+				>
+					{isMobExtraMenuToggled && (
+						<ModalCloserIcon handleToggle={handleToggle} />
+					)}
+
+					<div>
+						<div className="w-full rounded-xl bg-background">
+							<div className="flex-evenly mb-2 flex items-center">
+								<p className="text-xl font-semibold capitalize">week parts</p>
+								<p className="text-md capitalize">
+									( currently: {numberOfWeekParts} )
+								</p>
+							</div>
+
+							<div className="mb-6 flex items-center gap-5">
+								{!weekIsDivided && (
+									<Button
+										variant="highlight-secondary"
+										className="w-[10em]"
+										onClick={() => setShowWeekDivision(!showWeekDivision)}
+									>
+										{!showWeekDivision ? 'divide' : 'hide'}
+									</Button>
+								)}
+								<div>
+									- You can divide Your week into 2-3 parts to customize prices
+									for each part.
 								</div>
-								{reversedSeasonLists.map((seasonList, i) => (
+							</div>
+
+							{showWeekDivision &&
+								data.weekDivision.map((division, i) => (
 									<div
 										key={i}
-										className="relative mb-16 mt-3 rounded-xl border-2 border-highlight p-2 md:p-4"
+										className="my-4 flex w-full items-center justify-between gap-5"
 									>
-										<h5 className="mb-8 text-center text-h5">
-											Season: {seasonList.name}
-										</h5>
+										<div className="w-[15%]">{division.id}.</div>
 
-										<div className="mx-auto max-w-xl">
-											<div className="flex items-center rounded-xl border border-highlight p-3">
-												<div className="w-2/3">
-													{format(new Date(seasonList.dateFrom), 'PPP')} -{' '}
-													{format(new Date(seasonList.dateTo), 'PPP')}
-												</div>
-												<div className="w-1/3 text-right">
-													<Link to={`season/${seasonList.id}/edit`}>
-														<Button variant="primary">edit</Button>
-													</Link>
-
-													{/* <Link to={`${seasonList.id}/delete`}>
-														<button className="text-destructive">
-															<span aria-hidden>
-																<Icon name="cross-1" />
-															</span>{' '}
-															<span className="sr-only">delete</span>
-														</button>
-													</Link> */}
-												</div>
-											</div>
-										</div>
-
-										<div className="mt-16 pb-2">
-											{seasonList.rooms.length ? (
-												<>
-													<h5 className="mb-8 text-center text-h5">
-														{seasonList.name}'s room list
-													</h5>
-													<div className="flex items-center border-b border-background">
-														<div className="w-1/3">room name</div>
-														<div className="flex w-2/3">
-															{weekIsDivided && (
-																<div className="w-1/3">week part</div>
-															)}
-															<div
-																className={weekIsDivided ? 'w-1/3' : 'w-1/2'}
-															>
-																price / night
-															</div>
-															<div
-																className={weekIsDivided ? 'w-1/3' : 'w-1/2'}
-															>
-																+bed price /night
-															</div>
+										<div className="w-[85%]">
+											<div className="flex w-full items-center">
+												{division.partOfTheWeek.length ? (
+													<>
+														<div className="flex w-3/4 flex-wrap gap-5 rounded-lg border-2 border-highlight/20 p-2">
+															{division.partOfTheWeek.map((parts, i) => (
+																<div className="capitalize" key={i}>
+																	{parts.id}
+																</div>
+															))}
 														</div>
-													</div>
 
-													<div className="w-full">
-														{seasonList.rooms.map((room, i) => (
-															<div key={i} className="my-4 flex items-center">
-																<div className="w-1/3">
-																	<Link to={'/admin/rooms/' + room.id}>
-																		<span className="underline hover:no-underline">
-																			{room.title}
-																		</span>
-																	</Link>
-																</div>
+														<div className="w-1/4 text-right">
+															<Link to={'weekpart/' + division.id + '/edit'}>
+																<Icon name="pencil-2" />
+															</Link>
+														</div>
+													</>
+												) : (
+													<>
+														<div className="flex w-3/4 gap-5 p-2 text-center">
+															-- not active --
+														</div>
 
-																<div className="w-2/3">
-																	{weekIsDivided
-																		? room.seasonalPrices
-																				.filter(
-																					seasonalPrice =>
-																						seasonalPrice.seasonId ===
-																							seasonList.id &&
-																						parseInt(
-																							seasonalPrice.weekDivisionId ??
-																								'',
-																						) <= numberOfWeekParts,
-																				)
-																				.map((seasonalPrice, i) => (
-																					<div
-																						key={i}
-																						className="flex w-full items-center"
-																					>
-																						<div className="w-1/3">
-																							{seasonalPrice.weekDivisionId}.
-																							week part
-																						</div>
-																						<div className="w-1/3">
-																							{currency}
-																							{seasonalPrice.nightPrice}
-																						</div>
-																						<div className="w-1/3">
-																							{currency}
-																							{
-																								seasonalPrice.additionalNightPrice
-																							}
-																						</div>
-																					</div>
-																				))
-																		: room.seasonalPrices
-																				.filter(
-																					seasonalPrice =>
-																						seasonalPrice.seasonId ===
-																							seasonList.id &&
-																						parseInt(
-																							seasonalPrice.weekDivisionId ??
-																								'',
-																						) === 1,
-																				)
-																				.map((seasonalPrice, i) => (
-																					<div
-																						key={i}
-																						className="flex w-full items-center"
-																					>
-																						<div className="w-1/2">
-																							{seasonalPrice.nightPrice}
-																						</div>
-																						<div className="w-1/2">/</div>
-																					</div>
-																				))}
-																</div>
-															</div>
-														))}
-													</div>
-												</>
-											) : (
-												<div className="flex flex-col gap-2 text-center font-bold">
-													no rooms selected
-													<Link to={`season/${seasonList.id}/edit`}>
-														<Button className="highlight-secondary w-[10em] self-center">
-															<Icon name="plus">add rooms</Icon>
-														</Button>
-													</Link>
-												</div>
-											)}
+														<div className="text-right">
+															<Link to={'weekpart/' + division.id + '/edit'}>
+																<Button variant="highlight-secondary">
+																	<Icon name="plus">add days</Icon>
+																</Button>
+															</Link>
+														</div>
+													</>
+												)}
+											</div>
 										</div>
 									</div>
 								))}
-							</>
-						) : (
-							<div>no existing pricings, create your first</div>
-						)}
+						</div>
 					</div>
-				</>
+				</div>
+			</div>
+
+			{data.rooms.length ? (
+				<div className="w-full">
+					<div className="mb-6">
+						<h6 className="mb-4 text-h6 capitalize">Seasons List</h6>
+						<Link to="season/createnew">
+							<Button variant="highlight" size="sm">
+								create new
+							</Button>
+						</Link>
+					</div>
+					{data.seasonLists.length ? (
+						reversedSeasonLists.map((seasonList, i) => (
+							<div key={i} className='mb-6'>
+							<SeasonAccordion
+								id={seasonList.id}
+								name={seasonList.name}
+								dateFrom={seasonList.dateFrom}
+								dateTo={seasonList.dateTo}
+								rooms={seasonList.rooms}
+								numberOfWeekParts={numberOfWeekParts}
+								weekIsDivided={weekIsDivided}
+							/>
+							</div>
+						))
+					) : (
+						<div>no existing pricings, create your first</div>
+					)}
+				</div>
 			) : (
 				<div className="w-full">
 					<p className="text-xl font-semibold capitalize">- Rooms Prices</p>
@@ -351,69 +339,6 @@ export default function PricingRoute() {
 					<p className="font-bold">! create rooms to handle their prices !</p>
 				</div>
 			)}
-			<div className="w-full">
-				<p className="text-xl font-semibold capitalize">week parts</p>
-				<p className="text-md mb-4 capitalize">
-					( currently: {numberOfWeekParts} )
-				</p>
-
-				<div className="flex items-center gap-5">
-					{!weekIsDivided && (
-						<Button
-							variant="highlight-secondary"
-							className="w-[10em]"
-							onClick={() => setShowWeekDivision(!showWeekDivision)}
-						>
-							{!showWeekDivision ? 'divide' : 'hide'}
-						</Button>
-					)}
-					<div>
-						- You can divide Your week into 2-3 parts to customize prices for
-						each part.
-					</div>
-				</div>
-
-				{showWeekDivision &&
-					data.weekDivision.map((division, i) => (
-						<div
-							key={i}
-							className="my-2 flex w-full items-center justify-between gap-5"
-						>
-							<div className="w-[10%)">{division.id}. part:</div>
-
-							{division.partOfTheWeek.length ? (
-								<>
-									<div className="flex w-3/4 gap-5 rounded-lg border border-highlight p-2">
-										{division.partOfTheWeek.map((parts, i) => (
-											<div key={i}>{parts.dayInAWeek}</div>
-										))}
-									</div>
-									<div className="w-[15%] text-right">
-										<Link to={'weekpart/' + division.id + '/edit'}>
-											<Button variant="highlight-secondary">
-												<Icon name="lock-open-1">edit</Icon>
-											</Button>
-										</Link>
-									</div>
-								</>
-							) : (
-								<>
-									<div className="flex w-3/4 gap-5 p-2 text-center">
-										-- not active --
-									</div>
-
-									<div className="w-[15%] text-right">
-										<Link to={'weekpart/' + division.id + '/edit'}>
-											<Button variant="highlight-secondary">
-												<Icon name="plus">add days</Icon>
-											</Button>
-										</Link>
-									</div>
-								</>
-							)}
-						</div>
-					))}
-			</div>
 		</div>
 	)
 }

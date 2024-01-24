@@ -57,6 +57,7 @@ export const extendedTheme = {
 		'header-menu': '0px 0px 8px 4px rgba(0, 0, 0, .15)',
 		'page-container': '0px 10px 10px rgba(0, 0, 0, .1)',
 		'room-box': '0px 5px 20px rgba(0, 0, 0, .2)',
+		'pricing-box': '0px 0 6px rgba(0, 0, 0, .2)',
 	},
 	minWidth: {
 		'1/2': '50%',
