@@ -101,7 +101,7 @@ export default function PricingRoute() {
 
 			<div className="mb-12">
 				<h5 className="mb-2 text-h5 capitalize text-foreground">
-					pricing management
+					pricings management
 				</h5>
 				<p>Manage default prices, seasons and week division here.. 🤗</p>
 			</div>
@@ -120,16 +120,16 @@ export default function PricingRoute() {
 			</div>
 
 			<div className="mb-12 grid items-start gap-5 xl:grid-cols-3">
-				<div className="w-full rounded-3xl bg-background px-2 py-8 sm:px-3 xl:col-span-2 xl:px-6 2xl:px-8 2xl:py-8">
+				<div className="w-full rounded-3xl bg-background xl:col-span-2 p-3 sm:p-4">
 					<div>
 						{data.rooms.length ? (
 							<div className="w-full">
-								<div className="relative flex flex-row flex-wrap">
+								<div className="relative flex flex-row flex-wrap gap-4">
 									{data.rooms.map((room, i) => (
 										<div
 											key={room.id}
 											className={cn(
-												'shadow-pricing-box relative mb-4 flex w-full rounded-lg px-4 py-3',
+												'shadow-pricing-box relative flex w-full rounded-lg px-4 py-3',
 												isNumberOdd(i)
 													? 'bg-background'
 													: 'bg-backgroundDashboard',
@@ -220,7 +220,7 @@ export default function PricingRoute() {
 						isMobExtraMenuToggled
 							? 'bottom-24 z-4001 max-xl:visible md:max-xl:right-4 md:max-lg:max-w-3/5 lg:max-xl:max-w-2/5'
 							: 'max-xl:hidden',
-						'rounded-3xl bg-background px-2 py-8 max-xl:fixed sm:px-3 xl:sticky xl:top-[75px] xl:w-full xl:px-6 2xl:px-8 2xl:py-8',
+						'rounded-3xl bg-background p-6 max-xl:fixed xl:sticky xl:top-[75px] xl:w-full 2xl:p-8',
 					)}
 				>
 					{isMobExtraMenuToggled && (

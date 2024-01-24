@@ -90,8 +90,8 @@ export default function SeasonEdit() {
 		<>
 			<div onClick={goBack} className={modalBackdropLightClassList} />
 			<div className="absolute left-1/2 top-20 z-3001 w-full -translate-x-1/2 rounded-xl bg-white px-2 py-8 md:max-w-1/2">
-				<h3 className="mb-8 text-center text-h3 dark:text-background">
-					Edit Season
+				<h3 className="mb-8 text-center text-h3 dark:text-background capitalize">
+					edit season
 				</h3>
 				<SeasonListEditor
 					existingSeasonList={data.seasonList}

@@ -64,8 +64,8 @@ export default function CreateNewSeason() {
 		<>
 			<div onClick={goBack} className={modalBackdropLightClassList} />
 			<div className="absolute left-1/2 top-20 z-3001 w-full -translate-x-1/2 rounded-xl bg-white px-4 py-12 md:max-w-1/2">
-				<h3 className="mb-8 text-center text-h3 dark:text-background">
-					Create New season list
+				<h3 className="mb-8 text-center text-h3 dark:text-background capitalize">
+					Create New season
 				</h3>
 				<SeasonListEditor
 					existingSeasonLists={data.seasonLists}

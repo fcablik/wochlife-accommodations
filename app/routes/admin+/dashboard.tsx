@@ -325,9 +325,123 @@ export default function AdminDashboard() {
 					</div>
 				</div>
 			</div>
+
 			<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:px-6 2xl:px-8 2xl:py-8">
-				<p className="mb-4 text-lg font-semibold sm:mb-2">Params</p>
-				second column
+				<div className="mb-8 flex flex-wrap items-start gap-2">
+					<Link
+						to="/admin/rooms"
+						className="mb-3 w-full text-lg font-semibold transition hover:text-highlight/70"
+					>
+						Rooms
+					</Link>
+
+					<Button variant="highlight">
+						<Link
+							to="/admin/rooms/pricing"
+							className="font-semibold capitalize transition"
+						>
+							Pricings
+						</Link>
+					</Button>
+
+					<Button variant="highlight">
+						<Link
+							to="/admin/rooms/gallery"
+							className="font-semibold capitalize transition"
+						>
+							Galleries
+						</Link>
+					</Button>
+
+					<Button variant="highlight">
+						<Link
+							to="/admin/rooms/packagedeals"
+							className="font-semibold capitalize transition"
+						>
+							Package Deals
+						</Link>
+					</Button>
+
+					<Button variant="highlight">
+						<Link
+							to="/admin/rooms/facilities"
+							className="font-semibold capitalize transition"
+						>
+							Facilities
+						</Link>
+					</Button>
+				</div>
+
+				<div className="mb-8 flex flex-wrap items-start gap-2">
+					<div className="mb-3 w-full text-lg font-semibold">Reservations</div>
+
+					<Button variant="highlight">
+						<Link
+							to="/admin/reservations"
+							className="font-semibold capitalize transition"
+						>
+							All
+						</Link>
+					</Button>
+
+					<Button variant="highlight">
+						<Link
+							to="/admin/reservations?search=upcoming"
+							className="font-semibold capitalize transition"
+						>
+							Upcoming
+						</Link>
+					</Button>
+
+					<Button variant="highlight">
+						<Link
+							to="/admin/reservations?search=past"
+							className="font-semibold capitalize transition"
+						>
+							past
+						</Link>
+					</Button>
+				</div>
+
+				<div className="flex flex-wrap items-start gap-2">
+					<div className="mb-3 w-full text-lg font-semibold">Others</div>
+
+					<Button variant="highlight">
+						<Link
+							to="/admin/translations"
+							className="font-semibold capitalize transition"
+						>
+							Translations / Texts
+						</Link>
+					</Button>
+
+					<Button variant="highlight">
+						<Link
+							to="/admin/pages"
+							className="font-semibold capitalize transition"
+						>
+							Pages
+						</Link>
+					</Button>
+
+					<Button variant="highlight">
+						<Link
+							to="/admin/docs"
+							className="font-semibold capitalize transition"
+						>
+							Documentation
+						</Link>
+					</Button>
+
+					<Button variant="highlight">
+						<Link
+							to="/admin/users"
+							className="font-semibold capitalize transition"
+						>
+							Users
+						</Link>
+					</Button>
+				</div>
 			</div>
 		</div>
 	)
