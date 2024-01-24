@@ -99,8 +99,8 @@ export default function PricingRoute() {
 		<div className="w-full rounded-3xl bg-backgroundDashboard px-2 py-8 sm:px-3 xl:col-span-2 xl:px-6 2xl:px-8 2xl:py-8">
 			<Outlet />
 
-			<div className="mb-16 w-full max-sm:text-center">
-				<h5 className="mb-2 text-h5 capitalize text-black dark:text-foreground">
+			<div className="mb-12">
+				<h5 className="mb-2 text-h5 capitalize text-foreground">
 					pricing management
 				</h5>
 				<p>Manage default prices, seasons and week division here.. 🤗</p>
@@ -258,9 +258,9 @@ export default function PricingRoute() {
 										key={i}
 										className="my-4 flex w-full items-center justify-between gap-5"
 									>
-										<div className="w-[15%]">{division.id}.</div>
+										<div className="w-[7%]">{division.id}.</div>
 
-										<div className="w-[85%]">
+										<div className="w-[93%]">
 											<div className="flex w-full items-center">
 												{division.partOfTheWeek.length ? (
 													<>
@@ -280,11 +280,11 @@ export default function PricingRoute() {
 													</>
 												) : (
 													<>
-														<div className="flex w-3/4 gap-5 p-2 text-center">
+														<div className="flex w-1/2 gap-5 p-2">
 															-- not active --
 														</div>
 
-														<div className="text-right">
+														<div className="text-right w-1/2">
 															<Link to={'weekpart/' + division.id + '/edit'}>
 																<Button variant="highlight-secondary">
 																	<Icon name="plus">add days</Icon>
