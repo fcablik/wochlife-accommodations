@@ -346,21 +346,23 @@ export function RoomEditor({
 						</>
 					)}
 
-					<Field
-						labelProps={{ children: `room's URL` }}
-						inputProps={{
-							autoFocus: true,
-							...conform.input(fields.url, { ariaAttributes: true }),
-						}}
-						errors={fields.url.errors}
-					/>
-					<Field
-						labelProps={{ children: 'Title' }}
-						inputProps={{
-							...conform.input(fields.title, { ariaAttributes: true }),
-						}}
-						errors={fields.title.errors}
-					/>
+					<div className="grid w-full gap-5 sm:grid-cols-2">
+						<Field
+							labelProps={{ children: `room's URL` }}
+							inputProps={{
+								autoFocus: true,
+								...conform.input(fields.url, { ariaAttributes: true }),
+							}}
+							errors={fields.url.errors}
+						/>
+						<Field
+							labelProps={{ children: 'Title' }}
+							inputProps={{
+								...conform.input(fields.title, { ariaAttributes: true }),
+							}}
+							errors={fields.title.errors}
+						/>
+					</div>
 
 					<TextareaField
 						labelProps={{ children: 'Description (possible to use html tags)' }}
@@ -457,24 +459,26 @@ export function RoomEditor({
 						)}
 					</div>
 
-					<Field
-						labelProps={{
-							children: `For how many guests is the default price1? (1 / 2 ...)`,
-						}}
-						inputProps={{
-							...conform.input(fields.numberOfGuestsForDefaultPrice, {
-								ariaAttributes: true,
-							}),
-						}}
-						errors={fields.numberOfGuestsForDefaultPrice.errors}
-					/>
-					<Field
-						labelProps={{ children: `Max. Number Of Guests` }}
-						inputProps={{
-							...conform.input(fields.maxGuests, { ariaAttributes: true }),
-						}}
-						errors={fields.maxGuests.errors}
-					/>
+					<div className="grid w-full grid-cols-2 items-end gap-5">
+						<Field
+							labelProps={{
+								children: `For how many guests is the default price1? (1 / 2 ...)`,
+							}}
+							inputProps={{
+								...conform.input(fields.numberOfGuestsForDefaultPrice, {
+									ariaAttributes: true,
+								}),
+							}}
+							errors={fields.numberOfGuestsForDefaultPrice.errors}
+						/>
+						<Field
+							labelProps={{ children: `Max. Number Of Guests` }}
+							inputProps={{
+								...conform.input(fields.maxGuests, { ariaAttributes: true }),
+							}}
+							errors={fields.maxGuests.errors}
+						/>
+					</div>
 				</div>
 				<ErrorList id={form.errorId} errors={form.errors} />
 			</Form>

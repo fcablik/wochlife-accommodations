@@ -67,7 +67,7 @@ export default function RoomEdit() {
 
 
 	return (
-		<div className="px-2 md:px-6 xl:mx-auto xl:max-w-[1200px] 2xl:max-w-[1300px]">
+		<div className="px-2 md:px-6 xl:mx-auto xl:max-w-[900px] 2xl:max-w-[1000px]">
 			<Button onClick={goBack} variant="secondary" className="text-xs">
 				go back
 			</Button>
