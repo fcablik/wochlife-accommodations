@@ -280,3 +280,14 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 
 ## git syntaxes
   - "git log -2" <!-- shows not yet pushed commits and their info -->
+
+
+
+## seeding production DB (from Kent)
+--------------------------------- Manual Seeding --------------------------
+-- Hey there, Kent here! This is how you can reliably seed your database with
+-- some data. You edit the migration.sql file and that will handle it for you.
+-- I determined this by running a minimal seed via
+-- `MINIMAL_SEED=true npx prisma db seed` and then creating a sql dump via
+-- `sqlite3 prisma/data.db .dump > seed.sql`. Then I grabbed the relevant bits
+-- for the initial seed and put them here.
