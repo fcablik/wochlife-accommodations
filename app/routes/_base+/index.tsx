@@ -41,4 +41,4 @@ export default function Index() {
 	)
 }
 
-export const meta: MetaFunction = () => [{ title: 'Welcome To Wochdev' }]
+export const meta: MetaFunction = () => [{ title: 'Welcome To Filapps' }]

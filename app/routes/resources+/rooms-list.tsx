@@ -36,7 +36,7 @@ export function RoomsListLoader({
 							<React.Fragment key={room.id}>
 								{room.visibility && (
 									<div className="w-full p-2 text-center md:p-6">
-										<div className="z-1 border bg-background transition-opacity hover:opacity-95">
+										<div className="z-1 border bg-background rounded-xl transition-opacity hover:opacity-95">
 											<Link to={`/rooms/${room.url}`} className="text-center ">
 												<div className="relative h-[165px]">
 													<>

@@ -128,7 +128,7 @@ export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
 	const seoContent = data?.page.seo ?? params.title
 
 	return [
-		{ title: `${displayName} | wochdev` },
+		{ title: `${displayName} | Filapps` },
 		{
 			name: 'content',
 			content: seoContent,

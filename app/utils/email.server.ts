@@ -33,7 +33,7 @@ export async function sendEmail({
 	| { html: string; text: string; react?: never }
 	| { react: ReactElement; html?: never; text?: never }
 )) {
-	// const from = 'noreply@wochdev.com' //TODO: #2 as #1
+	// const from = 'noreply@Filapps.com' //TODO: #2 as #1
 
 	const email = {
 		...options,

@@ -54,7 +54,7 @@ export async function handleVerification({
 	})
 
 	void sendEmail({
-		from: 'noreply@wochdev.com',
+		from: 'noreply@Filapps.com',
 		to: preUpdateUser.email,
 		subject: 'Filapps Hospitality System email changed',
 		react: <EmailChangeNoticeEmail userId={user.id} />,
@@ -126,7 +126,7 @@ export async function action({ request }: DataFunctionArgs) {
 	})
 
 	const response = await sendEmail({
-		from: 'noreply@wochdev.com',
+		from: 'noreply@Filapps.com',
 		to: submission.value.email,
 		subject: `Filapps Hospitality System Email Change Verification`,
 		react: <EmailChangeEmail verifyUrl={verifyUrl.toString()} otp={otp} />,

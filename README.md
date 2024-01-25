@@ -3,7 +3,7 @@
 ## version control: 7.0.0
 
 ### About 
-  wochdev is a lightweight solid Fullstack Development Environment used to create high performance Web Applications.
+  Filapps is a lightweight solid Fullstack Development Environment used to create high performance Web Applications.
 
 ### Base Version's Stack & Decisions
   To get a break from 'analysis paralysis' right from the start, I had decided to start with the already throughout tested starting stack - The Epic Stack, developed by Kent C Dodds. The Epic Stack is an opinionated project starter, open-source - under the MIT license. It was used as a starter stack to get solid selection of technologies and tools, and to also ship faster. Even further on, The Epic Stack is a great project reference to look up to. - Filip Cablik
@@ -212,7 +212,7 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 
 <br/>
 
-### Tech Used In wochdev's Version of The Epic Stack:
+### Tech Used In Filapps's Version of The Epic Stack:
 ...
 
 <br/>
@@ -266,7 +266,7 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 
 ## slogans
 - 'This is where your nfts live' / 'This is where your nfts come to life'
-- 'Escape the chaos at wochdev' / 'Find a new form life, escape the chaos. Wochdev'
+- 'Escape the chaos at Filapps' / 'Find a new form life, escape the chaos. Filapps'
 - 
 
 

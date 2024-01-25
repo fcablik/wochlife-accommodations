@@ -1,5 +1,4 @@
 import { getYear } from "date-fns";
-import { WochdevSvg } from "../wochdev.tsx";
 
 export function FooterBase() {
     const currentYear = getYear(new Date())
@@ -22,7 +21,6 @@ export function FooterBase() {
                             <div className="max-md:hidden">2023-{currentYear}</div>
                             <div className="capitalize flex gap-2 max-md:justify-center items-center">
                                 <span className="text-xs">developed and created by</span>
-                                <WochdevSvg />
                             </div>
                             <div className="capitalize">©{' '}{companyName}</div>
                         </div>

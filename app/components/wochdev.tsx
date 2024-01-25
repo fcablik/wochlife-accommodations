@@ -1,4 +1,4 @@
-export function WochdevSvg() {
+export function FilappsSvg() {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +6,7 @@ export function WochdevSvg() {
 			height="11.195"
 			viewBox="0 0 79.192 11.195"
 		>
-			<g id="wochdev" transform="translate(0 0)">
+			<g id="Filapps" transform="translate(0 0)">
 				<g id="dev" transform="translate(48.321)">
 					<path
 						id="Path_100"

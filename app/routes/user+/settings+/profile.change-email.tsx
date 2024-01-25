@@ -60,7 +60,7 @@ export async function handleVerification({
 
 	void sendEmail({
 		to: preUpdateUser.email,
-		from: 'noreply@wochdev.com',
+		from: 'noreply@Filapps.com',
 		subject: 'Epic Stack email changed',
 		react: <EmailChangeNoticeEmail userId={user.id} />,
 	})
@@ -133,7 +133,7 @@ export async function action({ request }: DataFunctionArgs) {
 
 	const response = await sendEmail({
 		to: submission.value.email,
-		from: 'noreply@wochdev.com',
+		from: 'noreply@Filapps.com',
 		subject: `Woch Res Email Change Verification`,
 		react: <EmailChangeEmail verifyUrl={verifyUrl.toString()} otp={otp} />,
 	})
