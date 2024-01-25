@@ -213,14 +213,3 @@ INSERT INTO _PermissionToRole VALUES('clnf2zvlp0008pcou9r0fhbm8','clnf2zvlx000hp
 INSERT INTO _PermissionToRole VALUES('clnf2zvlq000apcouxnspejs9','clnf2zvlx000hpcou5dfrbegs');
 INSERT INTO _PermissionToRole VALUES('clnf2zvlr000cpcouy1vp6oeg','clnf2zvlx000hpcou5dfrbegs');
 INSERT INTO _PermissionToRole VALUES('clnf2zvls000epcou4ts5ui8f','clnf2zvlx000hpcou5dfrbegs');
-
-INSERT INTO WeekDivision VALUES('1');
-INSERT INTO WeekDivision VALUES('2');
-INSERT INTO WeekDivision VALUES('3');
-INSERT INTO WeekDay VALUES('mo','monday','1');
-INSERT INTO WeekDay VALUES('tu','tuesday','1');
-INSERT INTO WeekDay VALUES('we','wednesday','1');
-INSERT INTO WeekDay VALUES('th','thursday','1');
-INSERT INTO WeekDay VALUES('fr','friday','2');
-INSERT INTO WeekDay VALUES('sa','saturday','2');
-INSERT INTO WeekDay VALUES('su','sunday','1');

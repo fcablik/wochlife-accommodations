@@ -7,6 +7,18 @@
 -- CreateIndex
 CREATE UNIQUE INDEX "Translation_name_key" ON "Translation"("name");
 
+INSERT INTO WeekDivision VALUES('1');
+INSERT INTO WeekDivision VALUES('2');
+INSERT INTO WeekDivision VALUES('3');
+
+INSERT INTO WeekDay VALUES('mo','monday','1');
+INSERT INTO WeekDay VALUES('tu','tuesday','1');
+INSERT INTO WeekDay VALUES('we','wednesday','1');
+INSERT INTO WeekDay VALUES('th','thursday','1');
+INSERT INTO WeekDay VALUES('fr','friday','2');
+INSERT INTO WeekDay VALUES('sa','saturday','2');
+INSERT INTO WeekDay VALUES('su','sunday','1');
+
 -- seeding production from local
 -- INSERT INTO _prisma_migrations VALUES('b3912401-c107-41eb-94a9-931cb70610d2','0cc455d959792782d692f627b090cb453a58530bc09a0b9d48137802ce79566d',1701522588235,'20230914194400_init',NULL,NULL,1701522588200,1);
 -- INSERT INTO _prisma_migrations VALUES('49b6880c-dd05-446c-a25f-c6c0a6fa8fc5','500dfc5cb7f648f39f12929638c8bbfcd73e5ee2d63fe67cecd7a34dd8835a89',1701522588245,'20230920131526_pagesx',NULL,NULL,1701522588236,1);
