@@ -17,7 +17,7 @@ export async function loader({ params }: DataFunctionArgs) {
 		},
 		select: {
 			id: true,
-			name: true,
+			tid: true,
 			cs: true,
 			en: true,
 		},
