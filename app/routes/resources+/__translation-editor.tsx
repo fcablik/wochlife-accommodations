@@ -17,7 +17,7 @@ import { redirectWithToast } from '#app/utils/toast.server.ts'
 
 const TranslationEditorSchema = z.object({
 	id: z.string().optional(),
-	name: z.string(),
+	tid: z.string(),
 	cs: z.string(),
 	en: z.string(),
 })
@@ -51,18 +51,18 @@ export async function action({ params, request }: DataFunctionArgs) {
 		return json({ status: 'error', submission } as const, { status: 400 })
 	}
 
-	const { id: translationId, name, cs, en } = submission.value
+	const { id: translationId, tid, cs, en } = submission.value
 
 	const updatedTranslation = await prisma.translation.upsert({
-		select: { name: true }, //name instead of id because of updatedTranslation.name being needed as string for toast
+		select: { tid: true }, //tid instead of id because of updatedTranslation.tid being needed as string for toast
 		where: { id: translationId ?? '__new_translation__' },
 		create: {
-			name,
+			tid,
 			cs,
 			en,
 		},
 		update: {
-			name,
+			tid,
 			cs,
 			en,
 		},
@@ -72,10 +72,10 @@ export async function action({ params, request }: DataFunctionArgs) {
 	let toastDescription
 	if (params.id) {
 		toastTitle = 'Translation Saved!'
-		toastDescription = `Translation "${updatedTranslation.name}" saved.`
+		toastDescription = `Translation "${updatedTranslation.tid}" saved.`
 	} else {
 		toastTitle = 'Translation Created!'
-		toastDescription = `New translation "${updatedTranslation.name}" successfully created.`
+		toastDescription = `New translation "${updatedTranslation.tid}" successfully created.`
 	}
 
 	return redirectWithToast('/admin/translations', {
@@ -88,7 +88,7 @@ export async function action({ params, request }: DataFunctionArgs) {
 export function TranslationEditor({
 	translation,
 }: {
-	translation?: SerializeFrom<Pick<Translation, 'id' | 'name' | 'cs' | 'en'>>
+	translation?: SerializeFrom<Pick<Translation, 'id' | 'tid' | 'cs' | 'en'>>
 }) {
 	// TODO: implement - existingTranslations & don't allow to create the same twice
 	// TODO: editing route?
@@ -105,9 +105,9 @@ export function TranslationEditor({
 			const errorCheck = parsedData.error
 
 			if (Object.entries(errorCheck).length) {
-				const name = errorCheck.name
+				const tid = errorCheck.tid
 
-				if (name) {
+				if (tid) {
 					toast.error('Translation not filled.')
 				}
 			}
@@ -115,7 +115,7 @@ export function TranslationEditor({
 			return parsedData
 		},
 		defaultValue: {
-			name: translation?.name ?? '',
+			tid: translation?.tid ?? '',
 			cs: translation?.cs ?? '',
 			en: translation?.en ?? '',
 		},
@@ -146,15 +146,15 @@ export function TranslationEditor({
 						<Field
 							labelProps={{ children: 'Translation Name' }}
 							inputProps={{
-								...conform.input(fields.name, { ariaAttributes: true }),
+								...conform.input(fields.tid, { ariaAttributes: true }),
 								placeholder: 'Name Of Translation',
 								className: 'bg-backgroundDashboard h-12',
 							}}
-							errors={fields.name.errors}
+							errors={fields.tid.errors}
 						/>
 					: (
 						<div className='mb-4'>
-							Editing Translation Name: <strong className='ml-2'>{translation.name}</strong>
+							Editing Translation Name: <strong className='ml-2'>{translation.tid}</strong>
 						</div>
 					)}
 

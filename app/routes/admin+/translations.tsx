@@ -12,7 +12,7 @@ export async function loader() {
 	const translations = await prisma.translation.findMany({
 		select: {
 			id: true,
-			name: true,
+			tid: true,
 			cs: true,
 			en: true,
 		},
@@ -47,22 +47,22 @@ export default function TranslationsRoute() {
 
 					<div className="flex flex-col gap-2">
 						{/* // !reversed mapping */}
-						{reversedTranslations.map((facility, i) => (
+						{reversedTranslations.map((translation, i) => (
 							<div key={i} className="flex w-full">
-								<div className="w-1/3">{facility.name}</div>
+								<div className="w-1/3">{translation.tid}</div>
 
 								<div className="w-1/3">
-									cs: {facility.cs}
+									cs: {translation.cs}
 									<br/>
-									en: {facility.en}
+									en: {translation.en}
 								</div>
 
 								<div className="w-1/3 text-right">
-									<Link to={`${facility.id}/edit`}>
+									<Link to={`${translation.id}/edit`}>
 										<Button variant="primary">edit</Button>
 									</Link>
 
-									{/* <Link to={facility.id + '/delete'}>
+									{/* <Link to={translation.id + '/delete'}>
 										<button className="text-destructive">
 											<span aria-hidden>
 												<Icon name="cross-1" />
