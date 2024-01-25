@@ -7,6 +7,7 @@
 -- CreateIndex
 CREATE UNIQUE INDEX "Translation_name_key" ON "Translation"("name");
 
+-- testing seeding weekdays/division
 INSERT INTO WeekDivision VALUES('1');
 INSERT INTO WeekDivision VALUES('2');
 INSERT INTO WeekDivision VALUES('3');

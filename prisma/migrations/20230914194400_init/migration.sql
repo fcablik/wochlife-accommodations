@@ -176,7 +176,7 @@ CREATE INDEX "_RoleToUser_B_index" ON "_RoleToUser"("B");
 -- `MINIMAL_SEED=true npx prisma db seed` and then creating a sql dump via
 -- `sqlite3 prisma/data.db .dump > seed.sql`. Then I grabbed the relevant bits
 -- for the initial seed and put them here.
-    -- followingcommented because of testing production seed with real data
+
 INSERT INTO Permission VALUES('clnf2zvli0000pcou3zzzzome','create','user','own','',1696625465526,1696625465526);
 INSERT INTO Permission VALUES('clnf2zvll0001pcouly1310ku','create','user','any','',1696625465529,1696625465529);
 INSERT INTO Permission VALUES('clnf2zvll0002pcouka7348re','read','user','own','',1696625465530,1696625465530);
