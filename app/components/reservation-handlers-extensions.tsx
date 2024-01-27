@@ -1212,3 +1212,116 @@ function getMultiNightDiscount(
 	// No discount found
 	return null
 }
+
+// room's calendar with dates availability preview
+export function ReadOnlyReservationsBigCalendar({
+	roomReservations,
+}: {
+	roomReservations: {
+		reservationDateFrom: string
+		reservationDateTo: string
+	}[]
+}) {
+	const { calendarNavigation, daysTitlesBigCalendar, selectedMonth, selectedYear } =
+		useCalendarsCommonLogic()
+
+	// handling the rendered section of all the dates
+	const displayedCalendarDate = new Date()
+	displayedCalendarDate.setMonth(selectedMonth - 1)
+	displayedCalendarDate.setFullYear(selectedYear)
+	const selectedMonthDates = generateCalendar(displayedCalendarDate)
+
+	// handling existing reservations from db
+	const reservations = Object.values(roomReservations)
+	const reservationDatesFrom = reservations.map(reservation =>
+		format(new Date(reservation.reservationDateFrom), 'yyyy/M/d'),
+	)
+	const reservationDatesTo = reservations.map(reservation =>
+		format(new Date(reservation.reservationDateTo), 'yyyy/M/d'),
+	)
+	const reservationDatesBetween = reservations
+		.map(reservation =>
+			getDatesInBetween(
+				new Date(reservation.reservationDateFrom),
+				new Date(reservation.reservationDateTo),
+			).map(date => format(date, 'yyyy/M/d')),
+		)
+		.flat()
+
+	const calendarDates = selectedMonthDates.map(week =>
+		week.map((date, i) => {
+			const renderedFullDate =
+				date !== 0 ? selectedYear + '/' + selectedMonth + '/' + date : ''
+			let isDateCheckIn
+			let isDateCheckOut
+
+			let classList = daysInReservationCalendarClassList
+			if (date !== 0) {
+				if (addDays(new Date(), -1) >= new Date(renderedFullDate)) {
+					classList = disabledDaysInReservationCalendarClassList
+				} else {
+					isDateCheckIn = reservationDatesFrom.includes(renderedFullDate)
+					isDateCheckOut = reservationDatesTo.includes(renderedFullDate)
+
+					const isDateBetweenCheckInAndCheckOut =
+						reservationDatesBetween.includes(renderedFullDate)
+
+					if (isDateCheckIn && isDateCheckOut) {
+						classList = fullyBookedDaysInReservationCalendarClassList
+					} else {
+						if (
+							isDateCheckIn &&
+							isSameDay(new Date(), new Date(renderedFullDate))
+						) {
+							classList = fullyBookedDaysInReservationCalendarClassList
+						} else if (isDateCheckIn) {
+							classList = checkInDaysInReservationCalendarClassList
+						}
+						if (isDateCheckOut) {
+							classList = checkOutDaysInReservationCalendarClassList
+						}
+						if (isDateBetweenCheckInAndCheckOut) {
+							classList = fullyBookedDaysInReservationCalendarClassList
+						}
+					}
+				}
+			}
+
+			const dateButton =
+				date !== 0 ? (
+					<button
+						type="button"
+						key={i}
+						className={cn(
+							classList,
+							(isDateCheckIn || isDateCheckOut) &&
+								!(isDateCheckIn && isDateCheckOut) &&
+								!isSameDay(new Date(), new Date(renderedFullDate))
+								? highlightHoverClassList
+								: '',
+						)}
+						disabled={true}
+					>
+						<div className="flex flex-col">{date}</div>
+					</button>
+				) : (
+					<button type="button" disabled className="opacity-0" key={i}></button>
+				)
+
+			return dateButton
+		}),
+	)
+
+	return (
+		<>
+			{calendarNavigation}
+
+			<Spacer size="4xs" />
+			<div>
+				{daysTitlesBigCalendar}
+
+				<div className="flex overflow-scroll">{calendarDates}</div>
+			</div>
+		</>
+	)
+}

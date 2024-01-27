@@ -42,7 +42,9 @@ function SidebarMainNavLink({
 					<div
 						className={cn(
 							'group/item p-2 text-center capitalize lg:px-2 lg:py-3',
-							isActive ? 'rounded-xl lg:rounded-2xl bg-background text-foreground' : '',
+							isActive
+								? 'rounded-xl bg-background text-foreground lg:rounded-2xl'
+								: '',
 						)}
 					>
 						<Icon
@@ -94,7 +96,9 @@ function SidebarNavLink({
 							'capitalize',
 							isActive
 								? routeName !== 'rooms'
-									? 'bg-background font-bold text-highlight'
+									? routeName !== 'reservations'
+										? 'bg-background font-bold text-highlight'
+										: 'hover:bg-background hover:text-foreground'
 									: 'hover:bg-background hover:text-foreground'
 								: 'hover:bg-background hover:text-foreground',
 						)}
@@ -151,7 +155,7 @@ export default function AdminRoute() {
 						onMouseLeave={handleMouseOut}
 					>
 						<div className={cn(sidebarBoxBaseClasslist, 'py-1 lg:py-8')}>
-							<div className="text-center max-lg:hidden">logo</div>
+							<div className="text-center max-lg:hidden">Filapps</div>
 
 							<div className="custom-admin-sidebar-height flex w-full items-center justify-between gap-1 lg:flex-col 2xl:gap-2">
 								<SidebarMainNavLink
@@ -161,11 +165,42 @@ export default function AdminRoute() {
 									icon="dashboard"
 								/>
 
-								<SidebarMainNavLink
-									routeName="reservations"
-									title="bookings"
-									icon="calendar"
-								/>
+								<div className="group/bookings relative w-full">
+									<SidebarMainNavLink
+										title="bookings"
+										routeName="reservations"
+										icon="calendar"
+									/>
+
+									<div className="pointer-events-none absolute z-3001 group-hover/bookings:pointer-events-auto max-lg:bottom-16 max-lg:right-[-3rem] lg:left-full lg:top-[-50%]">
+										<div className="ml-4 rounded-2xl bg-foreground px-4 py-2 opacity-0 transition group-hover/bookings:opacity-100 dark:bg-black dark:text-foreground">
+											<div
+												className="max-lg:hidden"
+												style={{
+													content: "''",
+													position: 'absolute',
+													top: '5rem',
+													left: '-.6rem',
+													borderWidth: '13px',
+													borderStyle: 'solid',
+													borderColor:
+														'transparent #161414 transparent transparent',
+												}}
+											/>
+
+											<SidebarNavLink
+												routeName="reservations/big-calendar"
+												title="calendar"
+												icon="calendar"
+											/>
+											<SidebarNavLink
+												title="overview"
+												routeName="reservations"
+												icon="calendar"
+											/>
+										</div>
+									</div>
+								</div>
 
 								<div className="group/rooms relative w-full">
 									<SidebarMainNavLink routeName="rooms" icon="home" />
@@ -303,7 +338,7 @@ export default function AdminRoute() {
 			<div className="h-full w-full max-lg:hidden lg:w-[135px] xl:w-[145px] 2xl:w-[152px]" />
 
 			<div className="w-full pb-28 lg:pb-12 xl:pb-10">
-				<div className="relative my-6 max-lg:hidden lg:mx-2 flex items-center justify-between p-2 lg:mb-6">
+				<div className="relative my-6 flex items-center justify-between p-2 max-lg:hidden lg:mx-2 lg:mb-6">
 					<div className="flex gap-2 ">
 						<Icon
 							name="arrow-left"
@@ -319,11 +354,13 @@ export default function AdminRoute() {
 						/>
 					</div>
 
-					<Link to="/admin" className='hover:opacity-80 transition-opacity absolute left-1/2 lg:top-1/2 -translate-x-1/2 lg:-translate-y-1/2 text-h5 capitalize'>
+					<Link
+						to="/admin"
+						className="absolute left-1/2 -translate-x-1/2 text-h5 capitalize transition-opacity hover:opacity-80 lg:top-1/2 lg:-translate-y-1/2"
+					>
 						dashboard
 					</Link>
 
-					
 					<UserDropdown />
 				</div>
 

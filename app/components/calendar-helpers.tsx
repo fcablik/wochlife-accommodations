@@ -131,6 +131,17 @@ export function useCalendarsCommonLogic(monthsInPastAllowed?: boolean) {
 			<div>Su</div>
 		</div>
 	)
+	const daysTitlesBigCalendar = (
+		<div className="flex overflow-scroll">
+			<div className="text-foreground opacity-40 rounded-lg p-2 m-1">Mo</div>
+			<div className="text-foreground opacity-40 rounded-lg p-2 m-1">Tu</div>
+			<div className="text-foreground opacity-40 rounded-lg p-2 m-1">We</div>
+			<div className="text-foreground opacity-40 rounded-lg p-2 m-1">Th</div>
+			<div className="text-foreground opacity-40 rounded-lg p-2 m-1">Fr</div>
+			<div className="text-foreground opacity-40 rounded-lg p-2 m-1">Sa</div>
+			<div className="text-foreground opacity-40 rounded-lg p-2 m-1">Su</div>
+		</div>
+	)
 
 	return {
 		currentMonth,
@@ -138,6 +149,7 @@ export function useCalendarsCommonLogic(monthsInPastAllowed?: boolean) {
 		selectedYear,
 		calendarNavigation,
 		daysTitles,
+		daysTitlesBigCalendar,
 	}
 }
 
