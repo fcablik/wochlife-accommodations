@@ -293,6 +293,25 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 -- for the initial seed and put them here.
 
 #### custom notes for better development
-
   1. expressions
     - "&&" vs "? : null" -> && is not the best practice to use for other than boolean values, we can also convert e.g. "contacts.length" into "!!values.length", which negates twice and gets boolean value to evaluate the same as "values.length > 0 ?" would, but be careful, it's better not to use it with absolute non-boolean values and rather use "values.length ? "xyz" : null"
+
+  2. prefetching routes on Links
+    - 
+    ```
+    <>
+      <Link /> {/* defaults to "none" */}
+      <Link prefetch="none" />
+      <Link prefetch="intent" />
+      <Link prefetch="render" />
+      <Link prefetch="viewport" />
+    </>
+    ```
+
+  3. preventScrollReset
+    - If you are using ```<ScrollRestoration>```, this lets you prevent the scroll position from being reset to the top of the window when the link is clicked.
+    ```<Link to="?tab=one" preventScrollReset />```
+
+  4. reloadDocument
+    - Will use document navigation instead of client side routing when the link is clicked, the browser will handle the transition normally (as if it were an ```<a href>```).
+    ```<Link to="/logout" reloadDocument />```

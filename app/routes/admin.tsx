@@ -21,6 +21,7 @@ function SidebarMainNavLink({
 	first,
 	icon,
 	target,
+	prefetch
 }: {
 	routeName: string
 	classList?: string
@@ -28,6 +29,7 @@ function SidebarMainNavLink({
 	first?: boolean
 	icon?: IconName
 	target?: '_blank'
+	prefetch?: "intent" | "render"
 }) {
 	return (
 		<div
@@ -37,7 +39,7 @@ function SidebarMainNavLink({
 				'w-full px-1 lg:mb-2 lg:px-2',
 			)}
 		>
-			<NavLink to={routeName} target={target}>
+			<NavLink to={routeName} target={target} prefetch={prefetch}>
 				{({ isActive }) => (
 					<div
 						className={cn(
@@ -166,6 +168,7 @@ export default function AdminRoute() {
 										title="bookings"
 										routeName="reservations"
 										icon="calendar"
+										prefetch="intent"
 									/>
 
 									<div className="pointer-events-none absolute z-3001 group-hover/bookings:pointer-events-auto max-lg:bottom-16 max-lg:right-[-3rem] lg:left-full lg:top-[-50%]">
@@ -199,7 +202,7 @@ export default function AdminRoute() {
 								</div>
 
 								<div className="group/rooms relative w-full">
-									<SidebarMainNavLink routeName="rooms" icon="home" />
+									<SidebarMainNavLink routeName="rooms" icon="home" prefetch="intent" />
 
 									<div className="pointer-events-none absolute z-3001 group-hover/rooms:pointer-events-auto max-lg:bottom-16 max-lg:right-[-3rem] lg:left-full lg:top-[-50%]">
 										<div className="ml-4 rounded-2xl bg-foreground px-4 py-2 opacity-0 transition group-hover/rooms:opacity-100 dark:bg-black dark:text-foreground">

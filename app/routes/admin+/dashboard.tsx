@@ -212,6 +212,7 @@ export default function AdminDashboard() {
 								'text-md group font-semibold transition duration-200 hover:bg-highlight hover:text-background lg:text-lg xl:px-4',
 							)}
 							to="/admin/reservations?search=new-today"
+							prefetch="intent"
 						>
 							<div className="rounded-3xl bg-highlight px-3 py-2 text-background group-hover:bg-background group-hover:text-foreground lg:px-4 lg:py-2 2xl:mb-2">
 								{newReservationsDataToday ?? '0'}
@@ -241,6 +242,7 @@ export default function AdminDashboard() {
 									clickableSidebarCheckInsOutsBoxClassList,
 								)}
 								to="/admin/reservations?search=todays-check-ins"
+								prefetch="intent"
 							>
 								Today: {checkInsDataToday ?? '0'}
 							</Link>
@@ -254,6 +256,7 @@ export default function AdminDashboard() {
 									clickableSidebarCheckInsOutsBoxClassList,
 								)}
 								to="/admin/reservations?search=tomorrows-check-ins"
+								prefetch="intent"
 							>
 								Tomorrow: {checkInsDataTomorrow ?? '0'}
 							</Link>
@@ -271,6 +274,7 @@ export default function AdminDashboard() {
 									clickableSidebarCheckInsOutsBoxClassList,
 								)}
 								to="/admin/reservations?search=todays-check-outs"
+								prefetch="intent"
 							>
 								Today: {checkOutsDataToday ?? '0'}
 							</Link>
@@ -284,6 +288,7 @@ export default function AdminDashboard() {
 									clickableSidebarCheckInsOutsBoxClassList,
 								)}
 								to="/admin/reservations?search=tomorrows-check-outs"
+								prefetch="intent"
 							>
 								Tomorrow: {checkOutsDataTomorrow ?? '0'}
 							</Link>
@@ -302,11 +307,11 @@ export default function AdminDashboard() {
 
 						<Spacer size="3xs" />
 						<div className="flex justify-center gap-5 max-sm:flex-wrap">
-							<Link to="/admin/reservations">
+							<Link to="/admin/reservations" prefetch="intent">
 								<Button variant="secondary">reservations</Button>
 							</Link>
 
-							<Link to="/admin/rooms">
+							<Link to="/admin/rooms" prefetch="intent">
 								<Button variant="secondary">rooms</Button>
 							</Link>
 
