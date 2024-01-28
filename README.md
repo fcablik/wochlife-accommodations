@@ -291,3 +291,8 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 -- `MINIMAL_SEED=true npx prisma db seed` and then creating a sql dump via
 -- `sqlite3 prisma/data.db .dump > seed.sql`. Then I grabbed the relevant bits
 -- for the initial seed and put them here.
+
+#### custom notes for better development
+
+  1. expressions
+    - "&&" vs "? : null" -> && is not the best practice to use for other than boolean values, we can also convert e.g. "contacts.length" into "!!values.length", which negates twice and gets boolean value to evaluate the same as "values.length > 0 ?" would, but be careful, it's better not to use it with absolute non-boolean values and rather use "values.length ? "xyz" : null"

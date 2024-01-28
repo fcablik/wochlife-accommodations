@@ -155,7 +155,7 @@ export default function RoomUrlRoute() {
 
 	return (
 		<div className={frontendRoutesSpacingFromHeaderAndFooter}>
-			{previewImages.length && (
+			{previewImages.length ? (
 				<div className="relative z-1000 h-[50vh] max-h-[550px] min-h-[350px]">
 					{previewImages.length > 1 ? (
 						<RoomPreviewImagesSlider
@@ -188,7 +188,7 @@ export default function RoomUrlRoute() {
 						) : null}
 					</div>
 				</div>
-			)}
+			): null}
 
 			<div
 				className={cn(
