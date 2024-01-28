@@ -134,7 +134,7 @@ export async function action({ request }: DataFunctionArgs) {
 	const response = await sendEmail({
 		to: submission.value.email,
 		from: 'noreply@Filapps.com',
-		subject: `Woch Res Email Change Verification`,
+		subject: `Filapps Accommodations System Email Change Verification`,
 		react: <EmailChangeEmail verifyUrl={verifyUrl.toString()} otp={otp} />,
 	})
 
@@ -163,7 +163,7 @@ export function EmailChangeEmail({
 		<E.Html lang="en" dir="ltr">
 			<E.Container>
 				<h1>
-					<E.Text>Woch Res Email Change</E.Text>
+					<E.Text>Filapps Accommodations System Email Change</E.Text>
 				</h1>
 				<p>
 					<E.Text>
@@ -184,11 +184,11 @@ export function EmailChangeNoticeEmail({ userId }: { userId: string }) {
 		<E.Html lang="en" dir="ltr">
 			<E.Container>
 				<h1>
-					<E.Text>Your Woch Res email has been changed</E.Text>
+					<E.Text>Your Filapps Accommodations System email has been changed</E.Text>
 				</h1>
 				<p>
 					<E.Text>
-						We're writing to let you know that your Woch Res email has been
+						We're writing to let you know that your Filapps Accommodations System email has been
 						changed.
 					</E.Text>
 				</p>

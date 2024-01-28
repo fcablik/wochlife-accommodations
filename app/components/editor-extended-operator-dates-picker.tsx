@@ -191,12 +191,9 @@ export function EditorExtendedOperatorDatesPicker({
 						key={i}
 						className={cn(
 							classList,
-							renderedFullDate === selectedStartDateDate
-								? highlightSelectClassList
-								: '',
+							renderedFullDate === selectedStartDateDate && highlightSelectClassList,
 							renderedFullDate === selectedEndDateDate
-								? highlightSelectClassList
-								: '',
+								&& highlightSelectClassList,
 							isDateEndDate &&
 								!(isDateStartDate && isDateEndDate) &&
 								!isSameDay(new Date(), new Date(renderedFullDate))

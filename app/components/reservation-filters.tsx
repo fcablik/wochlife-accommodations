@@ -133,7 +133,9 @@ export function FiltersWithSearchAndCalendar({
 								<Button
 									onClick={() => handleSelect('upcoming')}
 									variant={
-										currentSearch === 'upcoming' ? 'highlight-static' : 'outline'
+										currentSearch === 'upcoming'
+											? 'highlight-static'
+											: 'outline'
 									}
 									className="capitalize"
 								>
@@ -141,7 +143,9 @@ export function FiltersWithSearchAndCalendar({
 								</Button>
 								<Button
 									onClick={() => handleSelect('past')}
-									variant={currentSearch === 'past' ? 'highlight-static' : 'outline'}
+									variant={
+										currentSearch === 'past' ? 'highlight-static' : 'outline'
+									}
 									className="capitalize"
 								>
 									past
@@ -162,91 +166,93 @@ export function FiltersWithSearchAndCalendar({
 								</Button>
 
 								{dropdownFiltersState && (
-								<>
-									<div
-										className={modalBackDropOverMenuClassList}
-										onClick={handleChangeFilterDropdownState}
-									/>
-									<div
-										className="absolute z-4001 flex w-4/5 flex-col gap-2 rounded-xl bg-highlight/80 p-3"
-										// onClick={handleChangeFilterDropdownState}
-									>
-										<div className="mb-4 flex items-center justify-between text-background">
-											<p className="text-body-sm font-semibold capitalize">
-												{currentSearch !== '' ? 'change filter' : 'select filter'}
-											</p>
+									<>
+										<div
+											className={modalBackDropOverMenuClassList}
+											onClick={handleChangeFilterDropdownState}
+										/>
+										<div
+											className="absolute z-4001 flex w-4/5 flex-col gap-2 rounded-xl bg-highlight/80 p-3"
+											// onClick={handleChangeFilterDropdownState}
+										>
+											<div className="mb-4 flex items-center justify-between text-background">
+												<p className="text-body-sm font-semibold capitalize">
+													{currentSearch !== ''
+														? 'change filter'
+														: 'select filter'}
+												</p>
 
-											<Icon
-												name="cross-1"
-												size="sm"
-												className="cursor-pointer"
-												onClick={handleChangeFilterDropdownState}
-											/>
+												<Icon
+													name="cross-1"
+													size="sm"
+													className="cursor-pointer"
+													onClick={handleChangeFilterDropdownState}
+												/>
+											</div>
+
+											<Button
+												onClick={() => handleSelect('new-today')}
+												variant={
+													currentSearch === 'new-today'
+														? 'highlight-contrast'
+														: 'outline-contrast'
+												}
+												className="capitalize"
+											>
+												new today
+											</Button>
+
+											<Button
+												onClick={() => handleSelect('todays-check-ins')}
+												variant={
+													currentSearch === 'todays-check-ins'
+														? 'highlight-contrast'
+														: 'outline-contrast'
+												}
+												className="capitalize"
+											>
+												check-ins today
+											</Button>
+											<Button
+												onClick={() => handleSelect('todays-check-outs')}
+												variant={
+													currentSearch === 'todays-check-outs'
+														? 'highlight-contrast'
+														: 'outline-contrast'
+												}
+												className="capitalize"
+											>
+												check-outs today
+											</Button>
+
+											<Button
+												onClick={() => handleSelect('tomorrows-check-ins')}
+												variant={
+													currentSearch === 'tomorrows-check-ins'
+														? 'highlight-contrast'
+														: 'outline-contrast'
+												}
+												className="capitalize"
+											>
+												check-ins tomorrow
+											</Button>
+											<Button
+												onClick={() => handleSelect('tomorrows-check-outs')}
+												variant={
+													currentSearch === 'tomorrows-check-outs'
+														? 'highlight-contrast'
+														: 'outline-contrast'
+												}
+												className="capitalize"
+											>
+												check-outs tomorrow
+											</Button>
 										</div>
-
-										<Button
-											onClick={() => handleSelect('new-today')}
-											variant={
-												currentSearch === 'new-today'
-													? 'highlight-contrast'
-													: 'outline-contrast'
-											}
-											className="capitalize"
-										>
-											new today
-										</Button>
-
-										<Button
-											onClick={() => handleSelect('todays-check-ins')}
-											variant={
-												currentSearch === 'todays-check-ins'
-													? 'highlight-contrast'
-													: 'outline-contrast'
-											}
-											className="capitalize"
-										>
-											check-ins today
-										</Button>
-										<Button
-											onClick={() => handleSelect('todays-check-outs')}
-											variant={
-												currentSearch === 'todays-check-outs'
-													? 'highlight-contrast'
-													: 'outline-contrast'
-											}
-											className="capitalize"
-										>
-											check-outs today
-										</Button>
-
-										<Button
-											onClick={() => handleSelect('tomorrows-check-ins')}
-											variant={
-												currentSearch === 'tomorrows-check-ins'
-													? 'highlight-contrast'
-													: 'outline-contrast'
-											}
-											className="capitalize"
-										>
-											check-ins tomorrow
-										</Button>
-										<Button
-											onClick={() => handleSelect('tomorrows-check-outs')}
-											variant={
-												currentSearch === 'tomorrows-check-outs'
-													? 'highlight-contrast'
-													: 'outline-contrast'
-											}
-											className="capitalize"
-										>
-											check-outs tomorrow
-										</Button>
-									</div>
-								</>
-							)}
+									</>
+								)}
 							</div>
 
-							<div className="flex flex-wrap gap-3 w-full">
+							<div className="flex w-full flex-wrap gap-3">
 								<div className="w-full">
 									{/* <Label htmlFor="search" className="sr-only">
 										Search
@@ -259,7 +265,13 @@ export function FiltersWithSearchAndCalendar({
 										// autoFocus={autoFocus}
 										onChange={handleSelectedFilter}
 										value={currentSearch}
-										className={cn("border-2", currentSearch !== '' ? reservationsFound ? "border-accepted" : "border-destructive" : "")}
+										className={cn(
+											'border-2',
+											currentSearch !== '' &&
+												(reservationsFound
+													? 'border-accepted'
+													: 'border-destructive'),
+										)}
 									/>
 								</div>
 

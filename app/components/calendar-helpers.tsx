@@ -103,8 +103,7 @@ export function useCalendarsCommonLogic(monthsInPastAllowed?: boolean) {
 				className={cn(
 					'order-1 text-2xl',
 					!(selectedCurrentMonth && selectedCurrentYear) || monthsInPastAllowed
-						? 'cursor-pointer hover:text-highlight'
-						: '',
+						&& 'cursor-pointer hover:text-highlight'
 				)}
 			/>
 			<Icon

@@ -360,7 +360,7 @@ export default function LoginPage() {
 }
 
 export const meta: MetaFunction = () => {
-	return [{ title: 'Login to Woch Res' }]
+	return [{ title: 'Login to Filapps Accommodations System' }]
 }
 
 export function ErrorBoundary() {

@@ -74,7 +74,7 @@ export async function action({ request }: DataFunctionArgs) {
 	const response = await sendEmail({
 		to: user.email,
 		from: 'noreply@Filapps.com',
-		subject: `Woch Res Password Reset`,
+		subject: `Filapps Accommodations System Password Reset`,
 		react: (
 			<ForgotPasswordEmail onboardingUrl={verifyUrl.toString()} otp={otp} />
 		),
@@ -99,7 +99,7 @@ function ForgotPasswordEmail({
 		<E.Html lang="en" dir="ltr">
 			<E.Container>
 				<h1>
-					<E.Text>Woch Res Password Reset</E.Text>
+					<E.Text>Filapps Accommodations System Password Reset</E.Text>
 				</h1>
 				<p>
 					<E.Text>
@@ -116,7 +116,7 @@ function ForgotPasswordEmail({
 }
 
 export const meta: MetaFunction = () => {
-	return [{ title: 'Password Recovery for Woch Res' }]
+	return [{ title: 'Password Recovery for Filapps Accommodations System' }]
 }
 
 export default function ForgotPasswordRoute() {

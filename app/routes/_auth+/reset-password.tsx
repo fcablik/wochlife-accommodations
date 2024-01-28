@@ -87,7 +87,7 @@ export async function action({ request }: DataFunctionArgs) {
 }
 
 export const meta: MetaFunction = () => {
-	return [{ title: 'Reset Password | Woch Res' }]
+	return [{ title: 'Reset Password | Filapps Accommodations System' }]
 }
 
 export default function ResetPasswordPage() {

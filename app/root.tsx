@@ -29,7 +29,7 @@ import { FooterBase } from './components/footers/footer-base.tsx'
 import { HeaderBase } from './components/headers/header-base.tsx'
 import { EpicProgress } from './components/progress-bar.tsx'
 import { useTheme } from './components/theme-switch.tsx'
-import { WochToaster } from './components/toaster.tsx'
+import { FilappsToaster } from './components/toaster.tsx'
 import { href as iconsHref } from './components/ui/icon.tsx'
 import customComponentsStylesheetUrl from './styles/customComponents.css'
 import fontStyleSheetUrl from './styles/font.css'
@@ -239,7 +239,7 @@ function App() {
 
 			{!routeAdmin && <FooterBase />}
 			<Confetti id={data.confettiId} />
-			<WochToaster toast={data.toast} />
+			<FilappsToaster toast={data.toast} />
 			<EpicProgress />
 		</Document>
 	)

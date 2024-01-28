@@ -21,7 +21,7 @@ export function GeneralErrorBoundary({
 		<>
 		<div className='flex flex-col justify-center mx-auto text-center h-[80vh]'>
 			<p className='text-h5'>
-				Woch is sorry 🙁
+				We are sorry 🙁
 			</p>
 
 			<p className='text-h5 font-normal mt-4'>

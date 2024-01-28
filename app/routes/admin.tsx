@@ -33,7 +33,7 @@ function SidebarMainNavLink({
 		<div
 			className={cn(
 				classList,
-				!first ? 'lg:mt-2' : '',
+				!first && 'lg:mt-2',
 				'w-full px-1 lg:mb-2 lg:px-2',
 			)}
 		>
@@ -42,9 +42,7 @@ function SidebarMainNavLink({
 					<div
 						className={cn(
 							'group/item p-2 text-center capitalize lg:px-2 lg:py-3',
-							isActive
-								? 'rounded-xl bg-background text-foreground lg:rounded-2xl'
-								: '',
+							isActive && 'rounded-xl bg-background text-foreground lg:rounded-2xl'
 						)}
 					>
 						<Icon
@@ -56,9 +54,7 @@ function SidebarMainNavLink({
 							<div
 								className={cn(
 									'no-scrollbar mt-1 overflow-x-scroll text-sm max-lg:text-xs',
-									!isActive
-										? 'group-hover/item:pointer-events-auto group-hover/rooms:opacity-100 lg:opacity-0 lg:transition-opacity lg:duration-300 lg:group-hover/item:opacity-100'
-										: '',
+									!isActive && 'group-hover/item:pointer-events-auto group-hover/rooms:opacity-100 group-hover/reservations:opacity-100 lg:opacity-0 lg:transition-opacity lg:duration-300 lg:group-hover/item:opacity-100'
 								)}
 							>
 								{title ?? routeName}
@@ -86,7 +82,7 @@ function SidebarNavLink({
 	target?: '_blank'
 }) {
 	return (
-		<div className={cn(classList, !first ? 'mt-2' : '', 'mb-2')}>
+		<div className={cn(classList, !first && 'mt-2', 'mb-2')}>
 			<NavLink to={routeName} target={target}>
 				{({ isActive }) => (
 					<Button
