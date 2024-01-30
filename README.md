@@ -1,17 +1,17 @@
-# Filapps Hospitality System
-
-## version control: 7.0.0
+# Wochlife Hospitality/Accommodations System
+### current version: 8.3.1
+- !Disclaimer: This is still not a finished product as of 01/30/2024.
 
 ### About 
-  Filapps is a lightweight solid Fullstack Development Environment used to create high performance Web Applications.
+  Wochlife is a lightweight & solid Full-Stack Development Environment (built on-top-of the Epic-Stack) used to create high performance Web Applications. That's why I've also started using it and building on top of it to develop this accommodation system.
 
 ### Base Version's Stack & Decisions
-  To get a break from 'analysis paralysis' right from the start, I had decided to start with the already throughout tested starting stack - The Epic Stack, developed by Kent C Dodds. The Epic Stack is an opinionated project starter, open-source - under the MIT license. It was used as a starter stack to get solid selection of technologies and tools, and to also ship faster. Even further on, The Epic Stack is a great project reference to look up to. - Filip Cablik
+  To get a break from 'analysis paralysis' right from the start, I had decided to start with the already throughout tested starting stack - The Epic Stack, developed by Kent C Dodds. The Epic Stack is an opinionated project starter, open-source - under the MIT license. It was used as a starter stack to get solid selection of technologies and tools, and to also ship faster. Even further on into advanced development phases, The Epic Stack is a great project reference to look up to. -Me, Filip Cablik
 
 <br/>
 
 ### Tests
-- user tests currently set-up for 'admin' permissions only as the base app doesn't allow user sign-up (onboarding) and user/users profile sections are admin's permission access only
+- user tests currently set-up for 'admin' permissions only as the base app doesn't allow user sign-up (onboarding) and user/users profile sections are existing user's permission access only
 
 
 <br/><br/><br/>
@@ -212,11 +212,6 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 
 <br/>
 
-### Tech Used In Filapps's Version of The Epic Stack:
-...
-
-<br/>
-
 ### Useful Project's Commands
 
 #### mac rubbish files in project removal !
@@ -263,13 +258,6 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 
 <br/>
 
-
-## slogans
-- 'This is where your nfts live' / 'This is where your nfts come to life'
-- 'Escape the chaos at Filapps' / 'Find a new form life, escape the chaos. Filapps'
-- 
-
-
 ## radix/ui components
   - "@radix-ui/react-checkbox": "^1.0.4",
   - "@radix-ui/react-dropdown-menu": "^2.0.5",
@@ -292,13 +280,12 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 -- `sqlite3 prisma/data.db .dump > seed.sql`. Then I grabbed the relevant bits
 -- for the initial seed and put them here.
 
-#### custom notes for better development
+## custom notes for better development
   1. expressions
     - "&&" vs "? : null" -> && is not the best practice to use for other than boolean values, we can also convert e.g. "contacts.length" into "!!values.length", which negates twice and gets boolean value to evaluate the same as "values.length > 0 ?" would, but be careful, it's better not to use it with absolute non-boolean values and rather use "values.length ? "xyz" : null"
 
   2. prefetching routes on Links
-    - 
-    ```
+```
     <>
       <Link /> {/* defaults to "none" */}
       <Link prefetch="none" />
@@ -306,7 +293,7 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
       <Link prefetch="render" />
       <Link prefetch="viewport" />
     </>
-    ```
+```
 
   3. preventScrollReset
     - If you are using ```<ScrollRestoration>```, this lets you prevent the scroll position from being reset to the top of the window when the link is clicked.
