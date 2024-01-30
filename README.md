@@ -1,6 +1,7 @@
 # Wochlife Hospitality/Accommodations System
 ### current version: 8.3.1
 - !Disclaimer: This is still not a finished product as of 01/30/2024.
+- Testing server: https://wochlife-booking-system-v8.fly.dev/
 
 ### About 
   Wochlife is a lightweight & solid Full-Stack Development Environment (built on-top-of the Epic-Stack) used to create high performance Web Applications. That's why I've also started using it and building on top of it to develop this accommodation system.
