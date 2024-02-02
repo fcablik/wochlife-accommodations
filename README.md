@@ -1,7 +1,14 @@
 # Wochlife Hospitality/Accommodations System
 ### current version: 8.3.1
-- !Disclaimer: This is still not a finished product as of 01/30/2024.
-- Testing server: https://wochlife-booking-system-v8.fly.dev/
+
+#### Be Free to use under the rules of MIT License.
+- !Disclaimer: This application is still in active development as of 02/02/2024.
+
+#### Initial Base User Login After Seeding
+  1. ```npm run setup```
+  2. ```npm run dev```
+  - username: woch
+  - password: wochlife
 
 ### About 
   Wochlife is a lightweight & solid Full-Stack Development Environment (built on-top-of the Epic-Stack) used to create high performance Web Applications. That's why I've also started using it and building on top of it to develop this accommodation system.
@@ -219,10 +226,6 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 - "find ./ -name ".DS_Store" -print -delete"
   list of problems caused by these files
   - "Error: Cannot add empty string to PrefixLookupTrie"
-
-#### project setup / start
-- "npm run setup"
-- "npm run dev"
 
 #### prisma migrating db to new schema
 - "npx prisma migrate dev"
