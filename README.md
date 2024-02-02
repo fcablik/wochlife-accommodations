@@ -21,9 +21,7 @@
 ### Tests
 - user tests currently set-up for 'admin' permissions only as the base app doesn't allow user sign-up (onboarding) and user/users profile sections are existing user's permission access only
 
-
-<br/><br/><br/>
-### Deployed App
+<br/>
 
 <!-- ! REMOVE: "// Temporary DEVelopment Phase" permission request if not in dev phase -->
 # Deployment
@@ -172,16 +170,20 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 
 <br/>
 
-
-#### fonts
+### Used Fonts
   - main-use/using: Nunito Sans, Nunito Sans Fallback (Google Font)
-  - consider: SF Pro (Apple Font), Adobe Clean (Adobe Font)
 
-  - nunito - more circular like, but sf pro is more readable in small sizes
+### Used Components
+  ##### radix ui
+  - "@radix-ui/react-checkbox": "^1.0.4",
+  - "@radix-ui/react-dropdown-menu": "^2.0.5",
+  - "@radix-ui/react-label": "^2.0.2",
+  - "@radix-ui/react-slot": "^1.0.2",
+  - "@radix-ui/react-toast": "^1.1.4",
+  - "@radix-ui/react-tooltip": "^1.0.6",
 
-#### components
-  - radix ui
-  - sonner (https://sonner.emilkowal.ski/) (toast)
+  ##### sonner (https://sonner.emilkowal.ski/)
+  - toast
 
 <br/>
 
@@ -194,7 +196,7 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 
 <br/>
 
-### The Epic Stack
+<!-- ### The Epic Stack
 "This is an opinionated project starter and reference that allows teams to ship their ideas to production faster and on a more stable foundation based on the experience of Kent C. Dodds and contributors." -- Kent C. Dodds
 
 - Download/Pull
@@ -218,9 +220,9 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
   
 - License: MIT
 
-<br/>
+<br/> -->
 
-### Useful Project's Commands
+## Useful Project's Commands
 
 #### mac rubbish files in project removal !
 - "find ./ -name ".DS_Store" -print -delete"
@@ -245,7 +247,7 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 
 <br/>
 
-#### App's Admin Docs
+## Services Docs
 
 #### fly.io
 1. register to fly.io
@@ -262,27 +264,11 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 
 <br/>
 
-## radix/ui components
-  - "@radix-ui/react-checkbox": "^1.0.4",
-  - "@radix-ui/react-dropdown-menu": "^2.0.5",
-  - "@radix-ui/react-label": "^2.0.2",
-  - "@radix-ui/react-slot": "^1.0.2",
-  - "@radix-ui/react-toast": "^1.1.4",
-  - "@radix-ui/react-tooltip": "^1.0.6",
-
-## git syntaxes
-  - "git log -2" <!-- shows not yet pushed commits and their info -->
-
-
-
 ## seeding production DB (from Kent)
---------------------------------- Manual Seeding --------------------------
--- Hey there, Kent here! This is how you can reliably seed your database with
--- some data. You edit the migration.sql file and that will handle it for you.
--- I determined this by running a minimal seed via
--- `MINIMAL_SEED=true npx prisma db seed` and then creating a sql dump via
--- `sqlite3 prisma/data.db .dump > seed.sql`. Then I grabbed the relevant bits
--- for the initial seed and put them here.
+------------------------- Manual Seeding Acc. To Kent in Epic-Stack -------------------------
+Hey there, Kent here! This is how you can reliably seed your database with some data. You edit the migration.sql file and that will handle it for you. I determined this by running a minimal seed via `MINIMAL_SEED=true npx prisma db seed` and then creating a sql dump via `sqlite3 prisma/data.db .dump > seed.sql`. Then I grabbed the relevant bits for the initial seed and put them here.
+
+<br/>
 
 ## custom notes for better development
   1. expressions
