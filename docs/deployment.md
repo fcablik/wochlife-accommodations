@@ -1,11 +1,4 @@
-# Deployment
-
-When you first create an Epic Stack repo, it should take you through a series of
-questions to get your app setup and deployed. However, we'll document the steps
-here in case things don't go well for you or you decide to do it manually later.
-Here they are!
-
-## Deploying to Fly.io
+# Deploying to Fly.io
 
 Prior to your first deployment, you'll need to do a few things:
 
@@ -93,7 +86,7 @@ Prior to your first deployment, you'll need to do a few things:
 
 8. Commit!
 
-   The Epic Stack comes with a GitHub Action that handles automatically
+   The Wochlife Stack comes with a GitHub Action that handles automatically
    deploying your app to production and staging environments.
 
    Now that everything is set up you can commit and push your changes to your

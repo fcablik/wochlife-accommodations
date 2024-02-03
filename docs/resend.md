@@ -1,6 +1,6 @@
 # Sending emails with Resend.com
 
-This document describes how to get [Resend](https://resend.com) (the Epic Stack
+This document describes how to get [Resend](https://resend.com) (the Wochlife
 email provider) setup.
 
 > **NOTE**: this is an optional step. During development the emails will be

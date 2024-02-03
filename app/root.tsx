@@ -27,7 +27,7 @@ import { Confetti } from './components/confetti.tsx'
 import { GeneralErrorBoundary } from './components/error-boundary.tsx'
 import { FooterBase } from './components/footers/footer-base.tsx'
 import { HeaderBase } from './components/headers/header-base.tsx'
-import { EpicProgress } from './components/progress-bar.tsx'
+import { WochlifeProgress } from './components/progress-bar.tsx'
 import { useTheme } from './components/theme-switch.tsx'
 import { FilappsToaster } from './components/toaster.tsx'
 import { href as iconsHref } from './components/ui/icon.tsx'
@@ -240,7 +240,7 @@ function App() {
 			{!routeAdmin && <FooterBase />}
 			<Confetti id={data.confettiId} />
 			<FilappsToaster toast={data.toast} />
-			<EpicProgress />
+			<WochlifeProgress />
 		</Document>
 	)
 }
