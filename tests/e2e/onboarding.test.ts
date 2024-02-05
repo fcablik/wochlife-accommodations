@@ -95,7 +95,8 @@ test('onboarding with link', async ({ page, getOnboardingData }) => {
 	await page.getByRole('link', { name: onboardingData.name }).click()
 	await page.getByRole('menuitem', { name: /profile/i }).click()
 
-	await expect(page).toHaveURL(`/users/${onboardingData.username}`)
+	//* global /users/ route has been removed, users overview now availabl in admin only for admin users
+	// await expect(page).toHaveURL(`/users/${onboardingData.username}`)
 
 	await page.getByRole('link', { name: onboardingData.name }).click()
 	await page.getByRole('menuitem', { name: /logout/i }).click()
