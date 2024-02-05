@@ -11,7 +11,7 @@ export function FooterBase() {
                     <div className="bg-foreground text-background rounded-t-xl px-4 md:px-8 lg:px-10 xl:px-12 3xl:px-16">
                         <div className="flex justify-between py-32">
                             <div>interesting items here</div>
-                            <div className="font-bold capitalize">Filapps Hospitality System app</div>
+                            <div className="font-bold capitalize">Wochlife Accommodations app</div>
                             <div>footer right here</div>
                         </div>
                     </div>

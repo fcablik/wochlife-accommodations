@@ -183,16 +183,16 @@ export async function action({ params, request }: DataFunctionArgs) {
 
 	const mailMessage =
 		'We have successfully received Your created reservation. Here are the further steps: ... ...'
-	const subjectMessage = 'Created Reservation at Filapps Hospitality System'
+	const subjectMessage = 'Created Reservation at Wochlife Accommodations'
 
 	// TODO: //! I need to add mail send to the owner, not only to the user
 	// params.url ?? --> if not reservation from admin, but from FE (this is default/base, that's why it comes first)
 	if (params.url) {
 		//handling confirmation mail and returning success toast
 		const responseToUser = await sendEmail({
-			from: 'Reservation Created <noreply@Filapps.com>',
+			from: 'Reservation Created <noreply@wochlife.com>',
 			to: email,
-			reply_to: 'reservations@Filapps.com',
+			reply_to: 'reservations@wochlife.com',
 			subject: subjectMessage,
 			react: (
 				<ReservationFormEmail
@@ -226,9 +226,9 @@ export async function action({ params, request }: DataFunctionArgs) {
 		if (!reservationId) {
 			//handling confirmation mail and returning success toast
 			const responseToUser = await sendEmail({
-				from: 'Reservation Created <noreply@Filapps.com>',
+				from: 'Reservation Created <noreply@wochlife.com>',
 				to: email,
-				reply_to: 'reservations@Filapps.com',
+				reply_to: 'reservations@wochlife.com',
 				subject: subjectMessage,
 				react: (
 					<ReservationFormEmail

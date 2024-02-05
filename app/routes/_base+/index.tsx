@@ -31,7 +31,7 @@ export default function Index() {
 
 	return (
 		<div className="mx-auto flex min-h-[90vh] my-24 flex-col justify-center text-center">
-			<h1 className="text-h2">Filapps Hospitality System</h1>
+			<h1 className="text-h2">Wochlife Accommodations</h1>
 
 			<div className="mt-24">
 				<h4 className="text-h4">Rooms</h4>
@@ -41,4 +41,4 @@ export default function Index() {
 	)
 }
 
-export const meta: MetaFunction = () => [{ title: 'Welcome To Filapps' }]
+export const meta: MetaFunction = () => [{ title: 'Welcome To Wochlife Accommodations' }]

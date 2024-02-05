@@ -54,9 +54,9 @@ export async function handleVerification({
 	})
 
 	void sendEmail({
-		from: 'noreply@Filapps.com',
+		from: 'noreply@wochlife.com',
 		to: preUpdateUser.email,
-		subject: 'Filapps Hospitality System email changed',
+		subject: 'Wochlife Accommodations email changed',
 		react: <EmailChangeNoticeEmail userId={user.id} />,
 	})
 
@@ -126,9 +126,9 @@ export async function action({ request }: DataFunctionArgs) {
 	})
 
 	const response = await sendEmail({
-		from: 'noreply@Filapps.com',
+		from: 'noreply@wochlife.com',
 		to: submission.value.email,
-		subject: `Filapps Hospitality System Email Change Verification`,
+		subject: `Wochlife Accommodations Email Change Verification`,
 		react: <EmailChangeEmail verifyUrl={verifyUrl.toString()} otp={otp} />,
 	})
 
@@ -157,7 +157,7 @@ export function EmailChangeEmail({
 		<E.Html lang="en" dir="ltr">
 			<E.Container>
 				<h1>
-					<E.Text>Filapps Hospitality System Email Change</E.Text>
+					<E.Text>Wochlife Accommodations Email Change</E.Text>
 				</h1>
 				<p>
 					<E.Text>
@@ -178,11 +178,11 @@ export function EmailChangeNoticeEmail({ userId }: { userId: string }) {
 		<E.Html lang="en" dir="ltr">
 			<E.Container>
 				<h1>
-					<E.Text>Your Filapps Hospitality System email has been changed</E.Text>
+					<E.Text>Your Wochlife Accommodations email has been changed</E.Text>
 				</h1>
 				<p>
 					<E.Text>
-						We're writing to let you know that your Filapps Hospitality System email has been
+						We're writing to let you know that your Wochlife Accommodations email has been
 						changed.
 					</E.Text>
 				</p>

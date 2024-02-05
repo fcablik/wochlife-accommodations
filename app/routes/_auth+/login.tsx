@@ -15,7 +15,7 @@ import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
 import { CheckboxField, ErrorList, Field } from '#app/components/forms.tsx'
 import { Spacer } from '#app/components/spacer.tsx'
 import { StatusButton } from '#app/components/ui/status-button.tsx'
-import { twoFAVerificationType } from '#app/routes/user+/settings+/profile.two-factor.tsx'
+import { twoFAVerificationType } from '#app/routes/user+/profile+/two-factor.tsx'
 import {
 	getUserId,
 	login,
@@ -360,7 +360,7 @@ export default function LoginPage() {
 }
 
 export const meta: MetaFunction = () => {
-	return [{ title: 'Login to Filapps Accommodations System' }]
+	return [{ title: 'Login to Wochlife Accommodations' }]
 }
 
 export function ErrorBoundary() {

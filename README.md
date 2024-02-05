@@ -21,7 +21,9 @@
 #### Usage
 - Be Free to use this stack, or application as a whole, freely under the rules of MIT License.
 - !Disclaimer: This application is still in active development as of 02/02/2024.
-- showcase of this project: [https://wochlife-booking-system-v8.fly.dev/](https://wochlife-booking-system-v8.fly.dev/)
+- showcase of this project: 
+  - [https://wochlife-booking-system-v8.fly.dev/](https://wochlife-booking-system-v8.fly.dev/)
+  - [https://wochlife-booking-system-v8.fly.dev/admin](https://wochlife-booking-system-v8.fly.dev/admin)
   - username: woch
   - password: wochlife
 

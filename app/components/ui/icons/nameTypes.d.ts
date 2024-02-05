@@ -21,6 +21,7 @@ export type IconName =
 	| 'envelope-closed'
 	| 'exit'
 	| 'file-text'
+	| 'github-logo copy'
 	| 'github-logo'
 	| 'home'
 	| 'image'

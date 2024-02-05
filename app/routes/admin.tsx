@@ -153,7 +153,7 @@ export default function AdminRoute() {
 						onMouseLeave={handleMouseOut}
 					>
 						<div className={cn(sidebarBoxBaseClasslist, 'py-1 lg:py-8')}>
-							<div className="text-center max-lg:hidden">Filapps</div>
+							<div className="text-center max-lg:hidden">Wochlife Accommodations</div>
 
 							<div className="custom-admin-sidebar-height flex w-full items-center justify-between gap-1 lg:flex-col 2xl:gap-2">
 								<SidebarMainNavLink

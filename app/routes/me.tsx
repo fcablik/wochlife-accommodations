@@ -15,5 +15,5 @@ export async function loader({ request }: DataFunctionArgs) {
 		return redirect(redirectTo)
 	}
 	// return redirect(`/users/${user.username}`)
-	return redirect(`/user/settings/profile`)
+	return redirect(`/user/profile`)
 }

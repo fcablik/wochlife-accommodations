@@ -3,7 +3,7 @@ export default function AdminIndex() {
 		<div className="py-2 md:py-6">
 			<div className="mb-8 px-2 max-sm:text-center md:px-6">
 				<h2 className="mb-2 text-h2 capitalize text-foreground">
-					Filapps Documentation
+					Wochlife Accommodations Documentation
 				</h2>
 				<p className="text-xl">
 					Here, You will find all necessary information to operate this

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Toaster, toast as showToast } from 'sonner'
 import { type Toast } from '#app/utils/toast.server.ts'
 
-export function FilappsToaster({ toast }: { toast?: Toast | null }) {
+export function WochlifeToaster({ toast }: { toast?: Toast | null }) {
 	return (
 		<>
 			<Toaster duration={3000} richColors closeButton position="top-right" />

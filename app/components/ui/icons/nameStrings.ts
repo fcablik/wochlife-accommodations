@@ -22,6 +22,7 @@ export function IconNames(): string[] {
 		'envelope-closed',
 		'exit',
 		'file-text',
+		'github-logo copy',
 		'github-logo',
 		'home',
 		'image',
