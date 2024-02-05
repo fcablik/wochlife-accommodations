@@ -1,4 +1,4 @@
-app = "wochlife-booking-system-v8" #re-deploy later to new server "wochlife-accommodations"
+app = "wochlife-accommodations"
 primary_region = "ams"
 kill_signal = "SIGINT"
 kill_timeout = 5
