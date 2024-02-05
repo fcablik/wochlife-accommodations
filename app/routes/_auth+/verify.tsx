@@ -24,7 +24,7 @@ import {
 	handleVerification as handleLoginTwoFactorVerification,
 	shouldRequestTwoFA,
 } from './login.tsx'
-// import { handleVerification as handleOnboardingVerification } from './onboarding.tsx'
+import { handleVerification as handleOnboardingVerification } from './onboarding.tsx'
 import { handleVerification as handleResetPasswordVerification } from './reset-password.tsx'
 
 export const codeQueryParam = 'code'
@@ -32,7 +32,7 @@ export const targetQueryParam = 'target'
 export const typeQueryParam = 'type'
 export const redirectToQueryParam = 'redirectTo'
 const types = ['reset-password', 'change-email', '2fa'
-// , 'onboarding', 
+, 'onboarding', 
 ] as const
 const VerificationTypeSchema = z.enum(types)
 export type VerificationTypes = z.infer<typeof VerificationTypeSchema>
@@ -211,10 +211,10 @@ async function validateRequest(
 			await deleteVerification()
 			return handleResetPasswordVerification({ request, body, submission })
 		}
-		// case 'onboarding': {
-		// 	await deleteVerification()
-		// 	return handleOnboardingVerification({ request, body, submission })
-		// }
+		case 'onboarding': {
+			await deleteVerification()
+			return handleOnboardingVerification({ request, body, submission })
+		}
 		case 'change-email': {
 			await deleteVerification()
 			return handleChangeEmailVerification({ request, body, submission })
@@ -244,7 +244,7 @@ export default function VerifyRoute() {
 	)
 
 	const headings: Record<VerificationTypes, React.ReactNode> = {
-		// onboarding: checkEmail,
+		onboarding: checkEmail,
 		'reset-password': checkEmail,
 		'change-email': checkEmail,
 		'2fa': (

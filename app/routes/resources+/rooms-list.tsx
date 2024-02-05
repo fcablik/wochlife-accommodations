@@ -28,8 +28,7 @@ export function RoomsListLoader({
 		<>
 			{roomData.rooms.length && roomsVisibility?.length ? (
 				<div
-					id="list"
-					className="px-2 py-4 sm:mx-auto sm:max-w-[850px] md:max-w-[950px] lg:max-w-[1050px] lg:px-0 lg:py-12"
+					className="py-4 sm:mx-auto sm:max-w-[850px] md:max-w-[950px] lg:max-w-[1050px] lg:px-0 lg:py-12"
 				>
 					<div className="grid grid-cols-2 lg:grid-cols-3">
 						{roomData.rooms.map(room => (
@@ -38,7 +37,7 @@ export function RoomsListLoader({
 									<div className="w-full p-2 text-center md:p-6">
 										<div className="z-1 border bg-background rounded-xl transition-opacity hover:opacity-95">
 											<Link to={`/rooms/${room.url}`} className="text-center ">
-												<div className="relative h-[165px]">
+												<div className="relative h-[105px] md:h-[165px]">
 													<>
 														{room.roomPreviewImages.length ? (
 															<img
@@ -60,8 +59,8 @@ export function RoomsListLoader({
 													</>
 												</div>
 
-												<div className="px-3 pb-6 pt-4 lg:px-4 lg:pb-10 lg:pt-6">
-													<div className="overflow-hidden py-6 lg:p-8">
+												<div className="p-3 md:pb-6 md:pt-4 lg:px-4 lg:pb-10 lg:pt-6">
+													<div className="overflow-hidden py-2 md:py-6 lg:p-8">
 														<div>{room.title}</div>
 														<div>{room.price1}</div>
 													</div>

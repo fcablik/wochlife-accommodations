@@ -22,10 +22,10 @@ import {
 	requireAnonymous,
 	sessionKey,
 } from '#app/utils/auth.server.ts'
-// import {
-// 	ProviderConnectionForm,
-// 	providerNames,
-// } from '#app/utils/connections.tsx'
+import {
+	ProviderConnectionForm,
+	providerNames,
+} from '#app/utils/connections.tsx'
 import { validateCSRF } from '#app/utils/csrf.server.ts'
 import { prisma } from '#app/utils/db.server.ts'
 import { checkHoneypot } from '#app/utils/honeypot.server.ts'
@@ -262,9 +262,9 @@ export default function LoginPage() {
 		<div className="flex min-h-full flex-col justify-center pb-32 pt-20">
 			<div className="mx-auto w-full max-w-md">
 				<div className="flex flex-col gap-3 text-center">
-					<h1 className="text-h1">Log In!</h1>
+					<h1 className="text-h2">Log In!</h1>
 					<p className="text-body-md text-muted-foreground">
-						Sorry, You'll have to log-in for this one. 🙂
+						..and explore. 🥳🎉
 					</p>
 				</div>
 				<Spacer size="xs" />
@@ -329,7 +329,7 @@ export default function LoginPage() {
 								</StatusButton>
 							</div>
 						</Form>
-						{/* <ul className="mt-5 flex flex-col gap-5 border-t-2 border-border py-3">//{/* border-b-2 
+						<ul className="mt-5 flex flex-col gap-5 border-t-2 border-border py-3">{/* border-b-2  */}
 							{providerNames.map(providerName => (
 								<li key={providerName}>
 									<ProviderConnectionForm
@@ -351,7 +351,7 @@ export default function LoginPage() {
 							>
 								Create an account
 							</Link>
-						</div> */}
+						</div>
 					</div>
 				</div>
 			</div>

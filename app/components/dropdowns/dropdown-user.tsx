@@ -14,7 +14,7 @@ export default function UserDropdown() {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button asChild variant="secondary">
+				<Button className='max-md:px-2' asChild variant="secondary">
 					<Link
 						to={`/me`}
 						// this is for progressive enhancement
@@ -32,6 +32,7 @@ export default function UserDropdown() {
 					</Link>
 				</Button>
 			</DropdownMenuTrigger>
+
 			<DropdownMenuPortal>
 				<DropdownMenuContent sideOffset={8} align="start" className='z-9999'>
 					<DropdownMenuItem asChild>
@@ -41,6 +42,7 @@ export default function UserDropdown() {
 							</Icon>
 						</Link>
 					</DropdownMenuItem>
+
 					<DropdownMenuItem
 						asChild
 						// this prevents the menu from closing before the form submission is completed

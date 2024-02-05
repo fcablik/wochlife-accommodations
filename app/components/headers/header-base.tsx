@@ -6,16 +6,16 @@ import {
 	TooltipTrigger,
 } from '#app/components/ui/tooltip.tsx'
 import { cn } from '#app/utils/misc.tsx'
+import { useOptionalUser } from "#app/utils/user.ts"
 import { baseContainerWidthClassList } from '../classlists.tsx'
+import UserDropdown from "../dropdowns/dropdown-user.tsx"
 import ThemeSwitcher from '../theme-switch.tsx'
 import { Button } from '../ui/button.tsx'
 import { Icon } from '../ui/icon.tsx'
-// import { useOptionalUser } from "#app/utils/user.ts"
-// import UserDropdown from "../dropdowns/dropdown-user.tsx"
 
 export function HeaderBase({ routeAdmin }: { routeAdmin?: boolean }) {
-	// const user = useOptionalUser()
-	const headerHeight = 'md:h-[60px]'
+	const user = useOptionalUser()
+	const headerHeight = 'md:min-h-[60px]'
 
 	return (
 		<header className={cn('max-md:absolute', routeAdmin && 'max-lg:hidden')}>
@@ -29,7 +29,7 @@ export function HeaderBase({ routeAdmin }: { routeAdmin?: boolean }) {
 				>
 					<nav
 						className={cn(
-							'space-between flex items-center justify-between max-md:p-3 py-2',
+							'space-between flex items-center justify-between max-md:py-3 max-md:px-4 py-2',
 							baseContainerWidthClassList,
 						)}
 					>
@@ -40,7 +40,7 @@ export function HeaderBase({ routeAdmin }: { routeAdmin?: boolean }) {
 
 						<div className="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
 							<div className="flex justify-center gap-7 md:gap-5">
-								<NavLink to="rooms">
+								<NavLink to="">
 									{({ isActive }) => (
 										<>
 											<Button
@@ -105,13 +105,15 @@ export function HeaderBase({ routeAdmin }: { routeAdmin?: boolean }) {
 
 							<ThemeSwitcher />
 
-							{/* {user ? (
-								<UserDropdown />
-							) : (
-								<Button asChild variant="default" size="sm">
-									<Link to="/login">Log In</Link>
-								</Button>
-							)} */}
+							<div className='max-md:absolute max-md:bottom-16 max-md:right-2'>
+								{user ? (
+									<UserDropdown />
+								) : (
+									<Button asChild variant="default" size="sm">
+										<Link to="/login">Log In</Link>
+									</Button>
+								)}
+							</div>
 						</div>
 					</nav>
 				</div>
