@@ -1,8 +1,22 @@
 # Wochlife Accommodations
-### current version: 8.3.2
-##### web application with management system for accommodations
 
-##### #Stack: Remix.run / TypeScript / SQLite / Fly.io / prisma / GitHub Actions / Resend / and more..
+#### Author: [Filip Čablík](https://github.com/fcablik/)<br/>current version: 8.3.2
+#### Description: Accommodations Management Web Application with Reservations
+#### #Stack:
+![Remix](https://img.shields.io/badge/remix-%23000.svg?style=for-the-badge&logo=remix&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) 
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Radix UI](https://img.shields.io/badge/radix%20ui-161618.svg?style=for-the-badge&logo=radix-ui&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
+![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) 
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+    <br/>+ Zod  | + Fly.io  | + Resend  | + react email  | + Playwright  | + Prettier
 
 #### Usage
 - Be Free to use this stack, or application as a whole, freely under the rules of MIT License.
@@ -16,7 +30,6 @@
   2. ```npm run dev```
   - username: woch
   - password: wochlife
-
 <br/>
 
 ## Upcoming ToDos.. (currently in progress)
@@ -29,6 +42,7 @@
   - implementing small calendars UX/UI, currently not very responsive
   - country specific cookie consents with its admin section management
     - content will possibly come directly from a translation for simple localization
+  - fix transition of admin's sidebar child menus ( figure out a better way to handle z-index changes w/o the interaface-lags )
 
 ## Upcoming Fixes..
   - fix admin sidebar's "others" child box positioning on >lg devices
@@ -36,7 +50,6 @@
 
 ## Upcoming Updates
   - update remix.run (to the latest stable, currently 2.3.1)
-
 <br />
 
 ### About The Wochlife Stack
@@ -44,8 +57,7 @@
 
 ### Base Stack & Decisions
   To get a break from 'analysis paralysis' right from the start, I had decided to start with the already throughout tested Remix starting stack - The Epic Stack, developed by Kent C Dodds & the community. The Epic Stack is an opinionated project starter, open-source - under the MIT license. I'd used it as a starter stack to get solid selection of technologies and tools, and of-course, to ship faster. Even further on into advanced development phases, The Epic Stack is a great project reference to look up to and make better decisions in implementations. -me/fcablik
-
-<br/>
+<br/><br/>
 
 <!-- ! REMOVE: "// Temporary DEVelopment Phase" permission request if not in dev phase -->
 # Deployment
@@ -152,63 +164,57 @@ Prior to your first deployment, you'll need to do a few things:
    deployment to your staging environment.
 
 ---
-
 ### Optional: Email service setup
-
-Find instructions for this optional step in [the email docs](./email.md).
+  Find instructions for this optional step in [the email docs](./email.md).
 
 ### Optional: Error monitoring setup
-
-Find instructions for this optional step in
-[the error tracking docs](./monitoring.md).
+  Find instructions for this optional step in
+  [the error tracking docs](./monitoring.md).
 
 ### Optional: Connecting to your production database
-
-Find instructions for this optional step in [the database docs](./database.md).
+  Find instructions for this optional step in [the database docs](./database.md).
 
 ### Optional: Seeding Production
+  Find instructions for this optional step in [the database docs](./database.md).
 
-Find instructions for this optional step in [the database docs](./database.md).
 
 ## Deploying locally
 
-If you'd like to deploy locally you definitely can. You need to (temporarily)
-move the `Dockerfile` and the `.dockerignore` to the root of the project first.
-Then you can run the deploy command:
+  If you'd like to deploy locally you definitely can. You need to (temporarily)
+  move the `Dockerfile` and the `.dockerignore` to the root of the project first.
+  Then you can run the deploy command:
 
-```
-mv ./other/Dockerfile Dockerfile
-mv ./other/.dockerignore .dockerignore
-fly deploy
-```
+  ```
+  mv ./other/Dockerfile Dockerfile
+  mv ./other/.dockerignore .dockerignore
+  fly deploy
+  ```
 
-Once it's done, move the files back:
+  Once it's done, move the files back:
 
-```
-mv Dockerfile ./other/Dockerfile
-mv .dockerignore ./other/.dockerignore
-```
+  ```
+  mv Dockerfile ./other/Dockerfile
+  mv .dockerignore ./other/.dockerignore
+  ```
 
-You can keep the `Dockerfile` and `.dockerignore` in the root if you prefer,
-just make sure to remove the move step from the `.github/workflows/deploy.yml`.
-
+  You can keep the `Dockerfile` and `.dockerignore` in the root if you prefer,
+  just make sure to remove the move step from the `.github/workflows/deploy.yml`.
 <br/>
 
 ### Used Fonts
   - main-use/using: Nunito Sans, Nunito Sans Fallback (Google Font)
 
 ### Used Components
-  ##### radix ui
-  - "@radix-ui/react-checkbox": "^1.0.4",
-  - "@radix-ui/react-dropdown-menu": "^2.0.5",
-  - "@radix-ui/react-label": "^2.0.2",
-  - "@radix-ui/react-slot": "^1.0.2",
-  - "@radix-ui/react-toast": "^1.1.4",
-  - "@radix-ui/react-tooltip": "^1.0.6",
+  - ##### radix ui
+    - "@radix-ui/react-checkbox": "^1.0.4",
+    - "@radix-ui/react-dropdown-menu": "^2.0.5",
+    - "@radix-ui/react-label": "^2.0.2",
+    - "@radix-ui/react-slot": "^1.0.2",
+    - "@radix-ui/react-toast": "^1.1.4",
+    - "@radix-ui/react-tooltip": "^1.0.6",
 
-  ##### sonner (https://sonner.emilkowal.ski/)
-  - toast
-
+  - ##### sonner (https://sonner.emilkowal.ski/)
+    - toast
 <br/>
 
 ### Tips In Development
@@ -217,82 +223,50 @@ just make sure to remove the move step from the `.github/workflows/deploy.yml`.
   - ! creating modules logic: Create whole modules with whole sections & each section's component/text will be displayed conditionally - inputed/ filled in ->display, otherwise don't
 
   - seeding production database - https://github.com/epicweb-dev/epic-stack/blob/main/docs/deployment.md#seeding-production
-
 <br/>
 
-<!-- ### The Epic Stack
-"This is an opinionated project starter and reference that allows teams to ship their ideas to production faster and on a more stable foundation based on the experience of Kent C. Dodds and contributors." -- Kent C. Dodds
-
-- Download/Pull
-
-  https://github.com/epicweb-dev/epic-stack
-
-- Installing the latest epic-stack version:
-
-  ```sh
-  npx create-remix@latest --typescript --install --template epicweb-dev/epic-stack
-  ```
-
-- Later Deployment
-
-  https://github.com/epicweb-dev/epic-stack/blob/main/docs/deployment.md
-  https://www.youtube.com/watch?v=dWiSi4Ie53E
-
-  - - fly.io: 
-  https://community.fly.io/t/configuring-domain-names/12964
-  https://fly.io/docs/app-guides/custom-domains-with-fly/
-  
-- License: MIT
-
-<br/> -->
-
 ## Useful Project's Commands
+  - #### mac rubbish files in project removal !
+    - "find ./ -name ".DS_Store" -print -delete"
+      list of problems caused by these files
+      - "Error: Cannot add empty string to PrefixLookupTrie"
 
-#### mac rubbish files in project removal !
-- "find ./ -name ".DS_Store" -print -delete"
-  list of problems caused by these files
-  - "Error: Cannot add empty string to PrefixLookupTrie"
+  - #### prisma migrating db to new schema
+    - "npx prisma migrate dev"
 
-#### prisma migrating db to new schema
-- "npx prisma migrate dev"
+  - #### prisma db live preview
+    - "npx prisma studio" (localhost:5555)
 
-#### prisma db live preview
-- "npx prisma studio" (localhost:5555)
+  - #### connecting to deployed fly's app's db
+    1. "fly proxy 5556:5555 --app [APP_NAME]"
+    2. "fly ssh console -C "npx prisma studio" --app [APP_NAME]"
+      ("fly ssh console -C "npm run prisma:studio" --app [APP_NAME]")
 
-#### connecting to deployed fly's app's db
-1. "fly proxy 5556:5555 --app [APP_NAME]"
-2. "fly ssh console -C "npx prisma studio" --app [APP_NAME]"
-  ("fly ssh console -C "npm run prisma:studio" --app [APP_NAME]")
-
-#### deployment errors!
-- prisma Error: P3009 (migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve)
-    - this error appears most commonly when pushing new columns to a table that already has data in it
-    - to prevent => add default values / or have 0 data in the changed tables (models)
-
+  - #### deployment errors!
+    - prisma Error: P3009 (migrate found failed migrations in the target database, new migrations will not be applied. Read more about how to resolve migration issues in a production database: https://pris.ly/d/migrate-resolve)
+        - this error appears most commonly when pushing new columns to a table that already has data in it
+        - to prevent => add default values / or have 0 data in the changed tables (models)
 <br/>
 
 ## Services Docs
+- #### fly.io
+  1. register to fly.io
+  2. input credit-card (for verification, this app's stack fits within the free tier) (fly.io is demanding only payments over $5/month, which will be very hard to get over with only 1VM image & server running)
+  3. authorize project's signup
+  3. setup project for deployment
 
-#### fly.io
-1. register to fly.io
-2. input credit-card (for verification, this app's stack fits within the free tier) (fly.io is demanding only payments over $5/month, which will be very hard to get over with only 1VM image & server running)
-3. authorize project's signup
-3. setup project for deployment
-
-#### resend.com
-1. register web/app owner to: https://resend.com
-2. validate mail/domain DNS of the contact form emails receiver: https://resend.com/domains (needs to be configured in domain's DNS settings)
-3. optional: invite members to the resend.com app: https://resend.com/settings/team 
-4. enjoy your 3,000/month free emails (100 emails / day)
-  - upgrade option: 5,000 - 50,000 emails/month: $20/month
-
+- #### resend.com
+  1. register web/app owner to: https://resend.com
+  2. validate mail/domain DNS of the contact form emails receiver: https://resend.com/domains (needs to be configured in domain's DNS settings)
+  3. optional: invite members to the resend.com app: https://resend.com/settings/team 
+  4. enjoy your 3,000/month free emails (100 emails / day)
+    - upgrade option: 5,000 - 50,000 emails/month: $20/month
 <br/>
 
 ## seeding production DB (from Kent)
 ------------------------- Manual Seeding Acc. To Kent in Epic-Stack -------------------------
 Hey there, Kent here! This is how you can reliably seed your database with some data. You edit the migration.sql file and that will handle it for you. I determined this by running a minimal seed via `MINIMAL_SEED=true npx prisma db seed` and then creating a sql dump via `sqlite3 prisma/data.db .dump > seed.sql`. Then I grabbed the relevant bits for the initial seed and put them here.
-
-<br/>
+<br/><br/>
 
 ## custom notes for better development
   1. expressions
