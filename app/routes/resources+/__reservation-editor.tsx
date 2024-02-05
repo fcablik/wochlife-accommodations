@@ -190,9 +190,9 @@ export async function action({ params, request }: DataFunctionArgs) {
 	if (params.url) {
 		//handling confirmation mail and returning success toast
 		const responseToUser = await sendEmail({
-			from: 'Reservation Created <noreply@wochlife.com>',
+			from: 'Reservation Created <noreply@wochdev.com>',
 			to: email,
-			reply_to: 'reservations@wochlife.com',
+			reply_to: 'reservations@wochdev.com',
 			subject: subjectMessage,
 			react: (
 				<ReservationFormEmail
@@ -226,9 +226,9 @@ export async function action({ params, request }: DataFunctionArgs) {
 		if (!reservationId) {
 			//handling confirmation mail and returning success toast
 			const responseToUser = await sendEmail({
-				from: 'Reservation Created <noreply@wochlife.com>',
+				from: 'Reservation Created <noreply@wochdev.com>',
 				to: email,
-				reply_to: 'reservations@wochlife.com',
+				reply_to: 'reservations@wochdev.com',
 				subject: subjectMessage,
 				react: (
 					<ReservationFormEmail

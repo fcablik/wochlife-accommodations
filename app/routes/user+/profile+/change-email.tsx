@@ -54,7 +54,7 @@ export async function handleVerification({
 	})
 
 	void sendEmail({
-		from: 'noreply@wochlife.com',
+		from: 'noreply@wochdev.com',
 		to: preUpdateUser.email,
 		subject: 'Wochlife Accommodations email changed',
 		react: <EmailChangeNoticeEmail userId={user.id} />,
@@ -126,7 +126,7 @@ export async function action({ request }: DataFunctionArgs) {
 	})
 
 	const response = await sendEmail({
-		from: 'noreply@wochlife.com',
+		from: 'noreply@wochdev.com',
 		to: submission.value.email,
 		subject: `Wochlife Accommodations Email Change Verification`,
 		react: <EmailChangeEmail verifyUrl={verifyUrl.toString()} otp={otp} />,

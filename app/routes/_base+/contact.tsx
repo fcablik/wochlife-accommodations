@@ -52,7 +52,7 @@ export async function action({ request }: DataFunctionArgs) {
 	const { email, name, message, redirectTo } = submission.value
 
 	const response = await sendEmail({
-		from: "Contact Form from Wochlife Accommodations <noreply@wochlife.com>",
+		from: "Contact Form from Wochlife Accommodations <noreply@wochdev.com>",
 		to: 'filip.cablik@icloud.com', // mail of preference where the message should be delivered to (owner of web, admin, etc.)
 		reply_to: email,
 		subject: `Web Form message from ` + email,
