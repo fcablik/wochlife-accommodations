@@ -69,7 +69,7 @@ export async function action({ request }: DataFunctionArgs) {
 
 	const response = await sendEmail({
 		to: email,
-		from: 'oreply@wochlife.com',
+		from: 'noreply@wochlife.com',
 		subject: `Welcome to Woch Res!`,
 		react: <SignupEmail onboardingUrl={verifyUrl.toString()} otp={otp} />,
 	})
