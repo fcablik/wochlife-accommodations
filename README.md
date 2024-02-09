@@ -22,8 +22,8 @@
 - Be Free to use this stack, or application as a whole, freely under the rules of MIT License.
 - !Disclaimer: This application is still in active development as of 02/02/2024.
 - showcase of this project: 
-  - Base HomePage: [https://wochlife-accommodations.com](https://wochlife-accommodations.com)
-  - Admin Dashboard: [https://wochlife-accommodations.com/admin](https://wochlife-accommodations.com/admin)
+  - Base HomePage: [wochlife-accommodations.fly.dev](https://wochlife-accommodations.fly.dev)
+  - Admin Dashboard: [wochlife-accommodations.fly.dev/admin](https://wochlife-accommodations.fly.dev/admin)
   - username: woch
   - password: wochlife
 
